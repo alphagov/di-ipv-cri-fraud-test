@@ -12,14 +12,24 @@ public class FraudStepDefs extends FraudPageObject {
         navigateToIPVCoreStub();
     }
 
-    @And("I click the Fraud CRI Integration option")
-    public void navigateToFraud() {
-        navigateToFraudCRI();
+    @And("^I click the Fraud CRI for the (.*) environment$")
+    public void navigateToFraud(String environment) {
+        navigateToFraudCRI(environment);
     }
 
     @Then("^I search for user number (.*) in the Experian table$")
     public void userSearch(String number) {
         searchForUATUser(number);
+    }
+
+    @And("^I navigate to the verifiable issuer to check for a (.*) response from experian$")
+    public void navigateToVerifiableIssuer(String validOrInvalid) {
+        navigateToResponse(validOrInvalid);
+    }
+
+    @Then("^I navigate to (.*) and assert I have been directed correctly$")
+    public void experianOrPrivacyPolicy(String page) {
+        whoWeCheckDetailsWith(page);
     }
 
 
