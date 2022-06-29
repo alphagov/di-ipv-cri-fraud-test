@@ -22,9 +22,9 @@ public class FraudStepDefs extends FraudPageObject {
         searchForUATUser(number);
     }
 
-    @And("I navigate to the verifiable issuer to check the response from experian")
-    public void navigateToVerifiableIssuer() {
-        navigateToResponse();
+    @And("^I navigate to the verifiable issuer to check for a (.*) response from experian$")
+    public void navigateToVerifiableIssuer(String validOrInvalid) {
+        navigateToResponse(validOrInvalid);
     }
 
     @Then("^I navigate to (.*) and assert I have been directed correctly$")

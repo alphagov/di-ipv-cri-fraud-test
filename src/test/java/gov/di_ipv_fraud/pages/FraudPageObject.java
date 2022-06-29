@@ -37,6 +37,8 @@ public class FraudPageObject extends UniversalSteps {
     public WebElement experianLink;
     @FindBy(xpath = "//*[@id=\"main-content\"]/div/div/form/details/div/p[2]/a")
     public WebElement privacyPolicyLink;
+    @FindBy(xpath = "//*[@id=\"main-content\"]/div/details")
+    public WebElement errorResponse;
 
 
     public FraudPageObject() {
@@ -74,17 +76,21 @@ public class FraudPageObject extends UniversalSteps {
     }
 
     public void searchForUATUser(String number) {
-        assertURLContains("credential-issuer?cri=fraud-cri-integration");
+        assertURLContains("credential-issuer?cri=fraud-cri");
         selectRow.sendKeys(number);
         searchButton.click();
 
     }
 
-    public void navigateToResponse() {
+    public void navigateToResponse(String validOrInvalid) {
         waitForTextToAppear(CHECKING_YOUR_DETAILS);
         checkYourDetailsContinue.click();
         assertURLContains("callback");
-        viewResponse.click();
+        if ("Invalid".equalsIgnoreCase(validOrInvalid)) {
+            errorResponse.click();
+        } else {
+            viewResponse.click();
+        }
     }
 
     public void whoWeCheckDetailsWith(String page) {

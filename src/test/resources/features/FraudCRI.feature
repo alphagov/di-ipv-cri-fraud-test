@@ -2,19 +2,26 @@
 Feature: Fraud CRI
 
   @happy_path
-  Scenario: User Journey Happy Path (STUB)
+  Scenario Outline: User Journey Happy Path (STUB)
     Given I navigate to the IPV Core Stub
-    And I click the Fraud CRI for the Integration environment
+    And I click the Fraud CRI for the <environment> environment
     Then I search for user number 12 in the Experian table
-    And I navigate to the verifiable issuer to check the response from experian
+    And I navigate to the verifiable issuer to check for a Valid response from experian
     And The test is complete and I close the driver
+
+    Examples:
+      | environment |
+      | Build       |
+      | Staging     |
+      | Integration |
+
 
   @unhappy_path
   Scenario: User Journey Unhappy Path (STUB)
     Given I navigate to the IPV Core Stub
     And I click the Fraud CRI for the Integration environment
     Then I search for user number 14 in the Experian table
-    And I navigate to the verifiable issuer to check the response from experian
+    And I navigate to the verifiable issuer to check for a Invalid response from experian
     And The test is complete and I close the driver
 
   @external_links
