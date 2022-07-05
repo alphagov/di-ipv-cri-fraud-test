@@ -1,14 +1,36 @@
 package gov.di_ipv_fraud.utilities;
 
+import gov.di_ipv_fraud.service.ConfigurationService;
+import software.amazon.lambda.powertools.parameters.ParamManager;
+
 public class PassportAPIGlobals {
 
-    public String redirectURI = "https://dev-danw-di-ipv-core-front.london.cloudapps.digital/credential-issuer/callback?id=ukPassport";
-    public String passportPostUrl = "https://e7jswiyhje.execute-api.eu-west-2.amazonaws.com/dev/passport?redirect_uri=https://dev-danw-di-ipv-core-front.london.cloudapps.digital/credential-issuer/callback?id=ukPassport&client_id=ipv-core&response_type=code&scope=openid";
-    public String tokenPostUrl = "https://e7jswiyhje.execute-api.eu-west-2.amazonaws.com/dev/token";
-    public String credentialGetUrl = "https://e7jswiyhje.execute-api.eu-west-2.amazonaws.com/dev/credential";
-    public String clientId = "ipv-core";
-    public String redirect_uri = "https://dev-danw-di-ipv-core-front.london.cloudapps.digital/credential-issuer/callback?id=ukPassport";
-    public String grant_type = "authorization_code";
-    public String client_id = "ipv-core-stub";
+    public String redirectURI;
+    public String passportAuthUrl;
+    public String tokenPostUrl;
+    public String credentialGetUrl;
+    public String clientId;
+    public String grant_type;
+
+    public PassportAPIGlobals() {
+        ConfigurationService configurationService = new ConfigurationService(
+                ParamManager.getSecretsProvider(),
+                ParamManager.getSsmProvider(),
+                System.getenv("ENVIRONMENT"));
+
+        redirectURI = configurationService.getRedirectUri();
+
+        String passportCriUrl = configurationService.getPassportCriUrl();
+        String redirectUri = configurationService.getRedirectUri();
+        String clientId = configurationService.getClientId();
+
+        passportAuthUrl = passportCriUrl + "/oauth2/authorize?redirect_uri=" + redirectUri + "&client_id=" + clientId + "&response_type=code&scope=openid";
+        tokenPostUrl = configurationService.getPublicApiBaseUrl() + "/token";
+        credentialGetUrl = configurationService.getPublicApiBaseUrl() + "/credential";
+        clientId = configurationService.getClientId();
+        grant_type = "authorization_code";
+    }
+
+
 
 }

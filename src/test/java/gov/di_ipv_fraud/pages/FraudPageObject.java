@@ -1,11 +1,14 @@
 package gov.di_ipv_fraud.pages;
 
+import gov.di_ipv_fraud.service.ConfigurationService;
 import gov.di_ipv_fraud.utilities.ConfigurationReader;
 import gov.di_ipv_fraud.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import software.amazon.lambda.powertools.parameters.ParamManager;
 
+import java.net.URI;
 import java.util.ArrayList;
 
 import static gov.di_ipv_fraud.pages.Headers.CHECKING_YOUR_DETAILS;
@@ -13,6 +16,8 @@ import static gov.di_ipv_fraud.pages.Headers.IPV_CORE_STUB;
 
 
 public class FraudPageObject extends UniversalSteps {
+
+    private final ConfigurationService configurationService;
 
     @FindBy(xpath = "//*[@id=\"main-content\"]/p/a/button")
     public WebElement visitCredentialIssuers;
@@ -42,11 +47,27 @@ public class FraudPageObject extends UniversalSteps {
 
 
     public FraudPageObject() {
+        if (System.getenv("ENVIRONMENT").equals("local")) {
+            this.configurationService =
+                    new ConfigurationService(
+                            null,
+                            null,
+                            System.getenv("ENVIRONMENT"));
+        } else {
+            this.configurationService =
+                    new ConfigurationService(
+                            ParamManager.getSecretsProvider(),
+                            ParamManager.getSsmProvider(),
+                            System.getenv("ENVIRONMENT"));
+        }
         PageFactory.initElements(Driver.get(), this);
     }
 
     public void navigateToIPVCoreStub() {
-        Driver.get().get(ConfigurationReader.get(IPV_CORE_STUB_ENDPOINT));
+        String coreStubUsername = configurationService.getCoreStubUsername();
+        String coreStubPassword = configurationService.getCoreStubPassword();
+        String coreStubUrl = configurationService.getCoreStubUrl();
+        Driver.get().get("https://" + coreStubUsername + ":" + coreStubPassword + "@" + coreStubUrl);
         waitForTextToAppear(IPV_CORE_STUB);
 
     }

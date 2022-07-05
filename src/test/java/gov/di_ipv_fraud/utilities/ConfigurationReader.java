@@ -33,22 +33,6 @@ public class ConfigurationReader {
         return System.getenv("BROWSER") != null ? System.getenv("BROWSER") : "chrome";
     }
 
-    public static String getOrchestratorUrl() {
-        String orchestratorStubUrl = System.getenv("ORCHESTRATOR_STUB_URL");
-        if (orchestratorStubUrl == null) {
-            throw new IllegalArgumentException("Environment variable ORCHESTRATOR_STUB_URL is not set");
-        }
-        return orchestratorStubUrl;
-    }
-
-    public static String getCoreStubUrl() {
-        String coreStubUrl = System.getenv("CORE_STUB_URL");
-        if (coreStubUrl == null) {
-            throw new IllegalArgumentException("Environment variable CORE_STUB_URL is not set");
-        }
-        return coreStubUrl;
-    }
-
     public static boolean noChromeSandbox() {
         return "true".equalsIgnoreCase(System.getenv("NO_CHROME_SANDBOX"));
     }

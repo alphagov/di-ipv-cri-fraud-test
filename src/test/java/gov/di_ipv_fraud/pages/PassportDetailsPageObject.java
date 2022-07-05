@@ -1,14 +1,19 @@
 package gov.di_ipv_fraud.pages;
 
+import gov.di_ipv_fraud.service.ConfigurationService;
 import gov.di_ipv_fraud.utilities.ConfigurationReader;
 import gov.di_ipv_fraud.utilities.Driver;
+import gov.di_ipv_fraud.utilities.PassportAPIGlobals;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import software.amazon.lambda.powertools.parameters.ParamManager;
 
 
 public class PassportDetailsPageObject extends UniversalSteps {
+
+    private final PassportAPIGlobals passportAPIGlobals;
 
     @FindBy(id = "passportNumber")
     public WebElement passportNumberField;
@@ -34,11 +39,12 @@ public class PassportDetailsPageObject extends UniversalSteps {
     public WebElement dcsCheckIsComplete;
 
     public PassportDetailsPageObject() {
+        passportAPIGlobals = new PassportAPIGlobals();
         PageFactory.initElements(Driver.get(), this);
     }
 
     public void proveIdentityPage() {
-        Driver.get().get(ConfigurationReader.get("passportDev"));
+        Driver.get().get(passportAPIGlobals.passportAuthUrl);
         waitForFiveSeconds();
     }
 
