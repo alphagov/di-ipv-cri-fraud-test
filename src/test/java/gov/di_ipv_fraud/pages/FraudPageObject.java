@@ -44,6 +44,10 @@ public class FraudPageObject extends UniversalSteps {
     public WebElement privacyPolicyLink;
     @FindBy(xpath = "//*[@id=\"main-content\"]/div/details")
     public WebElement errorResponse;
+    @FindBy(xpath = "//*[@id=\"continue\"]")
+    public WebElement continueButton;
+    @FindBy(xpath = "//*[@class=\"govuk-button button button--spinner\"]")
+    public WebElement continueSpinner;
 
 
     public FraudPageObject() {
@@ -135,8 +139,26 @@ public class FraudPageObject extends UniversalSteps {
             Driver.get().close();
             Driver.get().switchTo().window(newTb.get(0));
         }
+    }
 
+    public void goToPage(String page) {
+        waitForTextToAppear(page);
+    }
 
+    public void clickContinue() {
+        continueButton.click();
+    }
+
+    public void spinnerOnContinueButton(String validOrInvalid) {
+//        checkYourDetailsContinue.click();
+        waitForFiveSeconds();
+//        continueSpinner.isEnabled();
+        assertURLContains("callback");
+        if ("Invalid".equalsIgnoreCase(validOrInvalid)) {
+            errorResponse.click();
+        } else {
+            viewResponse.click();
+        }
     }
 
 }
