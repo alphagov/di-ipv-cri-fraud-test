@@ -1,13 +1,5 @@
-FROM eclipse-temurin:17-focal
-
-RUN apt update && apt upgrade -y && \
-    apt-get install libglib2.0-0 libnss3 libxcb1 wget -y
-
-RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-RUN apt install -y ./google-chrome-stable_current_amd64.deb
-
-WORKDIR /di-ipv-cri-fraud-test
-
-ADD ./ /di-ipv-cri-fraud-test/
-
-RUN ./gradlew init
+FROM gradle:jdk11
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && ./aws/install
+COPY . .
+RUN mv run-tests.sh /run-tests.sh
+ENTRYPOINT ["/run-tests.sh"]
