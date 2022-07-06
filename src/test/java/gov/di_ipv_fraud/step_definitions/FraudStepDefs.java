@@ -31,6 +31,4 @@ public class FraudStepDefs extends FraudPageObject {
     public void experianOrPrivacyPolicy(String page) {
         whoWeCheckDetailsWith(page);
     }
-
-
 }

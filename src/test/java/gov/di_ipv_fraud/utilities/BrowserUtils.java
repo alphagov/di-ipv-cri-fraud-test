@@ -11,11 +11,11 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class BrowserUtils {
 
     /**
-     * Switches to new window by the exact title. Returns to original window if target title not found
+     * Switches to new window by the exact title. Returns to original window if target title not
+     * found
      *
      * @param targetTitle
      */
@@ -138,13 +138,17 @@ public class BrowserUtils {
      * @param timeOutInSeconds
      */
     public static void waitForPageToLoad(long timeOutInSeconds) {
-        ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver driver) {
-                return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
-            }
-        };
+        ExpectedCondition<Boolean> expectation =
+                new ExpectedCondition<Boolean>() {
+                    public Boolean apply(WebDriver driver) {
+                        return ((JavascriptExecutor) driver)
+                                .executeScript("return document.readyState")
+                                .equals("complete");
+                    }
+                };
         try {
-            WebDriverWait wait = new WebDriverWait(Driver.get(), Duration.ofSeconds(timeOutInSeconds));
+            WebDriverWait wait =
+                    new WebDriverWait(Driver.get(), Duration.ofSeconds(timeOutInSeconds));
             wait.until(expectation);
         } catch (Throwable error) {
             error.printStackTrace();
@@ -155,15 +159,16 @@ public class BrowserUtils {
      * Verifies whether the element matching the provided locator is displayed on page
      *
      * @param by
-     * @throws AssertionError if the element matching the provided locator is not found or not displayed
+     * @throws AssertionError if the element matching the provided locator is not found or not
+     *     displayed
      */
     public static void verifyElementDisplayed(By by) {
         try {
-            Assert.assertTrue("Element not visible: " + by, Driver.get().findElement(by).isDisplayed());
+            Assert.assertTrue(
+                    "Element not visible: " + by, Driver.get().findElement(by).isDisplayed());
         } catch (NoSuchElementException e) {
             e.printStackTrace();
             Assert.fail("Element not found: " + by);
-
         }
     }
 
@@ -175,13 +180,13 @@ public class BrowserUtils {
      */
     public static void verifyElementNotDisplayed(By by) {
         try {
-            Assert.assertFalse("Element should not be visible: " + by, Driver.get().findElement(by).isDisplayed());
+            Assert.assertFalse(
+                    "Element should not be visible: " + by,
+                    Driver.get().findElement(by).isDisplayed());
         } catch (NoSuchElementException e) {
             e.printStackTrace();
-
         }
     }
-
 
     /**
      * Verifies whether the element is displayed on page
@@ -195,10 +200,8 @@ public class BrowserUtils {
         } catch (NoSuchElementException e) {
             e.printStackTrace();
             Assert.fail("Element not found: " + element);
-
         }
     }
-
 
     /**
      * Waits for element to be not stale
@@ -230,17 +233,16 @@ public class BrowserUtils {
         }
     }
 
-
     /**
      * Clicks on an element using JavaScript
      *
      * @param element
      */
     public static void clickWithJS(WebElement element) {
-        ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].scrollIntoView(true);", element);
+        ((JavascriptExecutor) Driver.get())
+                .executeScript("arguments[0].scrollIntoView(true);", element);
         ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].click();", element);
     }
-
 
     /**
      * Scrolls down to an element using JavaScript
@@ -248,7 +250,8 @@ public class BrowserUtils {
      * @param element
      */
     public static void scrollToElement(WebElement element) {
-        ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].scrollIntoView(true);", element);
+        ((JavascriptExecutor) Driver.get())
+                .executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
     /**
@@ -267,8 +270,14 @@ public class BrowserUtils {
      * @param attributeName
      * @param attributeValue
      */
-    public static void setAttribute(WebElement element, String attributeName, String attributeValue) {
-        ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].setAttribute(arguments[1], arguments[2]);", element, attributeName, attributeValue);
+    public static void setAttribute(
+            WebElement element, String attributeName, String attributeValue) {
+        ((JavascriptExecutor) Driver.get())
+                .executeScript(
+                        "arguments[0].setAttribute(arguments[1], arguments[2]);",
+                        element,
+                        attributeName,
+                        attributeValue);
     }
 
     /**
@@ -277,9 +286,15 @@ public class BrowserUtils {
      * @param element
      */
     public static void highlight(WebElement element) {
-        ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');", element);
+        ((JavascriptExecutor) Driver.get())
+                .executeScript(
+                        "arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');",
+                        element);
         waitFor(1);
-        ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].removeAttribute('style', 'background: yellow; border: 2px solid red;');", element);
+        ((JavascriptExecutor) Driver.get())
+                .executeScript(
+                        "arguments[0].removeAttribute('style', 'background: yellow; border: 2px solid red;');",
+                        element);
     }
 
     /**
@@ -325,7 +340,6 @@ public class BrowserUtils {
     public static void executeJScommand(WebElement element, String command) {
         JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
         jse.executeScript(command, element);
-
     }
 
     /**
@@ -336,48 +350,45 @@ public class BrowserUtils {
     public static void executeJScommand(String command) {
         JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
         jse.executeScript(command);
-
     }
 
-
     /**
-     * This method will recover in case of exception after unsuccessful the click,
-     * and will try to click on element again.
+     * This method will recover in case of exception after unsuccessful the click, and will try to
+     * click on element again.
      *
      * @param by
      * @param attempts
      */
     public static void clickWithWait(By by, int attempts) {
         int counter = 0;
-        //click on element as many as you specified in attempts parameter
+        // click on element as many as you specified in attempts parameter
         while (counter < attempts) {
             try {
-                //selenium must look for element again
+                // selenium must look for element again
                 clickWithJS(Driver.get().findElement(by));
-                //if click is successful - then break
+                // if click is successful - then break
                 break;
             } catch (WebDriverException e) {
-                //if click failed
-                //print exception
-                //print attempt
+                // if click failed
+                // print exception
+                // print attempt
                 e.printStackTrace();
                 ++counter;
-                //wait for 1 second, and try to click again
+                // wait for 1 second, and try to click again
                 waitFor(1);
             }
         }
     }
 
     /**
-     * checks that an element is present on the DOM of a page. This does not
-     * * necessarily mean that the element is visible.
+     * checks that an element is present on the DOM of a page. This does not * necessarily mean that
+     * the element is visible.
      *
      * @param by
      * @param time
      */
     public static void waitForPresenceOfElement(By by, long time) {
-        new WebDriverWait(Driver.get(), Duration.ofSeconds(time)).until(ExpectedConditions.presenceOfElementLocated(by));
+        new WebDriverWait(Driver.get(), Duration.ofSeconds(time))
+                .until(ExpectedConditions.presenceOfElementLocated(by));
     }
-
-
 }
