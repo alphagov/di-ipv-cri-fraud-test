@@ -137,7 +137,11 @@ task cucumber() {
 				"${tags}",
 				'--glue',
 				'gov/di_ipv_fraud/step_definitions',
-				'src/test/resources'
+				'src/test/resources' ,
+				'--plugin',
+				'html:build/test-results/cucmber.html',
+				'--plugin',
+				'json:build/test-results/cucumber.json'
 			]
 		}
 	}
