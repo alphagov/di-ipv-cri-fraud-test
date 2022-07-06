@@ -9,6 +9,4 @@ public class UniversalStepDefs extends UniversalSteps {
     public void closeDriver() {
         driverClose();
     }
-
-
 }

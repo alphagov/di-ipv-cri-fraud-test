@@ -9,13 +9,11 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-
 public class UniversalSteps {
 
     public UniversalSteps() {
         PageFactory.initElements(Driver.get(), this);
     }
-
 
     public void waitForFiveSeconds() {
         BrowserUtils.waitForPageToLoad(5);
@@ -40,5 +38,4 @@ public class UniversalSteps {
         String url = Driver.get().getCurrentUrl();
         assertTrue(url.contains(expected));
     }
-
 }

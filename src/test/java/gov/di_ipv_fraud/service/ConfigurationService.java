@@ -1,6 +1,5 @@
 package gov.di_ipv_fraud.service;
 
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,7 +12,7 @@ public class ConfigurationService {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    //For shared secret values
+    // For shared secret values
     private static final String KEY_FORMAT = "/%s/credentialIssuers/fraud/%s";
 
     private final String fraudResultTableName;
@@ -35,16 +34,15 @@ public class ConfigurationService {
         }
 
         this.parameterPrefix = System.getenv("AWS_STACK_NAME");
-        this.contraindicationMappings =
-                getParameter(paramProvider,"contraindicationMappings");
-        this.fraudResultTableName = getParameter(paramProvider,"FraudTableName");
-        this.redirectUri = getParameter(paramProvider,"redirectUri");
-        this.clientId = getParameter(paramProvider,"clientId");
-        this.publicApiBaseUrl = getParameter(paramProvider,"apiBaseUrl");
-        this.coreStubUrl = getParameter(paramProvider,"coreStubUrl");
-        this.coreStubUsername = getParameter(paramProvider,"coreStubUsername");
-        this.coreStubPassword = getParameter(paramProvider,"coreStubPassword");
-        this.passportCriUrl = getParameter(paramProvider,"passportCriUrl");
+        this.contraindicationMappings = getParameter(paramProvider, "contraindicationMappings");
+        this.fraudResultTableName = getParameter(paramProvider, "FraudTableName");
+        this.redirectUri = getParameter(paramProvider, "redirectUri");
+        this.clientId = getParameter(paramProvider, "clientId");
+        this.publicApiBaseUrl = getParameter(paramProvider, "apiBaseUrl");
+        this.coreStubUrl = getParameter(paramProvider, "coreStubUrl");
+        this.coreStubUsername = getParameter(paramProvider, "coreStubUsername");
+        this.coreStubPassword = getParameter(paramProvider, "coreStubPassword");
+        this.passportCriUrl = getParameter(paramProvider, "passportCriUrl");
     }
 
     private String getParameter(ParamProvider paramProvider, String paramName) {
@@ -56,7 +54,6 @@ public class ConfigurationService {
             return parameterValue;
         }
     }
-
 
     public String getFraudResultTableName() {
         return fraudResultTableName;

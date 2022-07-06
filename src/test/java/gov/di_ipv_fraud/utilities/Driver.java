@@ -11,21 +11,19 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
-
 public class Driver {
     // driver class will provide separate webdriver object per thread
-    private static final InheritableThreadLocal<WebDriver> driverPool = new InheritableThreadLocal<>();
+    private static final InheritableThreadLocal<WebDriver> driverPool =
+            new InheritableThreadLocal<>();
 
     // InheritableThreadLocal  --> this is like a container, bag, pool.
     // in this pool we can have separate objects for each thread
     // for each thread, in InheritableThreadLocal we can have separate object for that thread
 
-    private Driver() {
-
-    }
+    private Driver() {}
 
     public static WebDriver get() {
-        //if this thread doesn't have driver - create it and add to pool
+        // if this thread doesn't have driver - create it and add to pool
         if (driverPool.get() == null) {
 
             String browser = ConfigurationReader.getBrowser();
@@ -39,7 +37,8 @@ public class Driver {
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions chromeOptions = new ChromeOptions().setHeadless(true);
                     if (ConfigurationReader.noChromeSandbox()) {
-                        // no-sandbox is needed for chrome-headless when running in a container due to restricted syscalls
+                        // no-sandbox is needed for chrome-headless when running in a container due
+                        // to restricted syscalls
                         chromeOptions.addArguments("--no-sandbox");
                     }
                     driverPool.set(new ChromeDriver(chromeOptions));

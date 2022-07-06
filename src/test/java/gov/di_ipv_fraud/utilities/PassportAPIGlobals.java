@@ -13,10 +13,11 @@ public class PassportAPIGlobals {
     public String grant_type;
 
     public PassportAPIGlobals() {
-        ConfigurationService configurationService = new ConfigurationService(
-                ParamManager.getSecretsProvider(),
-                ParamManager.getSsmProvider(),
-                System.getenv("ENVIRONMENT"));
+        ConfigurationService configurationService =
+                new ConfigurationService(
+                        ParamManager.getSecretsProvider(),
+                        ParamManager.getSsmProvider(),
+                        System.getenv("ENVIRONMENT"));
 
         redirectURI = configurationService.getRedirectUri();
 
@@ -24,13 +25,16 @@ public class PassportAPIGlobals {
         String redirectUri = configurationService.getRedirectUri();
         String clientId = configurationService.getClientId();
 
-        passportAuthUrl = passportCriUrl + "/oauth2/authorize?redirect_uri=" + redirectUri + "&client_id=" + clientId + "&response_type=code&scope=openid";
+        passportAuthUrl =
+                passportCriUrl
+                        + "/oauth2/authorize?redirect_uri="
+                        + redirectUri
+                        + "&client_id="
+                        + clientId
+                        + "&response_type=code&scope=openid";
         tokenPostUrl = configurationService.getPublicApiBaseUrl() + "/token";
         credentialGetUrl = configurationService.getPublicApiBaseUrl() + "/credential";
         clientId = configurationService.getClientId();
         grant_type = "authorization_code";
     }
-
-
-
 }

@@ -3,15 +3,12 @@ package gov.di_ipv_fraud.utilities;
 import java.io.FileInputStream;
 import java.util.Properties;
 
-/**
- * reads the properties file configuration.properties
- */
+/** reads the properties file configuration.properties */
 public class ConfigurationReader {
 
     private static Properties properties;
 
     static {
-
         try {
             String path = "configuration.properties";
             FileInputStream input = new FileInputStream(path);
@@ -21,7 +18,6 @@ public class ConfigurationReader {
             input.close();
         } catch (Exception e) {
             e.printStackTrace();
-
         }
     }
 
