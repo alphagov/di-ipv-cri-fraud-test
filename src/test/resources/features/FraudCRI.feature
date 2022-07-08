@@ -43,9 +43,9 @@ Feature: Fraud CRI
     And I click the Fraud CRI for the <environment> environment
     And I search for user number 12 in the Experian table
     And I navigate to the page We need to check your details
-    When I click on the Continue button
-    Then I see a spinner icon and navigate to verifiable issuer to check for a Valid response
-  # And I navigate to the verifiable issuer to check for a Valid response from experian
+    When I check Continue button is enabled and click on the Continue button
+    Then I navigate to Verifiable Credentials page
+    And I check for a Valid response from experian
     And The test is complete and I close the driver
 
     Examples:

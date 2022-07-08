@@ -38,15 +38,19 @@ public class FraudStepDefs extends FraudPageObject {
         goToPage(page);
     }
 
-    @When("^I click on the Continue button$")
+    @When("^I check Continue button is enabled and click on the Continue button$")
     public void clickOnContinueButton() {
         clickContinue();
     }
 
-    @Then("^I see a spinner icon and navigate to verifiable issuer to check for a (.*) response$")
-    public void viewSpinnerOnContinueButton(String validOrInvalid) {
-        spinnerOnContinueButton(validOrInvalid);
+    @Then("^I navigate to Verifiable Credentials page$")
+    public void navigateToVerifiableCredentialsPage() {
+        goToVerifiableCredentialsPage();
     }
 
+    @And("^I check for a (.*) response from experian")
+    public void navigateToVerifiableCredentials(String validOrInvalid) {
+        goToResponse(validOrInvalid);
+    }
 
 }

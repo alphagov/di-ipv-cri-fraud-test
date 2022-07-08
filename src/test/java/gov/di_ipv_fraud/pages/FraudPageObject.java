@@ -46,8 +46,8 @@ public class FraudPageObject extends UniversalSteps {
     public WebElement errorResponse;
     @FindBy(xpath = "//*[@id=\"continue\"]")
     public WebElement continueButton;
-    @FindBy(xpath = "//*[@class=\"govuk-button button button--spinner\"]")
-    public WebElement continueSpinner;
+    @FindBy(xpath = "//*[@class=\"govuk-heading-l\"]")
+    public WebElement title;
 
 
     public FraudPageObject() {
@@ -146,19 +146,21 @@ public class FraudPageObject extends UniversalSteps {
     }
 
     public void clickContinue() {
+        continueButton.isEnabled();
         continueButton.click();
     }
 
-    public void spinnerOnContinueButton(String validOrInvalid) {
-//        checkYourDetailsContinue.click();
-        waitForFiveSeconds();
-//        continueSpinner.isEnabled();
+    public void goToResponse(String validOrInvalid) {
         assertURLContains("callback");
         if ("Invalid".equalsIgnoreCase(validOrInvalid)) {
             errorResponse.click();
         } else {
             viewResponse.click();
         }
+    }
+
+    public void goToVerifiableCredentialsPage() {
+        title.getText();
     }
 
 }
