@@ -54,6 +54,15 @@ public class FraudPageObject extends UniversalSteps {
     @FindBy(xpath = "//*[@id=\"main-content\"]/div/details")
     public WebElement errorResponse;
 
+    @FindBy(id = "name")
+    public WebElement usersearchField;
+
+    @FindBy(xpath = "//*[@class=\"govuk-button\"]")
+    public WebElement usersearchButton;
+
+    @FindBy(xpath = "//*[@id=\"main-content\"]/table/tbody/tr/td[1]/p[1]/a")
+    public WebElement fraudCRILink;
+
     public FraudPageObject() {
         if (System.getenv("ENVIRONMENT").equals("local")) {
             this.configurationService =
@@ -137,4 +146,15 @@ public class FraudPageObject extends UniversalSteps {
             Driver.get().switchTo().window(newTb.get(0));
         }
     }
+
+    public void userSearchByName(String username) {
+        assertURLContains("credential-issuer?cri=fraud-cri");
+        usersearchField.sendKeys(username);
+        usersearchButton.click();
+    }
+
+    public void goTofraudCRILink() {
+        fraudCRILink.click();
+    }
+
 }

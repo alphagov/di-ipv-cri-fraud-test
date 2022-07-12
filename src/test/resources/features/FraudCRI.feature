@@ -36,3 +36,18 @@ Feature: Fraud CRI
       | page           |
       | Experian       |
       | Privacy Policy |
+
+  @userSearch_by_userName_happyPath
+  Scenario Outline: User Search By UserName User Journey Happy Path
+    Given I navigate to the IPV Core Stub
+    And I click the Fraud CRI for the <environment> environment
+    When I search for user name Linda Duff in the Experian table
+    And I click on Go to Fraud CRI link
+    And I navigate to the verifiable issuer to check for a Valid response from experian
+    And The test is complete and I close the driver
+
+    Examples:
+      | environment |
+      | Build       |
+      | Staging     |
+      | Integration |

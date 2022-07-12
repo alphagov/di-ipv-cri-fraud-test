@@ -4,6 +4,7 @@ import gov.di_ipv_fraud.pages.FraudPageObject;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class FraudStepDefs extends FraudPageObject {
 
@@ -31,4 +32,15 @@ public class FraudStepDefs extends FraudPageObject {
     public void experianOrPrivacyPolicy(String page) {
         whoWeCheckDetailsWith(page);
     }
+
+    @When("^I search for user name (.*) in the Experian table$")
+    public void userSearchByUserName(String username) {
+        userSearchByName(username);
+    }
+
+    @Then("^I click on Go to Fraud CRI link$")
+    public void navigateToFraudCRILink() {
+        goTofraudCRILink();
+    }
+
 }
