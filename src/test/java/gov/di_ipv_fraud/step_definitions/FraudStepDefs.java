@@ -1,5 +1,6 @@
 package gov.di_ipv_fraud.step_definitions;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import gov.di_ipv_fraud.pages.FraudPageObject;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -41,6 +42,11 @@ public class FraudStepDefs extends FraudPageObject {
     @Then("^I click on Go to Fraud CRI link$")
     public void navigateToFraudCRILink() {
         goTofraudCRILink();
+    }
+
+    @And("JSON payload should contain user's name")
+    public void userNameInJsonPayload() throws JsonProcessingException {
+        userNameInJsonResponse();
     }
 
 }

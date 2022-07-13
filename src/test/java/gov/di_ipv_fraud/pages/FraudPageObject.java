@@ -1,5 +1,8 @@
 package gov.di_ipv_fraud.pages;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import gov.di_ipv_fraud.service.ConfigurationService;
 import gov.di_ipv_fraud.utilities.Driver;
 import org.openqa.selenium.WebElement;
@@ -62,6 +65,9 @@ public class FraudPageObject extends UniversalSteps {
 
     @FindBy(xpath = "//*[@id=\"main-content\"]/table/tbody/tr/td[1]/p[1]/a")
     public WebElement fraudCRILink;
+
+    @FindBy(xpath = "//*[@id=\"main-content\"]/div/details/div/pre")
+    public WebElement JSONPayload;
 
     public FraudPageObject() {
         if (System.getenv("ENVIRONMENT").equals("local")) {
@@ -155,6 +161,18 @@ public class FraudPageObject extends UniversalSteps {
 
     public void goTofraudCRILink() {
         fraudCRILink.click();
+    }
+
+    public void userNameInJsonResponse() throws JsonProcessingException {
+        String result = JSONPayload.getText();
+        System.out.println("result = " + result);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(result);
+        JsonNode vcNode = jsonNode.get("vc");
+        JsonNode nameNode = vcNode.get("credentialSubject");
+        JsonNode insideName = nameNode.get("name");
+        JsonNode nameContent = insideName.get(0);
+        System.out.println(nameContent);
     }
 
 }
