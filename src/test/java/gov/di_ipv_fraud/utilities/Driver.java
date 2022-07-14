@@ -27,7 +27,8 @@ public class Driver {
         if (driverPool.get() == null) {
 
             String browser = ConfigurationReader.getBrowser();
-
+            System.setProperty("webdriver.chrome.logfile", "chromedriver.log");
+            System.setProperty("webdriver.chrome.verboseLogging", "true");
             switch (browser) {
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
@@ -40,6 +41,14 @@ public class Driver {
                         // no-sandbox is needed for chrome-headless when running in a container due
                         // to restricted syscalls
                         chromeOptions.addArguments("--no-sandbox");
+                        chromeOptions.addArguments("--headless");
+                        chromeOptions.addArguments("--whitelisted-ips= ");
+                        chromeOptions.addArguments("--disable-dev-shm-usage");
+                        chromeOptions.addArguments("--remote-debugging-port=9222");
+
+                        chromeOptions.addArguments("start-maximized");
+                        chromeOptions.addArguments("disable-infobars");
+                        chromeOptions.addArguments("--disable-extensions");
                     }
                     driverPool.set(new ChromeDriver(chromeOptions));
                     break;
