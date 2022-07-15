@@ -33,7 +33,7 @@ public class ConfigurationService {
             throw new IllegalArgumentException("env must be specified");
         }
 
-        this.parameterPrefix = System.getenv("AWS_STACK_NAME");
+        this.parameterPrefix = "fraud-cri-test";
         this.contraindicationMappings = getParameter(paramProvider, "contraindicationMappings");
         this.fraudResultTableName = getParameter(paramProvider, "FraudTableName");
         this.redirectUri = getParameter(paramProvider, "redirectUri");
