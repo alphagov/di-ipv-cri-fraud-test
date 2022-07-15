@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import gov.di_ipv_fraud.service.ConfigurationService;
 import gov.di_ipv_fraud.utilities.Driver;
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -68,6 +69,9 @@ public class FraudPageObject extends UniversalSteps {
 
     @FindBy(xpath = "//*[@id=\"main-content\"]/div/details/div/pre")
     public WebElement JSONPayload;
+
+    @FindBy(xpath = "//*[@class=\"govuk-details\"]")
+    public WebElement noMatchesError;
 
     public FraudPageObject() {
         if (System.getenv("ENVIRONMENT").equals("local")) {
@@ -159,6 +163,11 @@ public class FraudPageObject extends UniversalSteps {
         usersearchButton.click();
     }
 
+    public void userSearchWithNoName() {
+        assertURLContains("credential-issuer?cri=fraud-cri");
+        usersearchButton.click();
+    }
+
     public void goTofraudCRILink() {
         fraudCRILink.click();
     }
@@ -173,6 +182,33 @@ public class FraudPageObject extends UniversalSteps {
         JsonNode insideName = nameNode.get("name");
         JsonNode nameContent = insideName.get(0);
         System.out.println(nameContent);
+    }
+
+    public void viewNoMatchesErrorMessage() {
+        noMatchesError.click();
+        System.out.println(noMatchesError.getText());
+
+    }
+
+    public void jsonErrorResponse(String testStatusCode) throws JsonProcessingException {
+        String testErrorDescription = "general error";
+        String result = JSONPayload.getText();
+        System.out.println("result = " + result);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(result);
+        JsonNode insideError = jsonNode.get("errorObject");
+        System.out.println(insideError);
+        JsonNode errorDescription = insideError.get("description");
+        JsonNode statusCode = insideError.get("httpstatusCode");
+        String ActualErrorDescription = insideError.get("description").asText();
+        String ActualStatusCode = insideError.get("httpstatusCode").asText();
+        System.out.println("errorDescription = " + errorDescription);
+        System.out.println("statusCode = " + statusCode);
+        System.out.println("testErrorDescription = " + testErrorDescription);
+        System.out.println("testStatusCode = " + testStatusCode);
+        Assert.assertEquals(testErrorDescription, ActualErrorDescription);
+        Assert.assertEquals(testStatusCode, ActualStatusCode);
     }
 
 }

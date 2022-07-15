@@ -39,6 +39,11 @@ public class FraudStepDefs extends FraudPageObject {
         userSearchByName(username);
     }
 
+    @When("^I click on user search button with no user name on the search field$")
+    public void userSearchWithNoUserName() {
+        userSearchWithNoName();
+    }
+
     @Then("^I click on Go to Fraud CRI link$")
     public void navigateToFraudCRILink() {
         goTofraudCRILink();
@@ -47,6 +52,16 @@ public class FraudStepDefs extends FraudPageObject {
     @And("JSON payload should contain user's name")
     public void userNameInJsonPayload() throws JsonProcessingException {
         userNameInJsonResponse();
+    }
+
+    @Then("^I see No matches error message$")
+    public void viewNoMatchesError() {
+        viewNoMatchesErrorMessage();
+    }
+
+    @And("^JSON response should contain error details and status code as (.*)$")
+    public void errorInJsonResponse(String testStatusCode) throws JsonProcessingException {
+        jsonErrorResponse(testStatusCode);
     }
 
 }
