@@ -7,6 +7,7 @@ pushd /home/gradle
 
 ## To be replaced with tag placeholder
 export BROWSER="${BROWSER:-chrome-headless}"
+export ENVIRONMENT="${ENVIRONMENT:-build}"
 export NO_CHROME_SANDBOX=true
 gradle cucumber -P tags=@fraud_CRI
 
