@@ -1,7 +1,6 @@
 package gov.di_ipv_fraud.utilities;
 
 import gov.di_ipv_fraud.service.ConfigurationService;
-import software.amazon.lambda.powertools.parameters.ParamManager;
 
 public class PassportAPIGlobals {
 
@@ -14,10 +13,7 @@ public class PassportAPIGlobals {
 
     public PassportAPIGlobals() {
         ConfigurationService configurationService =
-                new ConfigurationService(
-                        ParamManager.getSecretsProvider(),
-                        ParamManager.getSsmProvider(),
-                        System.getenv("ENVIRONMENT"));
+                new ConfigurationService(System.getenv("ENVIRONMENT"));
 
         redirectURI = configurationService.getRedirectUri();
 

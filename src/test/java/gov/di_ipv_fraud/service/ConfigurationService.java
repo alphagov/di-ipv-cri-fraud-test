@@ -3,8 +3,6 @@ package gov.di_ipv_fraud.service;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import software.amazon.lambda.powertools.parameters.ParamProvider;
-import software.amazon.lambda.powertools.parameters.SecretsProvider;
 
 import java.util.Objects;
 
@@ -26,33 +24,28 @@ public class ConfigurationService {
     private final String coreStubPassword;
     private final String passportCriUrl;
 
-    public ConfigurationService(
-            SecretsProvider secretsProvider, ParamProvider paramProvider, String env) {
+    public ConfigurationService(String env) {
 
         if (StringUtils.isBlank(env)) {
             throw new IllegalArgumentException("env must be specified");
         }
 
-        this.parameterPrefix = "fraud-cri-test";
-        this.contraindicationMappings = getParameter(paramProvider, "contraindicationMappings");
-        this.fraudResultTableName = getParameter(paramProvider, "FraudTableName");
-        this.redirectUri = getParameter(paramProvider, "redirectUri");
-        this.clientId = getParameter(paramProvider, "clientId");
-        this.publicApiBaseUrl = getParameter(paramProvider, "apiBaseUrl");
-        this.coreStubUrl = getParameter(paramProvider, "coreStubUrl");
-        this.coreStubUsername = getParameter(paramProvider, "coreStubUsername");
-        this.coreStubPassword = getParameter(paramProvider, "coreStubPassword");
-        this.passportCriUrl = getParameter(paramProvider, "passportCriUrl");
+        this.parameterPrefix = getParameter("STACK_NAME");
+        this.contraindicationMappings = getParameter("contraindicationMappings");
+        this.fraudResultTableName = getParameter("FraudTableName");
+        this.redirectUri = getParameter("redirectUri");
+        this.clientId = getParameter("clientId");
+        this.publicApiBaseUrl = getParameter("apiBaseUrl");
+        this.coreStubUrl = getParameter("coreStubUrl");
+        this.coreStubUsername = getParameter("coreStubUsername");
+        this.coreStubPassword = getParameter("coreStubPassword");
+        this.passportCriUrl = getParameter("passportCriUrl");
     }
 
-    private String getParameter(ParamProvider paramProvider, String paramName) {
-        if (null != paramProvider) {
-            return paramProvider.get(getParameterName(paramName));
-        } else {
-            String parameterValue = System.getenv(paramName);
-            Objects.requireNonNull(parameterValue);
-            return parameterValue;
-        }
+    private String getParameter(String paramName) {
+        String parameterValue = System.getenv(paramName);
+        Objects.requireNonNull(parameterValue);
+        return parameterValue;
     }
 
     public String getFraudResultTableName() {
@@ -91,7 +84,4 @@ public class ConfigurationService {
         return passportCriUrl;
     }
 
-    public String getParameterName(String parameterName) {
-        return String.format("/%s/%s", parameterPrefix, parameterName);
-    }
 }

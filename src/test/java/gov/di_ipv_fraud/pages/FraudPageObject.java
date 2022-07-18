@@ -5,7 +5,6 @@ import gov.di_ipv_fraud.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import software.amazon.lambda.powertools.parameters.ParamManager;
 
 import java.util.ArrayList;
 
@@ -55,16 +54,7 @@ public class FraudPageObject extends UniversalSteps {
     public WebElement errorResponse;
 
     public FraudPageObject() {
-        if (System.getenv("ENVIRONMENT").equals("local")) {
-            this.configurationService =
-                    new ConfigurationService(null, null, System.getenv("ENVIRONMENT"));
-        } else {
-            this.configurationService =
-                    new ConfigurationService(
-                            ParamManager.getSecretsProvider(),
-                            ParamManager.getSsmProvider(),
-                            System.getenv("ENVIRONMENT"));
-        }
+        this.configurationService = new ConfigurationService(System.getenv("ENVIRONMENT"));
         PageFactory.initElements(Driver.get(), this);
     }
 
