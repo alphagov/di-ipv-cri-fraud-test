@@ -83,5 +83,4 @@ public class ConfigurationService {
     public String getPassportCriUrl() {
         return passportCriUrl;
     }
-
 }
