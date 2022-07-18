@@ -12,6 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 import software.amazon.lambda.powertools.parameters.ParamManager;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import static gov.di_ipv_fraud.pages.Headers.CHECKING_YOUR_DETAILS;
 import static gov.di_ipv_fraud.pages.Headers.IPV_CORE_STUB;
@@ -19,6 +20,7 @@ import static gov.di_ipv_fraud.pages.Headers.IPV_CORE_STUB;
 public class FraudPageObject extends UniversalSteps {
 
     private final ConfigurationService configurationService;
+    private static final Logger LOGGER = Logger.getLogger(Driver.class.getName());
 
     @FindBy(xpath = "//*[@id=\"main-content\"]/p/a/button")
     public WebElement visitCredentialIssuers;
@@ -174,39 +176,39 @@ public class FraudPageObject extends UniversalSteps {
 
     public void userNameInJsonResponse() throws JsonProcessingException {
         String result = JSONPayload.getText();
-        System.out.println("result = " + result);
+        LOGGER.info("result = " + result);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(result);
         JsonNode vcNode = jsonNode.get("vc");
         JsonNode nameNode = vcNode.get("credentialSubject");
         JsonNode insideName = nameNode.get("name");
         JsonNode nameContent = insideName.get(0);
-        System.out.println(nameContent);
+        LOGGER.info("nameContent = " + nameContent);
     }
 
     public void viewNoMatchesErrorMessage() {
         noMatchesError.click();
-        System.out.println(noMatchesError.getText());
-
+        String noMatchesErrorMsg = noMatchesError.getText();
+        LOGGER.info("noMatchesErrorMsg = " + noMatchesErrorMsg);
     }
 
     public void jsonErrorResponse(String testStatusCode) throws JsonProcessingException {
         String testErrorDescription = "general error";
         String result = JSONPayload.getText();
-        System.out.println("result = " + result);
+        LOGGER.info("result = " + result);
 
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(result);
         JsonNode insideError = jsonNode.get("errorObject");
-        System.out.println(insideError);
+        LOGGER.info("insideError = " + insideError);
         JsonNode errorDescription = insideError.get("description");
         JsonNode statusCode = insideError.get("httpstatusCode");
         String ActualErrorDescription = insideError.get("description").asText();
         String ActualStatusCode = insideError.get("httpstatusCode").asText();
-        System.out.println("errorDescription = " + errorDescription);
-        System.out.println("statusCode = " + statusCode);
-        System.out.println("testErrorDescription = " + testErrorDescription);
-        System.out.println("testStatusCode = " + testStatusCode);
+        LOGGER.info("errorDescription = " + errorDescription);
+        LOGGER.info("statusCode = " + statusCode);
+        LOGGER.info("testErrorDescription = " + testErrorDescription);
+        LOGGER.info("testStatusCode = " + testStatusCode);
         Assert.assertEquals(testErrorDescription, ActualErrorDescription);
         Assert.assertEquals(testStatusCode, ActualStatusCode);
     }
