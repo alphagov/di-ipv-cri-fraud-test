@@ -10,20 +10,17 @@ export NO_CHROME_SANDBOX=true
 export STACK_NAME="${CFN_StackName:-local}"
 export JOURNEY_TAG=$(aws ssm get-parameter --name "/tests/${STACK_NAME}/TestTag" | jq -r ".Parameter.Value")
 
-VALUES=$(aws ssm get-parameters-by-path --path "/tests/${STACK_NAME}/" --region eu-west-2 | jq '.Parameters[]  .Value')
-IFS=$'\n' read -r -d '' -A values < <( echo "$VALUES" && printf '\0' )
-declare -p values
-
-PARAMETERS=$(aws ssm get-parameters-by-path --path "/tests/${STACK_NAME}/" --region eu-west-2 | jq '.Parameters[]  .Name' | cut -d "/" -f3 | sed 's/.$//')
-IFS=$'\n' read -r -d '' -A names < <( echo "$PARAMETERS" && printf '\0' )
-declare -p names
-
-tLen=${#names[@]}
- for (( i=1; i<${tLen}; i++ ));
+PARAMETERS_NAMES=(clientId contraindicationMappings coreStubPassword coreStubUrl coreStubUsername fraudResultTableName passportCriUrl publicApiBaseUrl redirectUri)
+tLen=${#PARAMETERS_NAMES[@]}
+ for (( i=0; i<${tLen}; i++ ));
 do
-  eval $(echo "export ${names[$i]}=${values[$i]}")
-done
+  echo "/tests/$STACK_NAME/${PARAMETERS_NAMES[$i]}"
+  PARAMETER=$(aws ssm get-parameter --name "/tests/$STACK_NAME/${PARAMETERS_NAMES[$i]}" --region eu-west-2)
+  VALUE=$(echo "$PARAMETER" | jq '.Parameter.Value')
+  NAME=$(echo "$PARAMETER" | jq '.Parameter.Name' | cut -d "/" -f4 | sed 's/.$//')
 
+  eval $(echo "export ${NAME}=${VALUE}")
+done
 
 pushd /home/gradle
 gradle cucumber -P tags=${JOURNEY_TAG}
