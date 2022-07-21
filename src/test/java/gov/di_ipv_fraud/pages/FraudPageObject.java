@@ -72,9 +72,6 @@ public class FraudPageObject extends UniversalSteps {
     @FindBy(xpath = "//*[@id=\"main-content\"]/div/details/div/pre")
     public WebElement JSONPayload;
 
-    @FindBy(xpath = "//*[@class=\"govuk-details\"]")
-    public WebElement noMatchesError;
-
     public FraudPageObject() {
         if (System.getenv("ENVIRONMENT").equals("local")) {
             this.configurationService =
@@ -165,11 +162,6 @@ public class FraudPageObject extends UniversalSteps {
         usersearchButton.click();
     }
 
-    public void userSearchWithNoName() {
-        assertURLContains("credential-issuer?cri=fraud-cri");
-        usersearchButton.click();
-    }
-
     public void goTofraudCRILink() {
         fraudCRILink.click();
     }
@@ -184,12 +176,6 @@ public class FraudPageObject extends UniversalSteps {
         JsonNode insideName = nameNode.get("name");
         JsonNode nameContent = insideName.get(0);
         LOGGER.info("nameContent = " + nameContent);
-    }
-
-    public void viewNoMatchesErrorMessage() {
-        noMatchesError.click();
-        String noMatchesErrorMsg = noMatchesError.getText();
-        LOGGER.info("noMatchesErrorMsg = " + noMatchesErrorMsg);
     }
 
     public void jsonErrorResponse(String testStatusCode) throws JsonProcessingException {

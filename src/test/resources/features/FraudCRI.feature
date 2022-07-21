@@ -53,34 +53,6 @@ Feature: Fraud CRI
       | Staging     |
       | Integration |
 
-  @userSearch_by_non_existent_name
-  Scenario Outline: User Search By Name That Does Not Exist In Experian Table(STUB)
-    Given I navigate to the IPV Core Stub
-    And I click the Fraud CRI for the <environment> environment
-    When I search for user name Lind Duff in the Experian table
-    Then I see No matches error message
-    And The test is complete and I close the driver
-
-    Examples:
-      | environment |
-      | Build       |
-      | Staging     |
-      | Integration |
-
-  @userSearch_by_no_user
-  Scenario Outline: User Search when no user entered on the search field(STUB)
-    Given I navigate to the IPV Core Stub
-    And I click the Fraud CRI for the <environment> environment
-    When I click on user search button with no user name on the search field
-    Then I see No matches error message
-    And The test is complete and I close the driver
-
-    Examples:
-      | environment |
-      | Build       |
-      | Staging     |
-      | Integration |
-
   @userSearch_by_invalid_userName
   Scenario Outline: User Search By Invalid UserName(STUB)
     Given I navigate to the IPV Core Stub
