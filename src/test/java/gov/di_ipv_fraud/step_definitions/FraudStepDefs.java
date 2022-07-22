@@ -1,9 +1,12 @@
 package gov.di_ipv_fraud.step_definitions;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import gov.di_ipv_fraud.pages.FraudPageObject;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
 
 public class FraudStepDefs extends FraudPageObject {
 
@@ -31,4 +34,34 @@ public class FraudStepDefs extends FraudPageObject {
     public void experianOrPrivacyPolicy(String page) {
         whoWeCheckDetailsWith(page);
     }
+
+    @When("^I search for user name (.*) in the Experian table$")
+    public void userSearchByUserName(String username) {
+        userSearchByName(username);
+    }
+
+    @When("^I click on Edit User link$")
+    public void i_click_on_go_to_edit_user_link() {
+        goToEditUserLink();
+    }
+
+   @When("^I remove the postcode$")
+    public void i_remove_the_postcode() {
+       clearPostcode();
+    }
+
+    @And("^I click on Go to Fraud CRI link after Edit$")
+    public void iClickOnGoToFraudCRILinkAfterEdit() {
+        goTofraudCRILinkAfterEdit();
+    }
+
+   @And("^JSON response should contain error details and status code as (.*)$")
+    public void errorInJsonResponse(String testStatusCode) throws JsonProcessingException {
+       try {
+           jsonErrorResponse(testStatusCode);
+       } catch (JsonProcessingException e) {
+           e.printStackTrace();
+       }
+
+   }
 }

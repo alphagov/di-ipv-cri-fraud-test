@@ -1,12 +1,18 @@
 package gov.di_ipv_fraud.pages;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import gov.di_ipv_fraud.service.ConfigurationService;
 import gov.di_ipv_fraud.utilities.Driver;
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import software.amazon.lambda.powertools.parameters.ParamManager;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import static gov.di_ipv_fraud.pages.Headers.CHECKING_YOUR_DETAILS;
 import static gov.di_ipv_fraud.pages.Headers.IPV_CORE_STUB;
@@ -14,6 +20,8 @@ import static gov.di_ipv_fraud.pages.Headers.IPV_CORE_STUB;
 public class FraudPageObject extends UniversalSteps {
 
     private final ConfigurationService configurationService;
+    private static final Logger LOGGER = Logger.getLogger(Driver.class.getName());
+
 
     @FindBy(xpath = "//*[@id=\"main-content\"]/p/a/button")
     public WebElement visitCredentialIssuers;
@@ -53,11 +61,28 @@ public class FraudPageObject extends UniversalSteps {
     @FindBy(xpath = "//*[@id=\"main-content\"]/div/details")
     public WebElement errorResponse;
 
+    @FindBy(id = "name")
+    public WebElement usersearchField;
+
+    @FindBy(xpath = "//*[@class=\"govuk-button\"]")
+    public WebElement usersearchButton;
+
+    @FindBy(xpath = "//*[@id=\"main-content\"]/div/details/div/pre")
+    public WebElement JSONPayload;
+
+    @FindBy(xpath = "//*[@id=\"main-content\"]/table/tbody/tr/td[1]/p[2]/a")
+    public WebElement editUserLink;
+
+    @FindBy(xpath = "//*[@id=\"postCode\"]")
+    public WebElement removePostcode;
+
+    @FindBy(xpath = "//*[@class=\"govuk-button button\"]")
+    public WebElement fraudCRILinkAfterEdit;
+
     public FraudPageObject() {
         this.configurationService = new ConfigurationService(System.getenv("ENVIRONMENT"));
         PageFactory.initElements(Driver.get(), this);
     }
-
     public void navigateToIPVCoreStub() {
         String coreStubUsername = configurationService.getCoreStubUsername();
         String coreStubPassword = configurationService.getCoreStubPassword();
@@ -127,4 +152,44 @@ public class FraudPageObject extends UniversalSteps {
             Driver.get().switchTo().window(newTb.get(0));
         }
     }
+
+    public void userSearchByName(String username) {
+        assertURLContains("credential-issuer?cri=fraud-cri");
+        usersearchField.sendKeys(username);
+        usersearchButton.click();
+    }
+
+    public void goToEditUserLink() {
+        editUserLink.click();
+    }
+
+    public void clearPostcode() {
+        removePostcode.clear();
+    }
+
+    public void goTofraudCRILinkAfterEdit() {
+        fraudCRILinkAfterEdit.click();
+    }
+
+    public void jsonErrorResponse(String testStatusCode) throws JsonProcessingException {
+        String testErrorDescription = "general error";
+        String result = JSONPayload.getText();
+        LOGGER.info("result = " + result);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(result);
+        JsonNode insideError = jsonNode.get("errorObject");
+        LOGGER.info("insideError = " + insideError);
+        JsonNode errorDescription = insideError.get("description");
+        JsonNode statusCode = insideError.get("httpstatusCode");
+        String ActualErrorDescription = insideError.get("description").asText();
+        String ActualStatusCode = insideError.get("httpstatusCode").asText();
+        LOGGER.info("errorDescription = " + errorDescription);
+        LOGGER.info("statusCode = " + statusCode);
+        LOGGER.info("testErrorDescription = " + testErrorDescription);
+        LOGGER.info("testStatusCode = " + testStatusCode);
+        Assert.assertEquals(testErrorDescription, ActualErrorDescription);
+        Assert.assertEquals(testStatusCode, ActualStatusCode);
+    }
+
 }

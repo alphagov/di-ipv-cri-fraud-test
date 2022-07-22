@@ -36,3 +36,21 @@ Feature: Fraud CRI
       | page           |
       | Experian       |
       | Privacy Policy |
+
+  @Unhappy_path_MissingDetails_to_Throw_Error
+  Scenario Outline: User Search with missing details UnHappy Path (STUB)
+    Given I navigate to the IPV Core Stub
+    And I click the Fraud CRI for the <environment> environment
+    When I search for user name Richard Gillis in the Experian table
+    And I click on Edit User link
+    And I remove the postcode
+    And I click on Go to Fraud CRI link after Edit
+    Then I navigate to the verifiable issuer to check for a Invalid response from experian
+    And JSON response should contain error details and status code as 302
+    And The test is complete and I close the driver
+
+    Examples:
+      | environment |
+      | Build       |
+      | Staging     |
+      | Integration |
