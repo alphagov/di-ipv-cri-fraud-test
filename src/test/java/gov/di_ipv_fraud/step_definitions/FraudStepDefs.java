@@ -54,4 +54,24 @@ public class FraudStepDefs extends FraudPageObject {
         jsonErrorResponse(testStatusCode);
     }
 
+    @And("^I navigate to the page (.*)$")
+    public void navigateToPage(String page) {
+        goToPage(page);
+    }
+
+    @When("^I check Continue button is enabled and click on the Continue button$")
+    public void clickOnContinueButton() {
+        clickContinue();
+    }
+
+    @Then("^I navigate to Verifiable Credentials page$")
+    public void navigateToVerifiableCredentialsPage() {
+        goToVerifiableCredentialsPage();
+    }
+
+    @And("^I check for a (.*) response from experian")
+    public void navigateToVerifiableCredentials(String validOrInvalid) {
+        goToResponse(validOrInvalid);
+    }
+
 }

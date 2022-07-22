@@ -9,7 +9,6 @@ import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import software.amazon.lambda.powertools.parameters.ParamManager;
 
 import java.util.ArrayList;
 import java.util.logging.Logger;
@@ -59,6 +58,10 @@ public class FraudPageObject extends UniversalSteps {
 
     @FindBy(xpath = "//*[@id=\"main-content\"]/div/details")
     public WebElement errorResponse;
+    @FindBy(xpath = "//*[@id=\"continue\"]")
+    public WebElement continueButton;
+    @FindBy(xpath = "//*[@class=\"govuk-heading-l\"]")
+    public WebElement title;
 
     @FindBy(id = "name")
     public WebElement usersearchField;
@@ -73,16 +76,7 @@ public class FraudPageObject extends UniversalSteps {
     public WebElement JSONPayload;
 
     public FraudPageObject() {
-        if (System.getenv("ENVIRONMENT").equals("local")) {
-            this.configurationService =
-                    new ConfigurationService(null, null, System.getenv("ENVIRONMENT"));
-        } else {
-            this.configurationService =
-                    new ConfigurationService(
-                            ParamManager.getSecretsProvider(),
-                            ParamManager.getSsmProvider(),
-                            System.getenv("ENVIRONMENT"));
-        }
+        this.configurationService = new ConfigurationService(System.getenv("ENVIRONMENT"));
         PageFactory.initElements(Driver.get(), this);
     }
 
@@ -199,4 +193,25 @@ public class FraudPageObject extends UniversalSteps {
         Assert.assertEquals(testStatusCode, ActualStatusCode);
     }
 
+    public void goToPage(String page) {
+        waitForTextToAppear(page);
+    }
+
+    public void clickContinue() {
+        continueButton.isEnabled();
+        continueButton.click();
+    }
+
+    public void goToResponse(String validOrInvalid) {
+        assertURLContains("callback");
+        if ("Invalid".equalsIgnoreCase(validOrInvalid)) {
+            errorResponse.click();
+        } else {
+            viewResponse.click();
+        }
+    }
+
+    public void goToVerifiableCredentialsPage() {
+        title.getText();
+    }
 }

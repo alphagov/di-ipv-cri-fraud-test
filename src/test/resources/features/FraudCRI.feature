@@ -45,6 +45,22 @@ Feature: Fraud CRI
     And I click on Go to Fraud CRI link
     Then I navigate to the verifiable issuer to check for a Valid response from experian
     And JSON payload should contain user's name
+   
+    Examples:
+      | environment |
+      | Build       |
+      | Staging     |
+      | Integration |
+
+  @Spinner_icon_within_Fraud_CRI_screen
+  Scenario Outline: User is presented with a spinner when clicking on the Continue button in the Fraud CRI screen (STUB)
+    Given I navigate to the IPV Core Stub
+    And I click the Fraud CRI for the <environment> environment
+    And I search for user number 12 in the Experian table
+    And I navigate to the page We need to check your details
+    When I check Continue button is enabled and click on the Continue button
+    Then I navigate to Verifiable Credentials page
+    And I check for a Valid response from experian
     And The test is complete and I close the driver
 
     Examples:
