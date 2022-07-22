@@ -4,6 +4,7 @@ import gov.di_ipv_fraud.pages.FraudPageObject;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class FraudStepDefs extends FraudPageObject {
 
@@ -31,4 +32,25 @@ public class FraudStepDefs extends FraudPageObject {
     public void experianOrPrivacyPolicy(String page) {
         whoWeCheckDetailsWith(page);
     }
+
+    @And("^I navigate to the page (.*)$")
+    public void navigateToPage(String page) {
+        goToPage(page);
+    }
+
+    @When("^I check Continue button is enabled and click on the Continue button$")
+    public void clickOnContinueButton() {
+        clickContinue();
+    }
+
+    @Then("^I navigate to Verifiable Credentials page$")
+    public void navigateToVerifiableCredentialsPage() {
+        goToVerifiableCredentialsPage();
+    }
+
+    @And("^I check for a (.*) response from experian")
+    public void navigateToVerifiableCredentials(String validOrInvalid) {
+        goToResponse(validOrInvalid);
+    }
+
 }

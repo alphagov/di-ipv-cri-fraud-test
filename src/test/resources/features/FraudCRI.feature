@@ -36,3 +36,20 @@ Feature: Fraud CRI
       | page           |
       | Experian       |
       | Privacy Policy |
+
+  @Spinner_icon_within_Fraud_CRI_screen
+  Scenario Outline: User is presented with a spinner when clicking on the Continue button in the Fraud CRI screen (STUB)
+    Given I navigate to the IPV Core Stub
+    And I click the Fraud CRI for the <environment> environment
+    And I search for user number 12 in the Experian table
+    And I navigate to the page We need to check your details
+    When I check Continue button is enabled and click on the Continue button
+    Then I navigate to Verifiable Credentials page
+    And I check for a Valid response from experian
+    And The test is complete and I close the driver
+
+    Examples:
+      | environment |
+      | Build       |
+      | Staging     |
+      | Integration |

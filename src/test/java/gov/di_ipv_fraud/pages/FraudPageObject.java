@@ -52,6 +52,10 @@ public class FraudPageObject extends UniversalSteps {
 
     @FindBy(xpath = "//*[@id=\"main-content\"]/div/details")
     public WebElement errorResponse;
+    @FindBy(xpath = "//*[@id=\"continue\"]")
+    public WebElement continueButton;
+    @FindBy(xpath = "//*[@class=\"govuk-heading-l\"]")
+    public WebElement title;
 
     public FraudPageObject() {
         this.configurationService = new ConfigurationService(System.getenv("ENVIRONMENT"));
@@ -126,5 +130,27 @@ public class FraudPageObject extends UniversalSteps {
             Driver.get().close();
             Driver.get().switchTo().window(newTb.get(0));
         }
+    }
+
+    public void goToPage(String page) {
+        waitForTextToAppear(page);
+    }
+
+    public void clickContinue() {
+        continueButton.isEnabled();
+        continueButton.click();
+    }
+
+    public void goToResponse(String validOrInvalid) {
+        assertURLContains("callback");
+        if ("Invalid".equalsIgnoreCase(validOrInvalid)) {
+            errorResponse.click();
+        } else {
+            viewResponse.click();
+        }
+    }
+
+    public void goToVerifiableCredentialsPage() {
+        title.getText();
     }
 }
