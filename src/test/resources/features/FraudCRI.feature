@@ -44,6 +44,7 @@ Feature: Fraud CRI
     When I search for user name Richard Gillis in the Experian table
     And I click on Edit User link
     And I remove the postcode
+    And I remove the house number
     And I click on Go to Fraud CRI link after Edit
     Then I navigate to the verifiable issuer to check for a Invalid response from experian
     And JSON response should contain error details and status code as 302

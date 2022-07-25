@@ -76,6 +76,9 @@ public class FraudPageObject extends UniversalSteps {
     @FindBy(xpath = "//*[@id=\"postCode\"]")
     public WebElement removePostcode;
 
+    @FindBy(xpath = "//*[@id=\"buildingNumber\"]")
+    public WebElement removeHouseNumber;
+
     @FindBy(xpath = "//*[@class=\"govuk-button button\"]")
     public WebElement fraudCRILinkAfterEdit;
 
@@ -165,6 +168,10 @@ public class FraudPageObject extends UniversalSteps {
 
     public void clearPostcode() {
         removePostcode.clear();
+    }
+
+    public void clearHouseNumber() {
+        removeHouseNumber.clear();
     }
 
     public void goTofraudCRILinkAfterEdit() {

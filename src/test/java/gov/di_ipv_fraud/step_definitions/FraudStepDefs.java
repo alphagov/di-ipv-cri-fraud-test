@@ -40,14 +40,19 @@ public class FraudStepDefs extends FraudPageObject {
         userSearchByName(username);
     }
 
-    @When("^I click on Edit User link$")
+    @And("^I click on Edit User link$")
     public void i_click_on_go_to_edit_user_link() {
         goToEditUserLink();
     }
 
-   @When("^I remove the postcode$")
+   @And("^I remove the postcode$")
     public void i_remove_the_postcode() {
        clearPostcode();
+    }
+
+    @And("^I remove the house number$")
+    public void i_remove_the_house_number() {
+        clearHouseNumber();
     }
 
     @And("^I click on Go to Fraud CRI link after Edit$")
