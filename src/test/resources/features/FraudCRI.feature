@@ -37,6 +37,21 @@ Feature: Fraud CRI
       | Experian       |
       | Privacy Policy |
 
+  @userSearch_by_userName_happyPath
+  Scenario Outline: User Search By UserName User Journey Happy Path (STUB)
+    Given I navigate to the IPV Core Stub
+    And I click the Fraud CRI for the <environment> environment
+    When I search for user name Linda Duff in the Experian table
+    And I click on Go to Fraud CRI link
+    Then I navigate to the verifiable issuer to check for a Valid response from experian
+    And JSON payload should contain user's name
+   
+    Examples:
+      | environment |
+      | Build       |
+      | Staging     |
+      | Integration |
+
   @Spinner_icon_within_Fraud_CRI_screen
   Scenario Outline: User is presented with a spinner when clicking on the Continue button in the Fraud CRI screen (STUB)
     Given I navigate to the IPV Core Stub
@@ -46,6 +61,22 @@ Feature: Fraud CRI
     When I check Continue button is enabled and click on the Continue button
     Then I navigate to Verifiable Credentials page
     And I check for a Valid response from experian
+    And The test is complete and I close the driver
+
+    Examples:
+      | environment |
+      | Build       |
+      | Staging     |
+      | Integration |
+
+  @userSearch_by_invalid_userName
+  Scenario Outline: User Search By Invalid UserName(STUB)
+    Given I navigate to the IPV Core Stub
+    And I click the Fraud CRI for the <environment> environment
+    When I search for user name Debra Kiritharnathan in the Experian table
+    And I click on Go to Fraud CRI link
+    Then I navigate to the verifiable issuer to check for a Invalid response from experian
+    And JSON response should contain error details and status code as 302
     And The test is complete and I close the driver
 
     Examples:

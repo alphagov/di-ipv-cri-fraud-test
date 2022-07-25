@@ -1,12 +1,17 @@
 package gov.di_ipv_fraud.pages;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import gov.di_ipv_fraud.service.ConfigurationService;
 import gov.di_ipv_fraud.utilities.Driver;
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import static gov.di_ipv_fraud.pages.Headers.CHECKING_YOUR_DETAILS;
 import static gov.di_ipv_fraud.pages.Headers.IPV_CORE_STUB;
@@ -14,6 +19,7 @@ import static gov.di_ipv_fraud.pages.Headers.IPV_CORE_STUB;
 public class FraudPageObject extends UniversalSteps {
 
     private final ConfigurationService configurationService;
+    private static final Logger LOGGER = Logger.getLogger(Driver.class.getName());
 
     @FindBy(xpath = "//*[@id=\"main-content\"]/p/a/button")
     public WebElement visitCredentialIssuers;
@@ -56,6 +62,18 @@ public class FraudPageObject extends UniversalSteps {
     public WebElement continueButton;
     @FindBy(xpath = "//*[@class=\"govuk-heading-l\"]")
     public WebElement title;
+
+    @FindBy(id = "name")
+    public WebElement usersearchField;
+
+    @FindBy(xpath = "//*[@class=\"govuk-button\"]")
+    public WebElement usersearchButton;
+
+    @FindBy(xpath = "//*[@id=\"main-content\"]/table/tbody/tr/td[1]/p[1]/a")
+    public WebElement fraudCRILink;
+
+    @FindBy(xpath = "//*[@id=\"main-content\"]/div/details/div/pre")
+    public WebElement JSONPayload;
 
     public FraudPageObject() {
         this.configurationService = new ConfigurationService(System.getenv("ENVIRONMENT"));
@@ -130,6 +148,49 @@ public class FraudPageObject extends UniversalSteps {
             Driver.get().close();
             Driver.get().switchTo().window(newTb.get(0));
         }
+    }
+
+    public void userSearchByName(String username) {
+        assertURLContains("credential-issuer?cri=fraud-cri");
+        usersearchField.sendKeys(username);
+        usersearchButton.click();
+    }
+
+    public void goTofraudCRILink() {
+        fraudCRILink.click();
+    }
+
+    public void userNameInJsonResponse() throws JsonProcessingException {
+        String result = JSONPayload.getText();
+        LOGGER.info("result = " + result);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(result);
+        JsonNode vcNode = jsonNode.get("vc");
+        JsonNode nameNode = vcNode.get("credentialSubject");
+        JsonNode insideName = nameNode.get("name");
+        JsonNode nameContent = insideName.get(0);
+        LOGGER.info("nameContent = " + nameContent);
+    }
+
+    public void jsonErrorResponse(String testStatusCode) throws JsonProcessingException {
+        String testErrorDescription = "general error";
+        String result = JSONPayload.getText();
+        LOGGER.info("result = " + result);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(result);
+        JsonNode insideError = jsonNode.get("errorObject");
+        LOGGER.info("insideError = " + insideError);
+        JsonNode errorDescription = insideError.get("description");
+        JsonNode statusCode = insideError.get("httpstatusCode");
+        String ActualErrorDescription = insideError.get("description").asText();
+        String ActualStatusCode = insideError.get("httpstatusCode").asText();
+        LOGGER.info("errorDescription = " + errorDescription);
+        LOGGER.info("statusCode = " + statusCode);
+        LOGGER.info("testErrorDescription = " + testErrorDescription);
+        LOGGER.info("testStatusCode = " + testStatusCode);
+        Assert.assertEquals(testErrorDescription, ActualErrorDescription);
+        Assert.assertEquals(testStatusCode, ActualStatusCode);
     }
 
     public void goToPage(String page) {

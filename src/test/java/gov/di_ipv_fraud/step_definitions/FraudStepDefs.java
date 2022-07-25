@@ -1,5 +1,6 @@
 package gov.di_ipv_fraud.step_definitions;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import gov.di_ipv_fraud.pages.FraudPageObject;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -31,6 +32,26 @@ public class FraudStepDefs extends FraudPageObject {
     @Then("^I navigate to (.*) and assert I have been directed correctly$")
     public void experianOrPrivacyPolicy(String page) {
         whoWeCheckDetailsWith(page);
+    }
+
+    @When("^I search for user name (.*) in the Experian table$")
+    public void userSearchByUserName(String username) {
+        userSearchByName(username);
+    }
+
+    @Then("^I click on Go to Fraud CRI link$")
+    public void navigateToFraudCRILink() {
+        goTofraudCRILink();
+    }
+
+    @And("JSON payload should contain user's name")
+    public void userNameInJsonPayload() throws JsonProcessingException {
+        userNameInJsonResponse();
+    }
+
+    @And("^JSON response should contain error details and status code as (.*)$")
+    public void errorInJsonResponse(String testStatusCode) throws JsonProcessingException {
+        jsonErrorResponse(testStatusCode);
     }
 
     @And("^I navigate to the page (.*)$")
