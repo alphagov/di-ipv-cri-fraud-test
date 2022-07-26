@@ -58,8 +58,10 @@ public class FraudPageObject extends UniversalSteps {
 
     @FindBy(xpath = "//*[@id=\"main-content\"]/div/details")
     public WebElement errorResponse;
+
     @FindBy(xpath = "//*[@id=\"continue\"]")
     public WebElement continueButton;
+
     @FindBy(xpath = "//*[@class=\"govuk-heading-l\"]")
     public WebElement title;
 
@@ -74,6 +76,21 @@ public class FraudPageObject extends UniversalSteps {
 
     @FindBy(xpath = "//*[@id=\"main-content\"]/div/details/div/pre")
     public WebElement JSONPayload;
+
+    @FindBy(xpath = "//*[@id=\"main-content\"]/table/tbody/tr/td[1]/p[2]/a")
+    public WebElement editUserLink;
+
+    @FindBy(id = "buildingName")
+    public WebElement housenameField;
+
+    @FindBy(xpath = "//*[@class=\"govuk-button button\"]")
+    public WebElement fraudCRIButton;
+
+    @FindBy(id = "buildingNumber")
+    public WebElement housenumberField;
+
+    @FindBy(xpath = "//*[@class=\"govuk-heading-xl\"]")
+    public WebElement pagetTitle;
 
     public FraudPageObject() {
         this.configurationService = new ConfigurationService(System.getenv("ENVIRONMENT"));
@@ -214,4 +231,48 @@ public class FraudPageObject extends UniversalSteps {
     public void goToVerifiableCredentialsPage() {
         title.getText();
     }
+
+    public void goToEditUserLink() {
+        editUserLink.click();
+    }
+
+    public void addHouseName(String housename) {
+        housenameField.sendKeys(housename);
+    }
+
+    public void clearHouseNumber() {
+        housenumberField.clear();
+    }
+
+    public void addHouseNumber(String housenumber) {
+        housenumberField.sendKeys(housenumber);
+        fraudCRIButton.click();
+    }
+
+    public void userAddressInJsonResponse(String testHouseName) throws JsonProcessingException {
+        String testHouseNumber = "455";
+        String result = JSONPayload.getText();
+        LOGGER.info("result = " + result);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(result);
+        JsonNode vcNode = jsonNode.get("vc");
+        JsonNode addressNode = vcNode.get("credentialSubject");
+        JsonNode insideAddress = addressNode.get("address");
+        JsonNode addressContent = insideAddress.get(0);
+        LOGGER.info("addressContent = " + addressContent);
+        JsonNode houseName = addressContent.get("buildingName");
+        JsonNode houseNumber = addressContent.get("buildingNumber");
+        String ActualHouseName = addressContent.get("buildingName").asText();
+        String ActualHouseNumber = addressContent.get("buildingNumber").asText();
+        LOGGER.info("houseName = " + houseName);
+        LOGGER.info("houseNumber = " + houseNumber);
+        LOGGER.info("testHouseName = " + testHouseName);
+        LOGGER.info("testHouseNumber = " + testHouseNumber);
+        Assert.assertEquals(testHouseName, ActualHouseName);
+        Assert.assertEquals(testHouseNumber, ActualHouseNumber);
+    }
+    public void goToPageWithTitle(String title) {
+        pagetTitle.getText();
+    }
+
 }
