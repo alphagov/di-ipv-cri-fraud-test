@@ -74,4 +74,34 @@ public class FraudStepDefs extends FraudPageObject {
         goToResponse(validOrInvalid);
     }
 
+    @When("^I click on Edit User link$")
+    public void navigateToEditUserLink() {
+        goToEditUserLink();
+    }
+
+    @And("^I enter (.*) in the House name field$")
+    public void enterHouseName(String housename) {
+        addHouseName(housename);
+    }
+
+    @And("^JSON payload should contain user's address details and House name as (.*)$")
+    public void userAddressInJsonPayload(String testHouseName) throws JsonProcessingException {
+        userAddressInJsonResponse(testHouseName);
+    }
+
+    @And("^I clear existing House number$")
+    public void clearExistingHouseNumber() {
+        clearHouseNumber();
+    }
+
+    @And("^I enter (.*) in the House number field$")
+    public void enterHouseNumber(String housenumber) {
+        addHouseNumber(housenumber);
+    }
+
+    @And("^I am on (.*) page$")
+    public void navigateToPageWithTitle(String title) {
+        goToPageWithTitle(title);
+    }
+
 }
