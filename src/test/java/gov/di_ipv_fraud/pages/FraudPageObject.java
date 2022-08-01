@@ -75,6 +75,34 @@ public class FraudPageObject extends UniversalSteps {
     @FindBy(xpath = "//*[@id=\"main-content\"]/div/details/div/pre")
     public WebElement JSONPayload;
 
+    @FindBy(xpath = "//*[@id=\"main-content\"]/table/tbody/tr/td[1]/p[2]/a")
+    public WebElement editUserLink;
+
+    @FindBy(xpath = "//*[@id=\"postCode\"]")
+    public WebElement removePostcode;
+
+    @FindBy(xpath = "//*[@id=\"buildingNumber\"]")
+    public WebElement removeHouseNumber;
+
+    @FindBy(xpath = "//*[@class=\"govuk-button button\"]")
+    public WebElement fraudCRILinkAfterEdit;
+
+    @FindBy(xpath = "//*[@class=\"govuk-heading-xl\"]")
+    public WebElement ThereIsAProblemPage;
+
+    @FindBy(xpath = "//*[@class=\"govuk-details\"]")
+    public WebElement Details;
+
+    @FindBy(xpath = "//*[@id=\"data\"]")
+    public WebElement NoMatchesMessage;
+
+    @FindBy(xpath = "//*[@class=\"govuk-header__logotype-text\"]")
+    public WebElement GOVUKHeader;
+
+    @FindBy(xpath = "//*[@class=\"govuk-!-margin-top-8 govuk-!-margin-bottom-9\"]")
+    public WebElement IPVCoreHeader;
+
+
     public FraudPageObject() {
         this.configurationService = new ConfigurationService(System.getenv("ENVIRONMENT"));
         PageFactory.initElements(Driver.get(), this);
@@ -214,4 +242,43 @@ public class FraudPageObject extends UniversalSteps {
     public void goToVerifiableCredentialsPage() {
         title.getText();
     }
+
+    public void goToEditUserLink() {
+        editUserLink.click();
+    }
+
+    public void clearPostcode() {
+        removePostcode.clear();
+    }
+
+    public void clearHouseNumber() {
+        removeHouseNumber.clear();
+    }
+
+    public void goTofraudCRILinkAfterEdit() {
+        fraudCRILinkAfterEdit.click();
+    }
+
+    public void goToPageThereIsAProblemHeader() {
+
+        Assert.assertTrue(ThereIsAProblemPage.isDisplayed());
+
+    }
+
+    public void NoMatchesMessageText() {
+        Details.click();
+        Assert.assertTrue(NoMatchesMessage.isDisplayed());
+
+    }
+
+    public void GotoGOVUKHeader(){
+        GOVUKHeader.click();
+    }
+
+    public void IPVCoreSTUB() {
+
+        Assert.assertTrue(IPVCoreHeader.isDisplayed());
+
+    }
+
 }

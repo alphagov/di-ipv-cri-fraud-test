@@ -74,4 +74,49 @@ public class FraudStepDefs extends FraudPageObject {
         goToResponse(validOrInvalid);
     }
 
+
+    @And("^I click on Edit User link$")
+    public void i_click_on_go_to_edit_user_link() {
+        goToEditUserLink();
+    }
+
+    @And("^I remove the postcode$")
+    public void i_remove_the_postcode() {
+        clearPostcode();
+    }
+
+    @And("^I remove the house number$")
+    public void i_remove_the_house_number() {
+        clearHouseNumber();
+    }
+
+    @And("^I click on Go to Fraud CRI link after Edit$")
+    public void iClickOnGoToFraudCRILinkAfterEdit() {
+        goTofraudCRILinkAfterEdit();
+    }
+
+    @And("^I Navigate to page There is a problem$")
+    public void i_check_there_is_a_problem_page() {
+        goToPageThereIsAProblemHeader();
+    }
+
+
+    @And("^I see message No Matches message$")
+    public void i_see_no_matches_message() {
+        NoMatchesMessageText();
+    }
+    @Then("^I click GOV.UK in the menu$")
+    public void i_click_gov_uk_in_the_top_menu() {
+        GotoGOVUKHeader();
+
+    }
+
+    @And("^I check it navigate to Core$")
+    public void i_check_it_navigate_to_core() {
+        IPVCoreSTUB();
+
+    }
+
+
+
 }
