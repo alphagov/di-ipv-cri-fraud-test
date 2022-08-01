@@ -249,8 +249,7 @@ public class FraudPageObject extends UniversalSteps {
         fraudCRIButton.click();
     }
 
-    public void userAddressInJsonResponse(String testHouseName) throws JsonProcessingException {
-        String testHouseNumber = "455";
+    private JsonNode userAddressInJsonResponse() throws JsonProcessingException {
         String result = JSONPayload.getText();
         LOGGER.info("result = " + result);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -259,6 +258,11 @@ public class FraudPageObject extends UniversalSteps {
         JsonNode addressNode = vcNode.get("credentialSubject");
         JsonNode insideAddress = addressNode.get("address");
         JsonNode addressContent = insideAddress.get(0);
+        return addressContent;
+    }
+
+    public void userHouseNameAndNumber(String testHouseName, String testHouseNumber) throws JsonProcessingException {
+        JsonNode addressContent = userAddressInJsonResponse();
         LOGGER.info("addressContent = " + addressContent);
         JsonNode houseName = addressContent.get("buildingName");
         JsonNode houseNumber = addressContent.get("buildingNumber");
@@ -271,6 +275,7 @@ public class FraudPageObject extends UniversalSteps {
         Assert.assertEquals(testHouseName, ActualHouseName);
         Assert.assertEquals(testHouseNumber, ActualHouseNumber);
     }
+
     public void goToPageWithTitle(String title) {
         pagetTitle.getText();
     }

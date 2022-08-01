@@ -97,7 +97,7 @@ Feature: Fraud CRI
     And I clear existing House number
     And I enter 455 in the House number field
     Then I navigate to the verifiable issuer to check for a Valid response from experian
-    And JSON payload should contain user's address details and House name as Test 45
+    And JSON payload should contain user's House name as Test 45 and House number as 455
     And The test is complete and I close the driver
 
     Examples:

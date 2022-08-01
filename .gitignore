@@ -26,3 +26,6 @@ hs_err_pid*
 target/
 build/
 .gradle/
+
+# Apple Desktop Services Store
+.DS_Store

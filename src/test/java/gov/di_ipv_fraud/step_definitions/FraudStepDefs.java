@@ -84,9 +84,9 @@ public class FraudStepDefs extends FraudPageObject {
         addHouseName(housename);
     }
 
-    @And("^JSON payload should contain user's address details and House name as (.*)$")
-    public void userAddressInJsonPayload(String testHouseName) throws JsonProcessingException {
-        userAddressInJsonResponse(testHouseName);
+    @And("^JSON payload should contain user's House name as (.*) and House number as (.*)$")
+    public void userHouseNameAndNumberInJsonPayload(String testHouseName, String testHouseNumber) throws JsonProcessingException {
+        userHouseNameAndNumber(testHouseName, testHouseNumber );
     }
 
     @And("^I clear existing House number$")
