@@ -79,6 +79,16 @@ public class FraudStepDefs extends FraudPageObject {
         goToEditUserLink();
     }
 
+    @And("^I clear the postcode$")
+    public void i_clear_the_postcode() {
+        removePostcode();
+    }
+
+    @And("^I click on Go to Fraud CRI link after Edit$")
+    public void iClickOnGoToFraudCRILinkAfterEdit() {
+        goTofraudCRILinkAfterEdit();
+    }
+
     @And("^I enter (.*) in the House name field$")
     public void enterHouseName(String housename) {
         addHouseName(housename);
@@ -103,5 +113,23 @@ public class FraudStepDefs extends FraudPageObject {
     public void navigateToPageWithTitle(String title) {
         goToPageWithTitle(title);
     }
+
+    @And("^I see No Matches message$")
+    public void i_see_no_matches_message() {
+        NoMatchesMessageText();
+    }
+
+    @Then("^I click GOV.UK in the menu$")
+    public void i_click_gov_uk_in_the_top_menu() {
+        GotoGOVUKHeader();
+    }
+
+    @And("^I check it navigate to Core$")
+    public void i_check_it_navigate_to_core() {
+        IPVCoreSTUB();
+
+    }
+
+
 
 }

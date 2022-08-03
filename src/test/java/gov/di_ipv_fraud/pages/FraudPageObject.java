@@ -92,6 +92,21 @@ public class FraudPageObject extends UniversalSteps {
     @FindBy(xpath = "//*[@class=\"govuk-heading-xl\"]")
     public WebElement pagetTitle;
 
+    @FindBy(xpath = "//*[@id=\"postCode\"]")
+    public WebElement clearPostcode;
+
+    @FindBy(xpath = "//*[@id=\"data\"]")
+    public WebElement NoMatchesMessage;
+
+    @FindBy(xpath = "//*[@class=\"govuk-details\"]")
+    public WebElement Details;
+
+    @FindBy(xpath = "//*[@class=\"govuk-header__logotype-text\"]")
+    public WebElement GOVUKHeader;
+
+    @FindBy(xpath = "//*[@class=\"govuk-!-margin-top-8 govuk-!-margin-bottom-9\"]")
+    public WebElement IPVCoreHeader;
+
     public FraudPageObject() {
         this.configurationService = new ConfigurationService(System.getenv("ENVIRONMENT"));
         PageFactory.initElements(Driver.get(), this);
@@ -278,6 +293,30 @@ public class FraudPageObject extends UniversalSteps {
 
     public void goToPageWithTitle(String title) {
         pagetTitle.getText();
+    }
+
+    public void removePostcode() {
+        clearPostcode.clear();
+    }
+
+    public void goTofraudCRILinkAfterEdit() {
+        fraudCRIButton.click();
+    }
+
+    public void NoMatchesMessageText() {
+        Details.click();
+        Assert.assertTrue(NoMatchesMessage.isDisplayed());
+
+    }
+
+    public void GotoGOVUKHeader(){
+        GOVUKHeader.click();
+    }
+
+    public void IPVCoreSTUB() {
+
+        Assert.assertTrue(IPVCoreHeader.isDisplayed());
+
     }
 
 }
