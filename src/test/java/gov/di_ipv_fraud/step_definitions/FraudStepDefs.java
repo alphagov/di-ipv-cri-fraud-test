@@ -74,7 +74,6 @@ public class FraudStepDefs extends FraudPageObject {
         goToResponse(validOrInvalid);
     }
 
-
     @And("^I click on Edit User link$")
     public void i_click_on_go_to_edit_user_link() {
         goToEditUserLink();
@@ -100,15 +99,14 @@ public class FraudStepDefs extends FraudPageObject {
         goToPageThereIsAProblemHeader();
     }
 
-
     @And("^I see message No Matches message$")
     public void i_see_no_matches_message() {
         NoMatchesMessageText();
     }
+
     @Then("^I click GOV.UK in the menu$")
     public void i_click_gov_uk_in_the_top_menu() {
         GotoGOVUKHeader();
-
     }
 
     @And("^I check it navigate to Core$")
@@ -116,7 +114,6 @@ public class FraudStepDefs extends FraudPageObject {
         IPVCoreSTUB();
 
     }
-
 
 
 }

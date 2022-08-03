@@ -58,8 +58,10 @@ public class FraudPageObject extends UniversalSteps {
 
     @FindBy(xpath = "//*[@id=\"main-content\"]/div/details")
     public WebElement errorResponse;
+
     @FindBy(xpath = "//*[@id=\"continue\"]")
     public WebElement continueButton;
+
     @FindBy(xpath = "//*[@class=\"govuk-heading-l\"]")
     public WebElement title;
 

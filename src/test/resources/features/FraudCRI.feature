@@ -85,7 +85,6 @@ Feature: Fraud CRI
       | Staging     |
       | Integration |
 
-
   @Unhappy_path_MissingDetails_to_Throw_Error
   Scenario Outline: User Search with missing details UnHappy Path (STUB)
     Given I navigate to the IPV Core Stub
@@ -104,8 +103,6 @@ Feature: Fraud CRI
       | Build       |
       | Staging     |
       | Integration |
-
-
 
   @userNavigation_to_Core_for_invalid_userName
   Scenario Outline:  User navigation back to core for invalid users
