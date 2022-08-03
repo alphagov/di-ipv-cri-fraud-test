@@ -45,7 +45,8 @@ Feature: Fraud CRI
     And I click on Go to Fraud CRI link
     Then I navigate to the verifiable issuer to check for a Valid response from experian
     And JSON payload should contain user's name
-   
+    And The test is complete and I close the driver
+
     Examples:
       | environment |
       | Build       |
@@ -77,6 +78,26 @@ Feature: Fraud CRI
     And I click on Go to Fraud CRI link
     Then I navigate to the verifiable issuer to check for a Invalid response from experian
     And JSON response should contain error details and status code as 302
+    And The test is complete and I close the driver
+
+    Examples:
+      | environment |
+      | Build       |
+      | Staging     |
+      | Integration |
+
+  @edituser_happyPath
+  Scenario Outline: Edit User Happy Path (STUB)
+    Given I navigate to the IPV Core Stub
+    And I click the Fraud CRI for the <environment> environment
+    And I search for user name Linda Duff in the Experian table
+    When I click on Edit User link
+    And I am on Edit User page
+    And I enter Test 45 in the House name field
+    And I clear existing House number
+    And I enter 455 in the House number field
+    Then I navigate to the verifiable issuer to check for a Valid response from experian
+    And JSON payload should contain user's House name as Test 45 and House number as 455
     And The test is complete and I close the driver
 
     Examples:
