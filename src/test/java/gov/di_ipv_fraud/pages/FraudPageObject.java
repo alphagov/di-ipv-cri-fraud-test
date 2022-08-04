@@ -8,6 +8,7 @@ import gov.di_ipv_fraud.utilities.Driver;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -16,6 +17,7 @@ import java.util.logging.Logger;
 
 import static gov.di_ipv_fraud.pages.Headers.CHECKING_YOUR_DETAILS;
 import static gov.di_ipv_fraud.pages.Headers.IPV_CORE_STUB;
+
 
 public class FraudPageObject extends UniversalSteps {
 
@@ -95,6 +97,7 @@ public class FraudPageObject extends UniversalSteps {
 
     @FindBy(xpath = "//*[@id=\"postCode\"]")
     public WebElement clearPostcode;
+
 
     public FraudPageObject() {
         this.configurationService = new ConfigurationService(System.getenv("ENVIRONMENT"));
@@ -295,9 +298,6 @@ public class FraudPageObject extends UniversalSteps {
 
     public void StubBackToCore() {
 
-        String coreStubUrl = configurationService.getCoreStubUrl();
-        WebDriver invalidSearchCoreStubURL= Driver.get();
-        Assert.assertTrue("https://di-ipv-core-stub.london.cloudapps.digital/user-search?cri=fraud-cri-build&name=Lind+Duf", true);
+        waitForTextToAppear(IPV_CORE_STUB);
     }
-
 }

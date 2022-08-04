@@ -10,4 +10,5 @@ public class Headers {
     public static final String FRAUD_CRI_ENVIRONMENT = "User for Fraud CRI";
     public static final String VERIFIABLE_CREDENTIALS = "Verifiable Credentials";
     public static final String THERE_IS_A_PROBLEM = "There is a problem.";
+
 }
