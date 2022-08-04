@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import gov.di_ipv_fraud.service.ConfigurationService;
 import gov.di_ipv_fraud.utilities.Driver;
 import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -94,18 +95,6 @@ public class FraudPageObject extends UniversalSteps {
 
     @FindBy(xpath = "//*[@id=\"postCode\"]")
     public WebElement clearPostcode;
-
-    @FindBy(xpath = "//*[@id=\"data\"]")
-    public WebElement NoMatchesMessage;
-
-    @FindBy(xpath = "//*[@class=\"govuk-details\"]")
-    public WebElement Details;
-
-    @FindBy(xpath = "//*[@class=\"govuk-header__logotype-text\"]")
-    public WebElement GOVUKHeader;
-
-    @FindBy(xpath = "//*[@class=\"govuk-!-margin-top-8 govuk-!-margin-bottom-9\"]")
-    public WebElement IPVCoreHeader;
 
     public FraudPageObject() {
         this.configurationService = new ConfigurationService(System.getenv("ENVIRONMENT"));
@@ -276,7 +265,8 @@ public class FraudPageObject extends UniversalSteps {
         return addressContent;
     }
 
-    public void userHouseNameAndNumber(String testHouseName, String testHouseNumber) throws JsonProcessingException {
+    public void userHouseNameAndNumber(String testHouseName, String testHouseNumber)
+            throws JsonProcessingException {
         JsonNode addressContent = userAddressInJsonResponse();
         LOGGER.info("addressContent = " + addressContent);
         JsonNode houseName = addressContent.get("buildingName");
@@ -303,20 +293,11 @@ public class FraudPageObject extends UniversalSteps {
         fraudCRIButton.click();
     }
 
-    public void NoMatchesMessageText() {
-        Details.click();
-        Assert.assertTrue(NoMatchesMessage.isDisplayed());
+    public void StubBackToCore() {
 
-    }
-
-    public void GotoGOVUKHeader(){
-        GOVUKHeader.click();
-    }
-
-    public void IPVCoreSTUB() {
-
-        Assert.assertTrue(IPVCoreHeader.isDisplayed());
-
+        String coreStubUrl = configurationService.getCoreStubUrl();
+        WebDriver invalidSearchCoreStubURL= Driver.get();
+        Assert.assertTrue("https://di-ipv-core-stub.london.cloudapps.digital/user-search?cri=fraud-cri-build&name=Lind+Duf", true);
     }
 
 }

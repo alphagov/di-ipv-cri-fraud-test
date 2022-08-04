@@ -106,8 +106,8 @@ Feature: Fraud CRI
       | Staging     |
       | Integration |
 
-  @Unhappy_path_MissingDetails_to_Throw_Error
-  Scenario Outline: User Search with missing details and edit user UnHappy Path (STUB)
+  @Search_user_with_MissingDetails_and_EditUser_Unhappypath
+  Scenario Outline: Search for user with missing details and edit user UnHappy Path (STUB)'
     Given I navigate to the IPV Core Stub
     And I click the Fraud CRI for the <environment> environment
     When I search for user name Richard Gillis in the Experian table
@@ -117,6 +117,7 @@ Feature: Fraud CRI
     And I click on Go to Fraud CRI link after Edit
     Then I navigate to the verifiable issuer to check for a Invalid response from experian
     And JSON response should contain error details and status code as 302
+    Then Validate User navigation back to core for invalid users
     And The test is complete and I close the driver
 
     Examples:
@@ -125,19 +126,3 @@ Feature: Fraud CRI
       | Staging     |
       | Integration |
 
-  @userNavigation_to_Core_for_invalid_userName
-  Scenario Outline:  User navigation back to core for invalid users
-    Given I navigate to the IPV Core Stub
-    And I click the Fraud CRI for the <environment> environment
-    When I search for user name Lin Duf in the Experian table
-    And I am on There is a problem page
-    And I see No Matches message
-#    Then I click GOV.UK in the menu
-#    And I check it navigate to Core
-    And The test is complete and I close the driver
-
-    Examples:
-      | environment |
-      | Build       |
-      | Staging     |
-      | Integration |

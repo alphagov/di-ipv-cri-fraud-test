@@ -95,8 +95,9 @@ public class FraudStepDefs extends FraudPageObject {
     }
 
     @And("^JSON payload should contain user's House name as (.*) and House number as (.*)$")
-    public void userHouseNameAndNumberInJsonPayload(String testHouseName, String testHouseNumber) throws JsonProcessingException {
-        userHouseNameAndNumber(testHouseName, testHouseNumber );
+    public void userHouseNameAndNumberInJsonPayload(String testHouseName, String testHouseNumber)
+            throws JsonProcessingException {
+        userHouseNameAndNumber(testHouseName, testHouseNumber);
     }
 
     @And("^I clear existing House number$")
@@ -114,22 +115,10 @@ public class FraudStepDefs extends FraudPageObject {
         goToPageWithTitle(title);
     }
 
-    @And("^I see No Matches message$")
-    public void i_see_no_matches_message() {
-        NoMatchesMessageText();
+    @Then("Validate User navigation back to core for invalid users")
+    public void validate_user_navigation_back_to_core_for_invalid_users() {
+
+        StubBackToCore();
     }
-
-    @Then("^I click GOV.UK in the menu$")
-    public void i_click_gov_uk_in_the_top_menu() {
-        GotoGOVUKHeader();
-    }
-
-    @And("^I check it navigate to Core$")
-    public void i_check_it_navigate_to_core() {
-        IPVCoreSTUB();
-
-    }
-
-
 
 }
