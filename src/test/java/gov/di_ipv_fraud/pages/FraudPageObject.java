@@ -296,8 +296,4 @@ public class FraudPageObject extends UniversalSteps {
         fraudCRIButton.click();
     }
 
-    public void StubBackToCore() {
-
-        waitForTextToAppear(IPV_CORE_STUB);
-    }
 }

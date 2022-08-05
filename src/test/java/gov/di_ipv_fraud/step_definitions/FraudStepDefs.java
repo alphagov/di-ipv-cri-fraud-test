@@ -7,6 +7,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import static gov.di_ipv_fraud.pages.Headers.IPV_CORE_STUB;
+
 public class FraudStepDefs extends FraudPageObject {
 
     @Given("I navigate to the IPV Core Stub")
@@ -117,8 +119,7 @@ public class FraudStepDefs extends FraudPageObject {
 
     @Then("Validate User navigation back to core for invalid users")
     public void validate_user_navigation_back_to_core_for_invalid_users() {
-
-        StubBackToCore();
+        waitForTextToAppear(IPV_CORE_STUB);
     }
 
 }

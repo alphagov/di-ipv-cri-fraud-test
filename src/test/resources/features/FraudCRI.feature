@@ -110,14 +110,14 @@ Feature: Fraud CRI
   Scenario Outline: Search for user with missing details and edit user UnHappy Path (STUB)'
     Given I navigate to the IPV Core Stub
     And I click the Fraud CRI for the <environment> environment
-    When I search for user name Richard Gillis in the Experian table
-    And I click on Edit User link
+    And I search for user name Richard Gillis in the Experian table
+    When I click on Edit User link
     And I clear the postcode
     And I clear existing House number
     And I click on Go to Fraud CRI link after Edit
     Then I navigate to the verifiable issuer to check for a Invalid response from experian
     And JSON response should contain error details and status code as 302
-    Then Validate User navigation back to core for invalid users
+    And Validate User navigation back to core for invalid users
     And The test is complete and I close the driver
 
     Examples:
@@ -125,4 +125,3 @@ Feature: Fraud CRI
       | Build       |
       | Staging     |
       | Integration |
-
