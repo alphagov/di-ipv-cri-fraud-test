@@ -6,9 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import gov.di_ipv_fraud.service.ConfigurationService;
 import gov.di_ipv_fraud.utilities.Driver;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -268,8 +266,7 @@ public class FraudPageObject extends UniversalSteps {
         return addressContent;
     }
 
-    public void userHouseNameAndNumber(String testHouseName, String testHouseNumber)
-            throws JsonProcessingException {
+    public void userHouseNameAndNumber(String testHouseName, String testHouseNumber) throws JsonProcessingException {
         JsonNode addressContent = userAddressInJsonResponse();
         LOGGER.info("addressContent = " + addressContent);
         JsonNode houseName = addressContent.get("buildingName");
