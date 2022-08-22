@@ -28,9 +28,11 @@ public class ProveYourIdentityFullJourneyStepDefs extends ProveYourIdentityFullJ
     public void enterPassportDetails(List<Map<String, String>> passportDetails) {
         addPassportDetails(passportDetails);
     }
-    @And("^I enter Date of birth as (.*)/(.*)/(.*)$")
-    public void enterDateOfBirth(String day, String month, String year) {
-        addDateOfBirth(day, month, year);
+
+    @And("^I enter Date of birth as (.*)$")
+    public void enterDateOfBirth(String date) {
+        String[] dateParts = date.split("/");
+        addDateOfBirth(dateParts[0], dateParts[1], dateParts[2]);
     }
 
     @And("^I enter Passport Expiry date as (.*)/(.*)/(.*) and Continue$")
