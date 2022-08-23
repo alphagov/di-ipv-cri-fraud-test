@@ -156,12 +156,12 @@ Feature: Fraud CRI
       | JOHN SAGGAN             | 23/07/1936     | P01 |   2   |
       | JEAN DUPHIE             | 30/10/1950     | P02 |   2   |
       | IAN PADFIELD            | 24/05/1976     | P02 |   2   |
-      | BARRY WYLIE             | 08/06/1958     |  |      2   |
+      | BARRY WYLIE             | 08/06/1958     | P02 |   2   |
       | LYNNE BROWNLIE          | 26/04/1968     | P02 |   2   |
       | RENEE JULIE             | 03/04/1973     |  |      2   |
       | CHRISTINE BRUTON        | 07/09/1961     |  |      2   |
       | DAVID ATTWATER          | 03/11/1959     |  |      2   |
-      | VICTORIA WOOD           | 27/02/1985     |  |      2   |
+      | VICTORIA WOOD           | 27/02/1985     | P01 |   2   |
       | CASSIE MORRIS           | 13/10/2000     | P02 |   2   |
       | SIMON HAMMOND           | 19/08/1980     |  |      2   |
       | DIPTI STUPPART          | 26/01/1989     | P02 |   2   |
