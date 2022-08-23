@@ -91,9 +91,10 @@ public class FraudStepDefs extends FraudPageObject {
         userHouseNameAndNumber(testHouseName, testHouseNumber );
     }
 
-    @And("^JSON payload should contain ci (.*)$")
-    public void contraIndicatorInVerifiableCredential(String ci) throws IOException {
+    @And("^JSON payload should contain ci (.*) and score (.*)$")
+    public void contraIndicatorInVerifiableCredential(String ci, String score) throws IOException {
         ciInVC(ci);
+        identityScoreIs(score);
     }
 
     @And("^I clear existing House number$")
