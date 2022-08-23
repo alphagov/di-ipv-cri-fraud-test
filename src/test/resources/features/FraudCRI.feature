@@ -139,30 +139,30 @@ Feature: Fraud CRI
     Examples:
       | name                    | dob            | ci  | score |
       | ANTHONY ROBERTS         | 17/02/1963     | P01 |   2   |
-      | ALAVEEN MCOLIVER		| 12/07/1962     | P02 |   2   |
-      | SPIROS ALLANIS			| 23/02/1985     |  |      2   |
-      | ALBERT ARKIL			| 30/05/1947     |  |      2   |
-      | KATHERINE MILES			| 04/07/1963     | P02 |   2   |
-      | AMANDA HUSSEIN			| 03/05/1981     |  |      2   |
-      | LISA WHALEY				| 28/11/1974     |  |      2   |
-      | CHRISTOPHER LUKYAMUZI	| 03/10/1968     |  |      2   |
-      | INDUMATHY OSHEA			| 19/12/1961     |  |      2   |
-      | MICHELLE VORAPRAWAT		| 19/08/1978     |  |      2   |
-      | DOUGLAS BEASLEY			| 25/08/1980     |  |      2   |
-      | SIMON LEPPIK			| 19/10/1971     | P01 |   2   |
-      | PHILLIP CRIS			| 16/12/1988     | P01 |   2   |
-      | JOYCE BASU				| 23/02/1943     |  |      2   |
-      | MARY MURTAGH			| 22/02/1960     | P01 |   2   |
-      | JOHN SAGGAN				| 23/07/1936     | P01 |   2   |
-      | JEAN DUPHIE				| 30/10/1950     | P02 |   2   |
-      | IAN PADFIELD			| 24/05/1976     | P02 |   2   |
-      | BARRY WYLIE				| 08/06/1958     |  |      2   |
-      | LYNNE BROWNLIE			| 26/04/1968     | P02 |   2   |
-      | RENEE JULIE				| 03/04/1973     |  |      2   |
-      | CHRISTINE BRUTON		| 07/09/1961     |  |      2   |
-      | DAVID ATTWATER			| 03/11/1959     |  |      2   |
-      | VICTORIA WOOD			| 27/02/1985     |  |      2   |
-      | CASSIE MORRIS			| 13/10/2000     | P02 |   2   |
-      | SIMON HAMMOND			| 19/08/1980     |  |      2   |
-      | DIPTI STUPPART			| 26/01/1989     | P02 |   2   |
-      | JAMALA BROWER			| 27/10/1963     | P02 |   2   |
+      | ALAVEEN MCOLIVER        | 12/07/1962     | P02 |   2   |
+      | SPIROS ALLANIS          | 23/02/1985     |  |      2   |
+      | ALBERT ARKIL            | 30/05/1947     |  |      2   |
+      | KATHERINE MILES         | 04/07/1963     | P02 |   2   |
+      | AMANDA HUSSEIN          | 03/05/1981     |  |      2   |
+      | LISA WHALEY             | 28/11/1974     |  |      2   |
+      | CHRISTOPHER LUKYAMUZI   | 03/10/1968     |  |      2   |
+      | INDUMATHY OSHEA         | 19/12/1961     |  |      2   |
+      | MICHELLE VORAPRAWAT     | 19/08/1978     |  |      2   |
+      | DOUGLAS BEASLEY         | 25/08/1980     |  |      2   |
+      | SIMON LEPPIK            | 19/10/1971     | P01 |   2   |
+      | PHILLIP CRIS            | 16/12/1988     | P01 |   2   |
+      | JOYCE BASU              | 23/02/1943     |  |      2   |
+      | MARY MURTAGH            | 22/02/1960     | P01 |   2   |
+      | JOHN SAGGAN             | 23/07/1936     | P01 |   2   |
+      | JEAN DUPHIE             | 30/10/1950     | P02 |   2   |
+      | IAN PADFIELD            | 24/05/1976     | P02 |   2   |
+      | BARRY WYLIE             | 08/06/1958     |  |      2   |
+      | LYNNE BROWNLIE          | 26/04/1968     | P02 |   2   |
+      | RENEE JULIE             | 03/04/1973     |  |      2   |
+      | CHRISTINE BRUTON        | 07/09/1961     |  |      2   |
+      | DAVID ATTWATER          | 03/11/1959     |  |      2   |
+      | VICTORIA WOOD           | 27/02/1985     |  |      2   |
+      | CASSIE MORRIS           | 13/10/2000     | P02 |   2   |
+      | SIMON HAMMOND           | 19/08/1980     |  |      2   |
+      | DIPTI STUPPART          | 26/01/1989     | P02 |   2   |
+      | JAMALA BROWER           | 27/10/1963     | P02 |   2   |
