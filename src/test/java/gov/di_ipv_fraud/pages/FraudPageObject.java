@@ -1,8 +1,10 @@
 package gov.di_ipv_fraud.pages;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectReader;
 import gov.di_ipv_fraud.service.ConfigurationService;
 import gov.di_ipv_fraud.utilities.Driver;
 import org.junit.Assert;
@@ -10,11 +12,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 import static gov.di_ipv_fraud.pages.Headers.CHECKING_YOUR_DETAILS;
 import static gov.di_ipv_fraud.pages.Headers.IPV_CORE_STUB;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FraudPageObject extends UniversalSteps {
 
@@ -91,6 +98,21 @@ public class FraudPageObject extends UniversalSteps {
 
     @FindBy(xpath = "//*[@class=\"govuk-heading-xl\"]")
     public WebElement pagetTitle;
+
+    @FindBy(id = "dateOfBirth-day")
+    public WebElement dobDay;
+
+    @FindBy(id = "dateOfBirth-month")
+    public WebElement dobMonth;
+
+    @FindBy(id = "dateOfBirth-year")
+    public WebElement dobYear;
+
+    @FindBy(id = "firstName")
+    public WebElement firstName;
+
+    @FindBy(id = "surname")
+    public WebElement surname;
 
     public FraudPageObject() {
         this.configurationService = new ConfigurationService(System.getenv("ENVIRONMENT"));
@@ -244,21 +266,33 @@ public class FraudPageObject extends UniversalSteps {
         housenumberField.clear();
     }
 
+    public void clearFirstname() {
+        firstName.clear();
+    }
+
+    public void clearSurname() {
+        surname.clear();
+    }
+
+    public void enterName(String name) {
+        String[] names = name.split(" ");
+        firstName.sendKeys(names[0]);
+        surname.sendKeys(names[1]);
+    }
+
+    public void clearDoB() {
+        dobDay.clear();
+        dobMonth.clear();
+        dobYear.clear();
+    }
+
     public void addHouseNumber(String housenumber) {
         housenumberField.sendKeys(housenumber);
         fraudCRIButton.click();
     }
 
-    private JsonNode userAddressInJsonResponse() throws JsonProcessingException {
-        String result = JSONPayload.getText();
-        LOGGER.info("result = " + result);
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode jsonNode = objectMapper.readTree(result);
-        JsonNode vcNode = jsonNode.get("vc");
-        JsonNode addressNode = vcNode.get("credentialSubject");
-        JsonNode insideAddress = addressNode.get("address");
-        JsonNode addressContent = insideAddress.get(0);
-        return addressContent;
+    public void clickSubmit() {
+        fraudCRIButton.click();
     }
 
     public void userHouseNameAndNumber(String testHouseName, String testHouseNumber) throws JsonProcessingException {
@@ -276,8 +310,61 @@ public class FraudPageObject extends UniversalSteps {
         Assert.assertEquals(testHouseNumber, ActualHouseNumber);
     }
 
+    public void ciInVC(String ci) throws IOException {
+        String result = JSONPayload.getText();
+        LOGGER.info("result = " + result);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(result);
+        JsonNode vcNode = jsonNode.get("vc");
+        JsonNode evidenceNode = vcNode.get("evidence");
+
+        ObjectReader objectReader = new ObjectMapper().readerFor(new TypeReference<List<JsonNode>>() {
+        });
+        List<JsonNode> evidence = objectReader.readValue(evidenceNode);
+
+        JsonNode cisNode = evidence.get(0).get("ci");
+
+        ObjectReader listReader = new ObjectMapper().readerFor(new TypeReference<List<String>>() {
+        });
+        List<String> cis = listReader.readValue(cisNode);
+
+        if (cis.size() > 0) {
+            assertTrue(cis.contains(ci));
+        }
+    }
+
+    public void identityScoreIs(String score) throws IOException {
+        String result = JSONPayload.getText();
+        LOGGER.info("result = " + result);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(result);
+        JsonNode vcNode = jsonNode.get("vc");
+        JsonNode evidenceNode = vcNode.get("evidence");
+
+        ObjectReader objectReader = new ObjectMapper().readerFor(new TypeReference<List<JsonNode>>() {
+        });
+        List<JsonNode> evidence = objectReader.readValue(evidenceNode);
+
+        String fraudScore = evidence.get(0).get("identityFraudScore").asText();
+        assertEquals(fraudScore, score);
+    }
+
     public void goToPageWithTitle(String title) {
         pagetTitle.getText();
     }
+
+    private JsonNode userAddressInJsonResponse() throws JsonProcessingException {
+        String result = JSONPayload.getText();
+        LOGGER.info("result = " + result);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(result);
+        JsonNode vcNode = jsonNode.get("vc");
+        JsonNode addressNode = vcNode.get("credentialSubject");
+        JsonNode insideAddress = addressNode.get("address");
+        JsonNode addressContent = insideAddress.get(0);
+        return addressContent;
+    }
+
+
 
 }

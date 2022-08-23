@@ -105,3 +105,64 @@ Feature: Fraud CRI
       | Build       |
       | Staging     |
       | Integration |
+
+  @happy_path_with_ci_fraud
+  Scenario Outline: User Journey Happy Path with A01 CI (STUB)
+    Given I navigate to the IPV Core Stub
+    And I click the Fraud CRI for the <environment> environment
+    Then I search for user number 34 in the Experian table
+    And I navigate to the verifiable issuer to check for a Valid response from experian
+    And JSON payload should contain ci A01
+    And The test is complete and I close the driver
+
+    Examples:
+      | environment |
+      | Build       |
+
+  @pep_test_all_users
+  Scenario Outline: Edit User Happy Path with pep CI (STUB)
+    Given I navigate to the IPV Core Stub
+    And I click the Fraud CRI for the Build environment
+    And I search for user name LINDA DUFF in the Experian table
+    When I click on Edit User link
+    And I am on Edit User page
+    And I clear existing Date of Birth
+    And I enter Date of birth as <dob>
+    And I clear existing first name
+    And I clear existing surname
+    And I enter name <name>
+    And I submit user updates
+    And I navigate to the verifiable issuer to check for a Valid response from experian
+    And JSON payload should contain ci <ci> and score <score>
+    And The test is complete and I close the driver
+
+    Examples:
+      | name                    | dob            | ci  | score |
+      | ANTHONY ROBERTS         | 17/02/1963     | P01 |   2   |
+      | ALAVEEN MCOLIVER        | 12/07/1962     | P02 |   2   |
+      | SPIROS ALLANIS          | 23/02/1985     |  |      2   |
+      | ALBERT ARKIL            | 30/05/1947     |  |      2   |
+      | KATHERINE MILES         | 04/07/1963     | P02 |   2   |
+      | AMANDA HUSSEIN          | 03/05/1981     |  |      2   |
+      | LISA WHALEY             | 28/11/1974     |  |      2   |
+      | CHRISTOPHER LUKYAMUZI   | 03/10/1968     |  |      2   |
+      | INDUMATHY OSHEA         | 19/12/1961     |  |      2   |
+      | MICHELLE VORAPRAWAT     | 19/08/1978     |  |      2   |
+      | DOUGLAS BEASLEY         | 25/08/1980     |  |      2   |
+      | SIMON LEPPIK            | 19/10/1971     | P01 |   2   |
+      | PHILLIP CRIS            | 16/12/1988     | P01 |   2   |
+      | JOYCE BASU              | 23/02/1943     |  |      2   |
+      | MARY MURTAGH            | 22/02/1960     | P01 |   2   |
+      | JOHN SAGGAN             | 23/07/1936     | P01 |   2   |
+      | JEAN DUPHIE             | 30/10/1950     | P02 |   2   |
+      | IAN PADFIELD            | 24/05/1976     | P02 |   2   |
+      | BARRY WYLIE             | 08/06/1958     |  |      2   |
+      | LYNNE BROWNLIE          | 26/04/1968     | P02 |   2   |
+      | RENEE JULIE             | 03/04/1973     |  |      2   |
+      | CHRISTINE BRUTON        | 07/09/1961     |  |      2   |
+      | DAVID ATTWATER          | 03/11/1959     |  |      2   |
+      | VICTORIA WOOD           | 27/02/1985     |  |      2   |
+      | CASSIE MORRIS           | 13/10/2000     | P02 |   2   |
+      | SIMON HAMMOND           | 19/08/1980     |  |      2   |
+      | DIPTI STUPPART          | 26/01/1989     | P02 |   2   |
+      | JAMALA BROWER           | 27/10/1963     | P02 |   2   |
