@@ -87,8 +87,9 @@ public class FraudStepDefs extends FraudPageObject {
     }
 
     @And("^JSON payload should contain user's House name as (.*) and House number as (.*)$")
-    public void userHouseNameAndNumberInJsonPayload(String testHouseName, String testHouseNumber) throws JsonProcessingException {
-        userHouseNameAndNumber(testHouseName, testHouseNumber );
+    public void userHouseNameAndNumberInJsonPayload(String testHouseName, String testHouseNumber)
+            throws JsonProcessingException {
+        userHouseNameAndNumber(testHouseName, testHouseNumber);
     }
 
     @And("^JSON payload should contain ci (.*) and score (.*)$")
@@ -136,5 +137,4 @@ public class FraudStepDefs extends FraudPageObject {
     public void navigateToPageWithTitle(String title) {
         goToPageWithTitle(title);
     }
-
 }
