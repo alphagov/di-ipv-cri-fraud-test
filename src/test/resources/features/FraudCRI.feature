@@ -1,22 +1,47 @@
 @fraud_CRI
 Feature: Fraud CRI
 
-  @happy_path
-  Scenario Outline: User Journey Happy Path (STUB)
+  @happy_path @build
+  Scenario: User Journey Happy Path (STUB)
     Given I navigate to the IPV Core Stub
-    And I click the Fraud CRI for the <environment> environment
+    And I click the Fraud CRI for the Build environment
     Then I search for user number 12 in the Experian table
     And I navigate to the verifiable issuer to check for a Valid response from experian
     And The test is complete and I close the driver
 
-    Examples:
-      | environment |
-      | Build       |
-      | Staging     |
-      | Integration |
+  @happy_path @staging
+  Scenario: User Journey Happy Path (STUB)
+    Given I navigate to the IPV Core Stub
+    And I click the Fraud CRI for the Staging environment
+    Then I search for user number 12 in the Experian table
+    And I navigate to the verifiable issuer to check for a Valid response from experian
+    And The test is complete and I close the driver
 
+  @happy_path @integration
+  Scenario: User Journey Happy Path (STUB)
+    Given I navigate to the IPV Core Stub
+    And I click the Fraud CRI for the Integration environment
+    Then I search for user number 12 in the Experian table
+    And I navigate to the verifiable issuer to check for a Valid response from experian
+    And The test is complete and I close the driver
 
-  @unhappy_path
+  @unhappy_path @build
+  Scenario: User Journey Unhappy Path (STUB)
+    Given I navigate to the IPV Core Stub
+    And I click the Fraud CRI for the Build environment
+    Then I search for user number 14 in the Experian table
+    And I navigate to the verifiable issuer to check for a Invalid response from experian
+    And The test is complete and I close the driver
+
+  @unhappy_path @staging
+  Scenario: User Journey Unhappy Path (STUB)
+    Given I navigate to the IPV Core Stub
+    And I click the Fraud CRI for the Staging environment
+    Then I search for user number 14 in the Experian table
+    And I navigate to the verifiable issuer to check for a Invalid response from experian
+    And The test is complete and I close the driver
+
+  @unhappy_path @integration
   Scenario: User Journey Unhappy Path (STUB)
     Given I navigate to the IPV Core Stub
     And I click the Fraud CRI for the Integration environment
@@ -24,7 +49,33 @@ Feature: Fraud CRI
     And I navigate to the verifiable issuer to check for a Invalid response from experian
     And The test is complete and I close the driver
 
-  @external_links
+  @external_links @build
+  Scenario Outline: User Navigates To Experian/Privacy Policy
+    Given I navigate to the IPV Core Stub
+    And I click the Fraud CRI for the Build environment
+    Then I search for user number 12 in the Experian table
+    Then I navigate to <page> and assert I have been directed correctly
+    And The test is complete and I close the driver
+
+    Examples:
+      | page           |
+      | Experian       |
+      | Privacy Policy |
+
+  @external_links @staging
+  Scenario Outline: User Navigates To Experian/Privacy Policy
+    Given I navigate to the IPV Core Stub
+    And I click the Fraud CRI for the Staging environment
+    Then I search for user number 12 in the Experian table
+    Then I navigate to <page> and assert I have been directed correctly
+    And The test is complete and I close the driver
+
+    Examples:
+      | page           |
+      | Experian       |
+      | Privacy Policy |
+
+  @external_links @integration
   Scenario Outline: User Navigates To Experian/Privacy Policy
     Given I navigate to the IPV Core Stub
     And I click the Fraud CRI for the Integration environment
@@ -37,26 +88,40 @@ Feature: Fraud CRI
       | Experian       |
       | Privacy Policy |
 
-  @userSearch_by_userName_happyPath
-  Scenario Outline: User Search By UserName User Journey Happy Path (STUB)
+  @userSearch_by_userName_happyPath @build
+  Scenario: User Search By UserName User Journey Happy Path (STUB)
     Given I navigate to the IPV Core Stub
-    And I click the Fraud CRI for the <environment> environment
+    And I click the Fraud CRI for the Build environment
     When I search for user name Linda Duff in the Experian table
     And I click on Go to Fraud CRI link
     Then I navigate to the verifiable issuer to check for a Valid response from experian
     And JSON payload should contain user's name
     And The test is complete and I close the driver
 
-    Examples:
-      | environment |
-      | Build       |
-      | Staging     |
-      | Integration |
-
-  @Spinner_icon_within_Fraud_CRI_screen
-  Scenario Outline: User is presented with a spinner when clicking on the Continue button in the Fraud CRI screen (STUB)
+  @userSearch_by_userName_happyPath @staging
+  Scenario: User Search By UserName User Journey Happy Path (STUB)
     Given I navigate to the IPV Core Stub
-    And I click the Fraud CRI for the <environment> environment
+    And I click the Fraud CRI for the Staging environment
+    When I search for user name Linda Duff in the Experian table
+    And I click on Go to Fraud CRI link
+    Then I navigate to the verifiable issuer to check for a Valid response from experian
+    And JSON payload should contain user's name
+    And The test is complete and I close the driver
+
+  @userSearch_by_userName_happyPath @integration
+  Scenario: User Search By UserName User Journey Happy Path (STUB)
+    Given I navigate to the IPV Core Stub
+    And I click the Fraud CRI for the Integration environment
+    When I search for user name Linda Duff in the Experian table
+    And I click on Go to Fraud CRI link
+    Then I navigate to the verifiable issuer to check for a Valid response from experian
+    And JSON payload should contain user's name
+    And The test is complete and I close the driver
+
+  @Spinner_icon_within_Fraud_CRI_screen @build
+  Scenario: User is presented with a spinner when clicking on the Continue button in the Fraud CRI screen (STUB)
+    Given I navigate to the IPV Core Stub
+    And I click the Fraud CRI for the Build environment
     And I search for user number 12 in the Experian table
     And I navigate to the page We need to check your details
     When I check Continue button is enabled and click on the Continue button
@@ -64,32 +129,62 @@ Feature: Fraud CRI
     And I check for a Valid response from experian
     And The test is complete and I close the driver
 
-    Examples:
-      | environment |
-      | Build       |
-      | Staging     |
-      | Integration |
-
-  @userSearch_by_invalid_userName
-  Scenario Outline: User Search By Invalid UserName(STUB)
+  @Spinner_icon_within_Fraud_CRI_screen @staging
+  Scenario: User is presented with a spinner when clicking on the Continue button in the Fraud CRI screen (STUB)
     Given I navigate to the IPV Core Stub
-    And I click the Fraud CRI for the <environment> environment
+    And I click the Fraud CRI for the Staging environment
+    And I search for user number 12 in the Experian table
+    And I navigate to the page We need to check your details
+    When I check Continue button is enabled and click on the Continue button
+    Then I navigate to Verifiable Credentials page
+    And I check for a Valid response from experian
+    And The test is complete and I close the driver
+
+  @Spinner_icon_within_Fraud_CRI_screen @integration
+  Scenario: User is presented with a spinner when clicking on the Continue button in the Fraud CRI screen (STUB)
+    Given I navigate to the IPV Core Stub
+    And I click the Fraud CRI for the Integration environment
+    And I search for user number 12 in the Experian table
+    And I navigate to the page We need to check your details
+    When I check Continue button is enabled and click on the Continue button
+    Then I navigate to Verifiable Credentials page
+    And I check for a Valid response from experian
+    And The test is complete and I close the driver
+
+  @userSearch_by_invalid_userName @build
+  Scenario: User Search By Invalid UserName(STUB)
+    Given I navigate to the IPV Core Stub
+    And I click the Fraud CRI for the Build environment
     When I search for user name Debra Kiritharnathan in the Experian table
     And I click on Go to Fraud CRI link
     Then I navigate to the verifiable issuer to check for a Invalid response from experian
     And JSON response should contain error details and status code as 302
     And The test is complete and I close the driver
 
-    Examples:
-      | environment |
-      | Build       |
-      | Staging     |
-      | Integration |
-
-  @edituser_happyPath
-  Scenario Outline: Edit User Happy Path (STUB)
+  @userSearch_by_invalid_userName @staging
+  Scenario: User Search By Invalid UserName(STUB)
     Given I navigate to the IPV Core Stub
-    And I click the Fraud CRI for the <environment> environment
+    And I click the Fraud CRI for the Staging environment
+    When I search for user name Debra Kiritharnathan in the Experian table
+    And I click on Go to Fraud CRI link
+    Then I navigate to the verifiable issuer to check for a Invalid response from experian
+    And JSON response should contain error details and status code as 302
+    And The test is complete and I close the driver
+
+  @userSearch_by_invalid_userName @integration
+  Scenario: User Search By Invalid UserName(STUB)
+    Given I navigate to the IPV Core Stub
+    And I click the Fraud CRI for the Integration environment
+    When I search for user name Debra Kiritharnathan in the Experian table
+    And I click on Go to Fraud CRI link
+    Then I navigate to the verifiable issuer to check for a Invalid response from experian
+    And JSON response should contain error details and status code as 302
+    And The test is complete and I close the driver
+
+  @edituser_happyPath @build
+  Scenario: Edit User Happy Path (STUB)
+    Given I navigate to the IPV Core Stub
+    And I click the Fraud CRI for the Build environment
     And I search for user name Linda Duff in the Experian table
     When I click on Edit User link
     And I am on Edit User page
@@ -100,26 +195,63 @@ Feature: Fraud CRI
     And JSON payload should contain user's House name as Test 45 and House number as 455
     And The test is complete and I close the driver
 
-    Examples:
-      | environment |
-      | Build       |
-      | Staging     |
-      | Integration |
-
-  @happy_path_with_ci_fraud
-  Scenario Outline: User Journey Happy Path with A01 CI (STUB)
+  @edituser_happyPath @staging
+  Scenario: Edit User Happy Path (STUB)
     Given I navigate to the IPV Core Stub
-    And I click the Fraud CRI for the <environment> environment
-    Then I search for user number 34 in the Experian table
-    And I navigate to the verifiable issuer to check for a Valid response from experian
-    And JSON payload should contain ci A01
+    And I click the Fraud CRI for the Staging environment
+    And I search for user name Linda Duff in the Experian table
+    When I click on Edit User link
+    And I am on Edit User page
+    And I enter Test 45 in the House name field
+    And I clear existing House number
+    And I enter 455 in the House number field
+    Then I navigate to the verifiable issuer to check for a Valid response from experian
+    And JSON payload should contain user's House name as Test 45 and House number as 455
     And The test is complete and I close the driver
 
-    Examples:
-      | environment |
-      | Build       |
+  @edituser_happyPath @integration
+  Scenario: Edit User Happy Path (STUB)
+    Given I navigate to the IPV Core Stub
+    And I click the Fraud CRI for the Integration environment
+    And I search for user name Linda Duff in the Experian table
+    When I click on Edit User link
+    And I am on Edit User page
+    And I enter Test 45 in the House name field
+    And I clear existing House number
+    And I enter 455 in the House number field
+    Then I navigate to the verifiable issuer to check for a Valid response from experian
+    And JSON payload should contain user's House name as Test 45 and House number as 455
+    And The test is complete and I close the driver
 
-  @pep_test_all_users
+  @happy_path_with_ci_fraud @build
+  Scenario: User Journey Happy Path with A01 CI (STUB)
+    Given I navigate to the IPV Core Stub
+    And I click the Fraud CRI for the Build environment
+    Then I search for user number 34 in the Experian table
+    And I navigate to the verifiable issuer to check for a Valid response from experian
+    And JSON payload should contain ci A01 and score 2
+    And The test is complete and I close the driver
+
+  @happy_path_with_ci_fraud @staging
+  Scenario: User Journey Happy Path with A01 CI (STUB)
+    Given I navigate to the IPV Core Stub
+    And I click the Fraud CRI for the Staging environment
+    Then I search for user number 34 in the Experian table
+    And I navigate to the verifiable issuer to check for a Valid response from experian
+    And JSON payload should contain ci A01 and score 2
+    And The test is complete and I close the driver
+
+  @happy_path_with_ci_fraud @integration
+  Scenario: User Journey Happy Path with A01 CI (STUB)
+    Given I navigate to the IPV Core Stub
+    And I click the Fraud CRI for the Integration environment
+    Then I search for user number 34 in the Experian table
+    And I navigate to the verifiable issuer to check for a Valid response from experian
+    And JSON payload should contain ci A01 and score 2
+    And The test is complete and I close the driver
+
+
+  @pep_test_all_users @build
   Scenario Outline: Edit User Happy Path with pep CI (STUB)
     Given I navigate to the IPV Core Stub
     And I click the Fraud CRI for the Build environment
@@ -156,12 +288,12 @@ Feature: Fraud CRI
       | JOHN SAGGAN             | 23/07/1936     | P01 |   2   |
       | JEAN DUPHIE             | 30/10/1950     | P02 |   2   |
       | IAN PADFIELD            | 24/05/1976     | P02 |   2   |
-      | BARRY WYLIE             | 08/06/1958     |  |      2   |
+      | BARRY WYLIE             | 08/06/1958     | P02 |   2   |
       | LYNNE BROWNLIE          | 26/04/1968     | P02 |   2   |
       | RENEE JULIE             | 03/04/1973     |  |      2   |
       | CHRISTINE BRUTON        | 07/09/1961     |  |      2   |
       | DAVID ATTWATER          | 03/11/1959     |  |      2   |
-      | VICTORIA WOOD           | 27/02/1985     |  |      2   |
+      | VICTORIA WOOD           | 27/02/1985     | P01 |   2   |
       | CASSIE MORRIS           | 13/10/2000     | P02 |   2   |
       | SIMON HAMMOND           | 19/08/1980     |  |      2   |
       | DIPTI STUPPART          | 26/01/1989     | P02 |   2   |
