@@ -10,7 +10,7 @@ export NO_CHROME_SANDBOX=true
 export STACK_NAME="${CFN_StackName:-local}"
 export JOURNEY_TAG=$(aws ssm get-parameter --name "/tests/${STACK_NAME}/TestTag" | jq -r ".Parameter.Value")
 
-PARAMETERS_NAMES=(clientId contraindicationMappings coreStubPassword coreStubUrl coreStubUsername FraudTableName passportCriUrl apiBaseUrl redirectUri)
+PARAMETERS_NAMES=(clientId contraindicationMappings coreStubPassword coreStubUrl coreStubUsername FraudTableName passportCriUrl apiBaseUrl redirectUri orchestratorStubUrl)
 tLen=${#PARAMETERS_NAMES[@]}
  for (( i=0; i<${tLen}; i++ ));
 do
