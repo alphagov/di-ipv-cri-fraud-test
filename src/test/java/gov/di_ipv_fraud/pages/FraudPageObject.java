@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class FraudPageObject extends UniversalSteps {
 
     private final ConfigurationService configurationService;
-    private static final Logger LOGGER = Logger.getLogger(Driver.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(FraudPageObject.class.getName());
 
     @FindBy(xpath = "//*[@id=\"main-content\"]/p/a/button")
     public WebElement visitCredentialIssuers;
