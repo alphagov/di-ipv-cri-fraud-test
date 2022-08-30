@@ -2,7 +2,6 @@ package gov.di_ipv_fraud.pages;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import gov.di_ipv_fraud.model.Address;
@@ -17,9 +16,9 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.time.LocalDate;
 import java.util.HashMap;
-import java.util.logging.Logger;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import static gov.di_ipv_fraud.pages.Headers.ORCHESTRATOR_STUB;
 import static org.junit.Assert.assertEquals;
@@ -28,106 +27,138 @@ import static org.junit.Assert.assertTrue;
 public class ProveYourIdentityFullJourneyPageObject extends UniversalSteps {
 
     private final ConfigurationService configurationService;
-    private static final Logger LOGGER = Logger.getLogger(ProveYourIdentityFullJourneyPageObject.class.getName());
+    private static final Logger LOGGER =
+            Logger.getLogger(ProveYourIdentityFullJourneyPageObject.class.getName());
 
     @FindBy(xpath = "//*[@value=\"Full journey route\"]")
     public WebElement fullJourneyRouteButton;
 
     @FindBy(id = "submitButton")
     public WebElement continueSubmitButton;
+
     @FindBy(id = "passportNumber")
     public WebElement passportNumberField;
+
     @FindBy(id = "surname")
     public WebElement surnameField;
+
     @FindBy(id = "firstName")
     public WebElement firstnameField;
+
     @FindBy(id = "dateOfBirth-day")
     public WebElement dayOfBirthField;
+
     @FindBy(id = "dateOfBirth-month")
     public WebElement monthOfBirthField;
+
     @FindBy(id = "dateOfBirth-year")
     public WebElement yearOfBirthField;
+
     @FindBy(id = "expiryDate-day")
     public WebElement dayOfExpiryField;
+
     @FindBy(id = "expiryDate-month")
     public WebElement monthOfExpiryField;
+
     @FindBy(id = "expiryDate-year")
     public WebElement yearOfExpiryField;
+
     @FindBy(id = "addressSearch")
     public WebElement postcodeField;
+
     @FindBy(id = "continue")
     public WebElement continueButton;
-    @FindBy (id = "addressResults")
+
+    @FindBy(id = "addressResults")
     public WebElement ChooseYourAddressFromTheList;
-    @FindBy (id = "addressYearFrom")
+
+    @FindBy(id = "addressYearFrom")
     public WebElement EnterTheYearYouStartedLivingAtThisAddress;
-    @FindBy (xpath = "//button[@class='govuk-button button']")
+
+    @FindBy(xpath = "//button[@class='govuk-button button']")
     public WebElement IConfirmMyDetailsAreCorrect;
+
     @FindBy(id = "isAddressMoreThanThreeMonths-lessThanThreeMonths")
     public WebElement NO;
+
     @FindBy(xpath = "//button[@class='govuk-button button']")
     public WebElement FindAddress;
 
     @FindBy(id = "Q00033-TSBBANKPLC-label")
     public WebElement loanTSBBANKPLC;
+
     @FindBy(id = "Q00033-NONEOFTHEABOVEDOESNOTAPPLY-label")
     public WebElement loanNONEOFTHEABOVEDOESNOTAPPLY;
 
     @FindBy(id = "Q00018-OVER500UPTO600-label")
     public WebElement OVER500UPTO600;
+
     @FindBy(id = "Q00018-UPTO600-label")
     public WebElement UPTO600;
+
     @FindBy(id = "Q00018-NONEOFTHEABOVEDOESNOTAPPLY-label")
     public WebElement mortgagePaymentNONEOFTHEABOVEDOESNOTAPPLY;
 
     @FindBy(id = "Q00009-SANTANDERANMFMORTGAGE-label")
     public WebElement SANTANDERANMFMORTGAGE;
+
     @FindBy(id = "Q00009-NONEOFTHEABOVEDOESNOTAPPLY-label")
     public WebElement mortgageCompanyNONEOFTHEABOVEDOESNOTAPPLY;
 
     @FindBy(id = "Q00002-2002-label")
     public WebElement Year2002;
+
     @FindBy(id = "Q00002-NONEOFTHEABOVEDOESNOTAPPLY-label")
     public WebElement currentAddressNONEOFTHEABOVEDOESNOTAPPLY;
 
     @FindBy(id = "Q00043-UPTO48MONTHS-label")
     public WebElement UPTO48MONTHS;
+
     @FindBy(xpath = "//*[@id=\"Q00043-OVER36MONTHSUPTO48MONTHS-label\"]")
     public WebElement OVER36MONTHSUPTO48MONTHS;
+
     @FindBy(id = "Q00043-NONEOFTHEABOVEDOESNOTAPPLY-label")
     public WebElement loanTermNONEOFTHEABOVEDOESNOTAPPLY;
 
     @FindBy(id = "Q00042-OVER550UPTO600-label")
     public WebElement OVER550UPTO600;
+
     @FindBy(id = "Q00042-NONEOFTHEABOVEDOESNOTAPPLY-label")
     public WebElement loanMonthlyNONEOFTHEABOVEDOESNOTAPPLY;
 
     @FindBy(id = "Q00015-UPTO60000-label")
     public WebElement UPTO60000;
+
     @FindBy(id = "Q00015-OVER35000UPTO60000-label")
     public WebElement OVER35000UPTO60000;
+
     @FindBy(id = "Q00015-NONEOFTHEABOVEDOESNOTAPPLY-label")
     public WebElement mortgageLeftToPayNONEOFTHEABOVEDOESNOTAPPLY;
 
     @FindBy(id = "Q00039-UPTO6750-label")
     public WebElement UPTO6750;
+
     @FindBy(id = "Q00039-OVER6500UPTO6750-label")
     public WebElement OVER6500UPTO6750;
+
     @FindBy(id = "Q00039-NONEOFTHEABOVEDOESNOTAPPLY-label")
     public WebElement loanToPayBackNONEOFTHEABOVEDOESNOTAPPLY;
 
     @FindBy(xpath = "//label[@id='Q00019-KA-label']")
     public WebElement KA;
+
     @FindBy(id = "Q00019-NONEOFTHEABOVEDOESNOTAPPLY-label")
     public WebElement twoLetterMortgageNONEOFTHEABOVEDOESNOTAPPLY;
 
     @FindBy(id = "Q00048-TSBBANKPLC-label")
     public WebElement TSBBANKPLC;
+
     @FindBy(id = "Q00048-NONEOFTHEABOVEDOESNOTAPPLY-label")
     public WebElement currentAccountNONEOFTHEABOVEDOESNOTAPPLY;
 
     @FindBy(id = "Q00020-021963-label")
     public WebElement February1963;
+
     @FindBy(xpath = "//label[@id='Q00020-NONEOFTHEABOVEDOESNOTAPPLY-label']")
     public WebElement dobNONEOFTHEABOVEDOESNOTAPPLY;
 
@@ -196,7 +227,7 @@ public class ProveYourIdentityFullJourneyPageObject extends UniversalSteps {
     public void assertPreviousAddressTitle() {
         assertTrue(FindAddress.isDisplayed());
     }
-    
+
     public void answerKBVQuestion() {
         BrowserUtils.waitFor(2);
         String kennethFirstQuestion = Driver.get().getTitle();
@@ -369,14 +400,15 @@ public class ProveYourIdentityFullJourneyPageObject extends UniversalSteps {
     public void validateAddressVc(String currentAddress) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         Map<String, Map<String, String>> vcMap = getVcMap(objectMapper);
-        Map<String, String> addressVc = vcMap.get("Cri Type: https://review-a.staging.account.gov.uk");
+        Map<String, String> addressVc =
+                vcMap.get("Cri Type: https://review-a.staging.account.gov.uk");
 
         List<Address> addressList = getAddresses(objectMapper, addressVc);
 
         LocalDate validFrom = null;
         LocalDate validUntil = null;
 
-        for (Address  address : addressList) {
+        for (Address address : addressList) {
             if (address.getAddressType().name().equals("CURRENT")) {
                 validFrom = address.getValidFrom();
             } else {
@@ -388,7 +420,7 @@ public class ProveYourIdentityFullJourneyPageObject extends UniversalSteps {
             assertEquals(validFrom, validUntil);
         }
 
-        for (Address  address : addressList) {
+        for (Address address : addressList) {
             if (currentAddress.contains(address.getPostalCode())) {
                 assertEquals("CURRENT", address.getAddressType().name());
             } else {
@@ -401,40 +433,48 @@ public class ProveYourIdentityFullJourneyPageObject extends UniversalSteps {
 
         ObjectMapper objectMapper = new ObjectMapper();
         Map<String, Map<String, String>> vcMap = getVcMap(objectMapper);
-        Map<String, String> fraudVc = vcMap.get("Cri Type: https://review-f.staging.account.gov.uk");
+        Map<String, String> fraudVc =
+                vcMap.get("Cri Type: https://review-f.staging.account.gov.uk");
 
         List<Address> addressList = getAddresses(objectMapper, fraudVc);
 
         assertEquals(2, addressList.size());
     }
 
-    private List<Address> getAddresses(ObjectMapper objectMapper, Map<String, String> fraudVc) throws JsonProcessingException {
-        TypeReference<HashMap<String, Object>> typeRef
-                = new TypeReference<HashMap<String, Object>>() {
-        };
+    private List<Address> getAddresses(ObjectMapper objectMapper, Map<String, String> fraudVc)
+            throws JsonProcessingException {
+        TypeReference<HashMap<String, Object>> typeRef =
+                new TypeReference<HashMap<String, Object>>() {};
 
-        TypeReference<List<Address>> addressListRef = new TypeReference<>() {
-        };
+        TypeReference<List<Address>> addressListRef = new TypeReference<>() {};
         String vcString = objectMapper.writeValueAsString(fraudVc.get("vc"));
 
         Map<String, Object> vc = objectMapper.readValue(vcString, typeRef);
         Map<String, Object> credentialSubject = (Map) vc.get("credentialSubject");
 
         List<Address> addressList = (List<Address>) credentialSubject.get("address");
-        addressList = objectMapper.registerModule(new JavaTimeModule()).convertValue(addressList, addressListRef);
+        addressList =
+                objectMapper
+                        .registerModule(new JavaTimeModule())
+                        .convertValue(addressList, addressListRef);
         return addressList;
     }
 
-    private Map<String, Map<String, String>> getVcMap(ObjectMapper objectMapper) throws JsonProcessingException {
+    private Map<String, Map<String, String>> getVcMap(ObjectMapper objectMapper)
+            throws JsonProcessingException {
         Map<String, Map<String, String>> vcMap = new HashMap<>();
-        List<WebElement> elements = Driver.get().findElements(By.className("govuk-summary-list__row"));
+        List<WebElement> elements =
+                Driver.get().findElements(By.className("govuk-summary-list__row"));
         for (WebElement element : elements) {
-            String key = element.findElement(By.tagName("dt")).findElement(By.tagName("span")).getText();
-            String stringValue = element.findElement(By.tagName("dd"))
-                    .findElement(By.tagName("details"))
-                    .findElement(By.tagName("div"))
-                    .findElement(By.tagName("pre"))
-                    .findElement(By.tagName("code")).getAttribute("innerHTML");
+            String key =
+                    element.findElement(By.tagName("dt")).findElement(By.tagName("span")).getText();
+            String stringValue =
+                    element.findElement(By.tagName("dd"))
+                            .findElement(By.tagName("details"))
+                            .findElement(By.tagName("div"))
+                            .findElement(By.tagName("pre"))
+                            .findElement(By.tagName("code"))
+                            .getAttribute("innerHTML");
             Map<String, String> vc = objectMapper.readValue(stringValue, Map.class);
             vcMap.put(key, vc);
         }

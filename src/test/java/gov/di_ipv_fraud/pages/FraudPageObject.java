@@ -15,7 +15,6 @@ import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.logging.Logger;
 
 import static gov.di_ipv_fraud.pages.Headers.CHECKING_YOUR_DETAILS;
@@ -295,7 +294,8 @@ public class FraudPageObject extends UniversalSteps {
         fraudCRIButton.click();
     }
 
-    public void userHouseNameAndNumber(String testHouseName, String testHouseNumber) throws JsonProcessingException {
+    public void userHouseNameAndNumber(String testHouseName, String testHouseNumber)
+            throws JsonProcessingException {
         JsonNode addressContent = userAddressInJsonResponse();
         LOGGER.info("addressContent = " + addressContent);
         JsonNode houseName = addressContent.get("buildingName");
@@ -318,14 +318,14 @@ public class FraudPageObject extends UniversalSteps {
         JsonNode vcNode = jsonNode.get("vc");
         JsonNode evidenceNode = vcNode.get("evidence");
 
-        ObjectReader objectReader = new ObjectMapper().readerFor(new TypeReference<List<JsonNode>>() {
-        });
+        ObjectReader objectReader =
+                new ObjectMapper().readerFor(new TypeReference<List<JsonNode>>() {});
         List<JsonNode> evidence = objectReader.readValue(evidenceNode);
 
         JsonNode cisNode = evidence.get(0).get("ci");
 
-        ObjectReader listReader = new ObjectMapper().readerFor(new TypeReference<List<String>>() {
-        });
+        ObjectReader listReader =
+                new ObjectMapper().readerFor(new TypeReference<List<String>>() {});
         List<String> cis = listReader.readValue(cisNode);
 
         if (cis.size() > 0) {
@@ -341,8 +341,8 @@ public class FraudPageObject extends UniversalSteps {
         JsonNode vcNode = jsonNode.get("vc");
         JsonNode evidenceNode = vcNode.get("evidence");
 
-        ObjectReader objectReader = new ObjectMapper().readerFor(new TypeReference<List<JsonNode>>() {
-        });
+        ObjectReader objectReader =
+                new ObjectMapper().readerFor(new TypeReference<List<JsonNode>>() {});
         List<JsonNode> evidence = objectReader.readValue(evidenceNode);
 
         String fraudScore = evidence.get(0).get("identityFraudScore").asText();
@@ -364,7 +364,4 @@ public class FraudPageObject extends UniversalSteps {
         JsonNode addressContent = insideAddress.get(0);
         return addressContent;
     }
-
-
-
 }

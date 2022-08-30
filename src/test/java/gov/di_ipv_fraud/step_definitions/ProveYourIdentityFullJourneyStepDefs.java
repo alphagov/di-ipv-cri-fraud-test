@@ -1,6 +1,5 @@
 package gov.di_ipv_fraud.step_definitions;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import gov.di_ipv_fraud.pages.FraudPageObject;
 import gov.di_ipv_fraud.pages.ProveYourIdentityFullJourneyPageObject;
 import io.cucumber.java.en.And;
@@ -14,6 +13,7 @@ import java.util.Map;
 public class ProveYourIdentityFullJourneyStepDefs extends ProveYourIdentityFullJourneyPageObject {
 
     FraudPageObject fraudPage;
+
     @Given("I navigate to the Orchestrator Stub")
     public void goToOrchestratorStub() {
         navigateToOrchestratorStub();
@@ -24,6 +24,7 @@ public class ProveYourIdentityFullJourneyStepDefs extends ProveYourIdentityFullJ
         clickOnFullJourneyRouteButton();
         selectContinueButton();
     }
+
     @And("^I enter Passport Details$")
     public void enterPassportDetails(List<Map<String, String>> passportDetails) {
         addPassportDetails(passportDetails);
@@ -39,13 +40,15 @@ public class ProveYourIdentityFullJourneyStepDefs extends ProveYourIdentityFullJ
     public void enterPassportExpiryDate(String day, String month, String year) {
         addPassportExpiryDate(day, month, year);
     }
+
     @And("^I enter (.*) in the Postcode field and find address$")
     public void enterPostcode(String postcode) {
         addPostcode(postcode);
     }
 
     @When("the user chooses their address (.*) from dropdown and click `Choose address`$")
-    public void the_user_chooses_their_address_from_dropdown_and_click_Choose_address(String address) {
+    public void the_user_chooses_their_address_from_dropdown_and_click_Choose_address(
+            String address) {
         selectAddressFromDropdown(address);
     }
 
@@ -65,12 +68,14 @@ public class ProveYourIdentityFullJourneyStepDefs extends ProveYourIdentityFullJ
     }
 
     @When("kenneth answers the (.*) question correctly$")
-    public void the_user_answers_the_first_question_correctly(String questionNumber) throws Exception {
+    public void the_user_answers_the_first_question_correctly(String questionNumber)
+            throws Exception {
         answerKBVQuestion();
     }
 
     @Then("verify the users address credentials. current address (.*)$")
-    public void credentials_are_verified_against_input_address(String currentAddress) throws Exception {
+    public void credentials_are_verified_against_input_address(String currentAddress)
+            throws Exception {
         validateAddressVc(currentAddress);
     }
 
@@ -79,8 +84,10 @@ public class ProveYourIdentityFullJourneyStepDefs extends ProveYourIdentityFullJ
         validateFraudVc();
     }
 
-    @Then("they select `NO` for `Have you lived here for more than {int} months?` and click on `Continue`")
-    public void they_select_NO_for_Have_you_lived_here_for_more_than_months_and_click_on_Continue(Integer int1) {
+    @Then(
+            "they select `NO` for `Have you lived here for more than {int} months?` and click on `Continue`")
+    public void they_select_NO_for_Have_you_lived_here_for_more_than_months_and_click_on_Continue(
+            Integer int1) {
         selectNoFor3MonthsInAddress(int1);
     }
 
