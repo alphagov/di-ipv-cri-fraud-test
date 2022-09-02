@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 import gov.di_ipv_fraud.service.ConfigurationService;
 import gov.di_ipv_fraud.utilities.Driver;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,6 +20,7 @@ import java.util.logging.Logger;
 
 import static gov.di_ipv_fraud.pages.Headers.CHECKING_YOUR_DETAILS;
 import static gov.di_ipv_fraud.pages.Headers.IPV_CORE_STUB;
+import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -328,8 +330,12 @@ public class FraudPageObject extends UniversalSteps {
                 new ObjectMapper().readerFor(new TypeReference<List<String>>() {});
         List<String> cis = listReader.readValue(cisNode);
 
-        if (cis.size() > 0) {
-            assertTrue(cis.contains(ci));
+        if (StringUtils.isNotEmpty(ci)) {
+            if (cis.size() > 0) {
+                assertTrue(cis.contains(ci));
+            } else {
+                fail("No CIs found");
+            }
         }
     }
 
