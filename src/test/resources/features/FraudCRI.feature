@@ -250,11 +250,32 @@ Feature: Fraud CRI
     And JSON payload should contain ci A01 and score 2
     And The test is complete and I close the driver
 
-
+  # User with surname CI6 will return the U015 code and will return CI as P01 in the VC
   @pep_test_all_users @build
   Scenario Outline: Edit User Happy Path with pep CI (STUB)
     Given I navigate to the IPV Core Stub
     And I click the Fraud CRI for the Build environment
+    And I search for user name LINDA DUFF in the Experian table
+    When I click on Edit User link
+    And I am on Edit User page
+    And I clear existing Date of Birth
+    And I enter Date of birth as <dob>
+    And I clear existing first name
+    And I clear existing surname
+    And I enter name <name>
+    And I submit user updates
+    And I navigate to the verifiable issuer to check for a Valid response from experian
+    And JSON payload should contain ci <ci> and score <score>
+    And The test is complete and I close the driver
+
+    Examples:
+      | name            | dob            | ci  | score |
+      | ANTHONY CI6     | 17/02/1963     | P01 |    2  |
+
+  @pep_test_all_users @staging
+  Scenario Outline: Edit User Happy Path with pep CI (STUB)
+    Given I navigate to the IPV Core Stub
+    And I click the Fraud CRI for the Staging environment
     And I search for user name LINDA DUFF in the Experian table
     When I click on Edit User link
     And I am on Edit User page
