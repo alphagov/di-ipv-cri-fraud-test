@@ -2,7 +2,6 @@ package gov.di_ipv_fraud.step_definitions;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import gov.di_ipv_fraud.pages.FraudPageObject;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -38,8 +37,8 @@ public class FraudAPIStepDefs {
 
         String jsonString =
                 getClaimsForUser(
-                        coreStubUrl, "fraud-cri-build", LindaDuffExperianRowNumber);
-        SESSION_REQUEST_BODY = createRequest(coreStubUrl, "fraud-cri-build", jsonString);
+                        coreStubUrl, "fraud-cri-dev", LindaDuffExperianRowNumber);
+        SESSION_REQUEST_BODY = createRequest(coreStubUrl, "fraud-cri-dev", jsonString);
         LOGGER.info("SESSION_REQUEST_BODY = " + SESSION_REQUEST_BODY);
     }
 
@@ -76,7 +75,7 @@ public class FraudAPIStepDefs {
             throw new IllegalArgumentException("Environment variable PRIVATE API endpoint is not set");
         }
         LOGGER.info("privateAPIEndpoint =>"+privateAPIEndpoint);
-        return  "https://" + privateAPIEndpoint + ".execute-api.eu-west-2.amazonaws.com/build";
+        return  "https://" + privateAPIEndpoint + ".execute-api.eu-west-2.amazonaws.com/dev";
     }
 
     private String getClaimsForUser(String baseUrl, String criId, int userDataRowNumber)
