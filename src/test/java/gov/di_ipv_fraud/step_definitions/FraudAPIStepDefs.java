@@ -2,7 +2,6 @@ package gov.di_ipv_fraud.step_definitions;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import gov.di_ipv_fraud.pages.FraudPageObject;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -31,14 +30,13 @@ public class FraudAPIStepDefs {
     public void user_has_the_user_identity_in_the_form_of_a_signed_jwt_string()
             throws URISyntaxException, IOException, InterruptedException {
         String coreStubUrl = System.getenv("coreStubUrl");
-        LOGGER.info("STUB URL = "+coreStubUrl);
+        LOGGER.info("STUB URL = " + coreStubUrl);
         if (coreStubUrl == null) {
             throw new IllegalArgumentException("Environment variable IPV_CORE_STUB_URL is not set");
         }
 
         String jsonString =
-                getClaimsForUser(
-                        coreStubUrl, "fraud-cri-build", LindaDuffExperianRowNumber);
+                getClaimsForUser(coreStubUrl, "fraud-cri-build", LindaDuffExperianRowNumber);
         SESSION_REQUEST_BODY = createRequest(coreStubUrl, "fraud-cri-build", jsonString);
         LOGGER.info("SESSION_REQUEST_BODY = " + SESSION_REQUEST_BODY);
     }
@@ -47,20 +45,19 @@ public class FraudAPIStepDefs {
     public void user_sends_a_post_request_to_session_end_point()
             throws IOException, InterruptedException {
         // Write code here that turns the phrase above into concrete actions
-        LOGGER.info("getPrivateAPIEndpoint() ==> "+ getPrivateAPIEndpoint());
+        LOGGER.info("getPrivateAPIEndpoint() ==> " + getPrivateAPIEndpoint());
         HttpRequest request =
                 HttpRequest.newBuilder()
                         .uri(URI.create(getPrivateAPIEndpoint() + "/session"))
                         .setHeader("Accept", "application/json")
                         .setHeader("Content-Type", "application/json")
-//                        .setHeader("X-Forwarded-For", "192.168.0.1")
+                        //                        .setHeader("X-Forwarded-For", "192.168.0.1")
                         .POST(HttpRequest.BodyPublishers.ofString(SESSION_REQUEST_BODY))
                         .build();
         String sessionResponse = sendHttpRequest(request).body();
         LOGGER.info("sessionResponse = " + sessionResponse);
         Map<String, String> deserialisedResponse =
-                objectMapper.readValue(sessionResponse, new TypeReference<>() {
-                });
+                objectMapper.readValue(sessionResponse, new TypeReference<>() {});
         SESSION_ID = deserialisedResponse.get("session_id");
     }
 
@@ -70,32 +67,37 @@ public class FraudAPIStepDefs {
         assertTrue(StringUtils.isNotBlank(SESSION_ID));
     }
 
-    private String getPrivateAPIEndpoint(){
+    private String getPrivateAPIEndpoint() {
         String privateAPIEndpoint = System.getenv("apiGatewayIdPrivate");
         if (privateAPIEndpoint == null) {
-            throw new IllegalArgumentException("Environment variable PRIVATE API endpoint is not set");
+            throw new IllegalArgumentException(
+                    "Environment variable PRIVATE API endpoint is not set");
         }
-        LOGGER.info("privateAPIEndpoint =>"+privateAPIEndpoint);
-        return  "https://" + privateAPIEndpoint + ".execute-api.eu-west-2.amazonaws.com/build";
+        LOGGER.info("privateAPIEndpoint =>" + privateAPIEndpoint);
+        return "https://" + privateAPIEndpoint + ".execute-api.eu-west-2.amazonaws.com/build";
     }
 
     private String getClaimsForUser(String baseUrl, String criId, int userDataRowNumber)
             throws URISyntaxException, IOException, InterruptedException {
-        var url = new URI(
-                baseUrl
-                        + "backend/generateInitialClaimsSet?cri="
-                        + criId
-                        + "&rowNumber="
-                        + userDataRowNumber);
+        var url =
+                new URI(
+                        baseUrl
+                                + "backend/generateInitialClaimsSet?cri="
+                                + criId
+                                + "&rowNumber="
+                                + userDataRowNumber);
 
         LOGGER.info("URL =>> " + url);
 
         HttpRequest request =
                 HttpRequest.newBuilder()
-                        .uri(
-                                url)
+                        .uri(url)
                         .GET()
-                        .setHeader("Authorization", getBasicAuthenticationHeader(System.getenv("coreStubUsername"), System.getenv("coreStubPassword")))
+                        .setHeader(
+                                "Authorization",
+                                getBasicAuthenticationHeader(
+                                        System.getenv("coreStubUsername"),
+                                        System.getenv("coreStubPassword")))
                         .build();
         return sendHttpRequest(request).body();
     }
@@ -110,7 +112,11 @@ public class FraudAPIStepDefs {
                         .uri(uri)
                         .setHeader("Accept", "application/json")
                         .setHeader("Content-Type", "application/json")
-                        .setHeader("Authorization", getBasicAuthenticationHeader(System.getenv("coreStubUsername"), System.getenv("coreStubPassword")))
+                        .setHeader(
+                                "Authorization",
+                                getBasicAuthenticationHeader(
+                                        System.getenv("coreStubUsername"),
+                                        System.getenv("coreStubPassword")))
                         .POST(HttpRequest.BodyPublishers.ofString(jsonString))
                         .build();
 
@@ -128,5 +134,4 @@ public class FraudAPIStepDefs {
         String valueToEncode = username + ":" + password;
         return "Basic " + Base64.getEncoder().encodeToString(valueToEncode.getBytes());
     }
-
 }

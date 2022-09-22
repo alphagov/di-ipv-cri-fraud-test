@@ -124,8 +124,10 @@ public class FraudPageObject extends UniversalSteps {
         String coreStubUsername = configurationService.getCoreStubUsername();
         String coreStubPassword = configurationService.getCoreStubPassword();
         String coreStubUrl = configurationService.getCoreStubUrl();
-        Driver.get()
-                .get("https://" + coreStubUsername + ":" + coreStubPassword + "@" + coreStubUrl);
+        /*Driver.get()
+                .get("https://" + coreStubUsername + ":" + coreStubPassword + "@" + coreStubUrl);*/
+       Driver.get()
+                .get(coreStubUrl);
         waitForTextToAppear(IPV_CORE_STUB);
     }
 

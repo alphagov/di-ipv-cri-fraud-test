@@ -1,5 +1,7 @@
 package gov.di_ipv_fraud.pages;
 
+import gov.di_ipv_fraud.service.ConfigurationService;
+import gov.di_ipv_fraud.utilities.BrowserUtils;
 import gov.di_ipv_fraud.utilities.Driver;
 import gov.di_ipv_fraud.utilities.PassportAPIGlobals;
 import org.junit.Assert;
@@ -7,9 +9,24 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import static gov.di_ipv_fraud.pages.Headers.IPV_CORE_STUB;
+
 public class PassportDetailsPageObject extends UniversalSteps {
 
     private final PassportAPIGlobals passportAPIGlobals;
+
+    @FindBy(xpath = "//*[@id=\"main-content\"]/p/a")
+    public WebElement VisitCredentialIssuers;
+
+
+    @FindBy(xpath = "//*[@id=\"main-content\"]/p[4]/a")
+    public WebElement PassportCRIDevButton;
+
+    @FindBy(id = "rowNumber")
+    public WebElement selectRow;
+
+    @FindBy(xpath = "//*[@id=\"main-content\"]/form[2]/div/button")
+    public WebElement PassportCRIDevPageButton;
 
     @FindBy(id = "passportNumber")
     public WebElement passportNumberField;
@@ -19,6 +36,10 @@ public class PassportDetailsPageObject extends UniversalSteps {
 
     @FindBy(id = "givenNames")
     public WebElement firstName;
+
+    @FindBy(id = "firstName")
+    public WebElement firstNamefordev;
+
 
     @FindBy(id = "dateOfBirth-day")
     public WebElement birthDayField;
@@ -44,6 +65,8 @@ public class PassportDetailsPageObject extends UniversalSteps {
     @FindBy(id = "header")
     public WebElement dcsCheckIsComplete;
 
+    private ConfigurationService configurationService;
+
     public PassportDetailsPageObject() {
         passportAPIGlobals = new PassportAPIGlobals();
         PageFactory.initElements(Driver.get(), this);
@@ -52,6 +75,27 @@ public class PassportDetailsPageObject extends UniversalSteps {
     public void proveIdentityPage() {
         Driver.get().get(passportAPIGlobals.passportAuthUrl);
         waitForFiveSeconds();
+    }
+
+    /*public void navigateToIPVCoreStubToAddPassport() {
+        String coreStubUrl = configurationService.getCoreStubUrl();
+        Driver.get()
+                .get(coreStubUrl);
+        waitForTextToAppear(IPV_CORE_STUB);
+    }*/
+
+    public void navigateToPassportCRIDev() {
+        VisitCredentialIssuers.click();
+        PassportCRIDevButton.click();
+    }
+
+    public void GoToPassportCRIDevPage(String number) {
+        selectRow.sendKeys(number);
+        PassportCRIDevPageButton.click();
+        //waitForTextToAppear(IPV_CORE_STUB);
+        BrowserUtils.waitForPageToLoad(100);
+
+
     }
 
     public void entersPassportDetails(
@@ -74,6 +118,7 @@ public class PassportDetailsPageObject extends UniversalSteps {
         passportExpiryMonthField.sendKeys(expiryMonth);
         passportExpiryYearField.sendKeys(expiryYear);
         continueButton.click();
+        firstNamefordev.sendKeys(name);
     }
 
     public void dcsCompletionHeader() {
