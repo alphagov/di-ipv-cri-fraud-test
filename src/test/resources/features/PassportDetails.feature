@@ -1,9 +1,10 @@
 Feature: Passport Test
 
+
   @passport_test
   Scenario Outline: Passport details page
     Given A user is on Prove Your Identity page
-    And A user fill in the passport details "<Passport number>", "<Surname>", "<Given names>", "<birthDay>", "<birthMonth>", "<birthYear>", "<expiryDay>","<expiryMonth>" and "<expiryYear>"
+    And A user enters "<Passport number>", "<Surname>", "<Given names>", "<birthDay>", "<birthMonth>", "<birthYear>", "<expiryDay>","<expiryMonth>" and "<expiryYear>"
     Then user sees DCS check is complete message
     Examples:
       | Passport number | Surname | Given names  | birthDay | birthMonth | birthYear | expiryDay | expiryMonth | expiryYear |
@@ -14,7 +15,12 @@ Feature: Passport Test
     Given I navigate to the IPV Core Stub
     And I navigate to User for Passport CRI dev Page
     And I enter number 5 and click Go to Passport CRI Dev button
-    And A user fill in the passport details "<Passport number>", "<Surname>", "<Given names>", "<birthDay>", "<birthMonth>", "<birthYear>", "<expiryDay>","<expiryMonth>" and "<expiryYear>"
+    And A user enters the passport details "<Passport number>", "<Surname>", "<Given names>", "<birthDay>", "<birthMonth>", "<birthYear>", "<expiryDay>","<expiryMonth>" and "<expiryYear>"
+    And  I click Response from Passport CRI dev
     Examples:
       | Passport number | Surname     | Given names  | birthDay | birthMonth | birthYear | expiryDay | expiryMonth | expiryYear |
       | 321654987       | DECERQUEIRA | KENNETH      | 23       | 8         | 1959      | 27        | 5           | 2029        |
+
+
+
+

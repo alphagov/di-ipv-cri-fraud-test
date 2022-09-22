@@ -18,7 +18,6 @@ public class PassportDetailsPageObject extends UniversalSteps {
     @FindBy(xpath = "//*[@id=\"main-content\"]/p/a")
     public WebElement VisitCredentialIssuers;
 
-
     @FindBy(xpath = "//*[@id=\"main-content\"]/p[4]/a")
     public WebElement PassportCRIDevButton;
 
@@ -38,8 +37,7 @@ public class PassportDetailsPageObject extends UniversalSteps {
     public WebElement firstName;
 
     @FindBy(id = "firstName")
-    public WebElement firstNamefordev;
-
+    public WebElement givenNameField;
 
     @FindBy(id = "dateOfBirth-day")
     public WebElement birthDayField;
@@ -65,6 +63,9 @@ public class PassportDetailsPageObject extends UniversalSteps {
     @FindBy(id = "header")
     public WebElement dcsCheckIsComplete;
 
+    @FindBy(xpath = "//*[@id=\"main-content\"]/div/details/summary/span")
+    public WebElement CRIDevResponseButton;
+
     private ConfigurationService configurationService;
 
     public PassportDetailsPageObject() {
@@ -77,13 +78,6 @@ public class PassportDetailsPageObject extends UniversalSteps {
         waitForFiveSeconds();
     }
 
-    /*public void navigateToIPVCoreStubToAddPassport() {
-        String coreStubUrl = configurationService.getCoreStubUrl();
-        Driver.get()
-                .get(coreStubUrl);
-        waitForTextToAppear(IPV_CORE_STUB);
-    }*/
-
     public void navigateToPassportCRIDev() {
         VisitCredentialIssuers.click();
         PassportCRIDevButton.click();
@@ -92,10 +86,7 @@ public class PassportDetailsPageObject extends UniversalSteps {
     public void GoToPassportCRIDevPage(String number) {
         selectRow.sendKeys(number);
         PassportCRIDevPageButton.click();
-        //waitForTextToAppear(IPV_CORE_STUB);
         BrowserUtils.waitForPageToLoad(100);
-
-
     }
 
     public void entersPassportDetails(
@@ -118,10 +109,36 @@ public class PassportDetailsPageObject extends UniversalSteps {
         passportExpiryMonthField.sendKeys(expiryMonth);
         passportExpiryYearField.sendKeys(expiryYear);
         continueButton.click();
-        firstNamefordev.sendKeys(name);
     }
 
     public void dcsCompletionHeader() {
         Assert.assertTrue(dcsCheckIsComplete.isDisplayed());
     }
+
+    public void userEntersThePassportDetails(
+            String passportNumber,
+            String surname,
+            String givenName,
+            String birthDay,
+            String birthMonth,
+            String birthYear,
+            String expiryDay,
+            String expiryMonth,
+            String expiryYear) {
+        passportNumberField.sendKeys(passportNumber);
+        surnameField.sendKeys(surname);
+        givenNameField.sendKeys(givenName);
+        birthDayField.sendKeys(birthDay);
+        birthMonthField.sendKeys(birthMonth);
+        birthYearField.sendKeys(birthYear);
+        passportExpiryDayField.sendKeys(expiryDay);
+        passportExpiryMonthField.sendKeys(expiryMonth);
+        passportExpiryYearField.sendKeys(expiryYear);
+        continueButton.click();
+    }
+    public void PassportCRIDev() {
+        CRIDevResponseButton.click();
+    }
 }
+
+
