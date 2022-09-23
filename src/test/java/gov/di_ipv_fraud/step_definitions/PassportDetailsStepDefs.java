@@ -3,8 +3,8 @@ package gov.di_ipv_fraud.step_definitions;
 import gov.di_ipv_fraud.pages.PassportDetailsPageObject;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.When;
 
 public class PassportDetailsStepDefs extends PassportDetailsPageObject {
 
@@ -56,20 +56,27 @@ public class PassportDetailsStepDefs extends PassportDetailsPageObject {
                 expiryYear);
     }
 
-    @And("I navigate to User for Passport CRI dev Page")
+    @Then("I navigate to User for Passport CRI dev Page")
     public void i_navigate_to_user_for_passport_cri_dev_page() {
         navigateToPassportCRIDev();
     }
 
-    @And("^I enter number (.*) and click Go to Passport CRI Dev button$")
+    @When("^I enter number (.*) and click Go to Passport CRI Dev button$")
     public void i_enter_number_and_click_go_to_passport_cri_dev_button(String number) {
-        GoToPassportCRIDevPage(number);
+        goToPassportCRIDevPage(number);
     }
-    @And("^I click Response from Passport CRI dev$")
-            public void i_click_response_from_passport_cri_dev() {
-            PassportCRIDev();
-            }
+
+    @And("^I validate the link Response from Passport CRI dev$")
+    public void i_validate_the_link_response_from_passport_cri_dev() {
+            responseFromPassportCRIDevlink();
+    }
+
+    @Then("^I click Response from Passport CRI dev$")
+    public void i_click_response_from_passport_cri_dev() {
+        passportCRIDev();
+    }
 }
+
 
 
 

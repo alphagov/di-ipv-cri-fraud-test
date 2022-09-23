@@ -13,10 +13,11 @@ Feature: Passport Test
 
   Scenario Outline: Add Passport to stub for testing
     Given I navigate to the IPV Core Stub
-    And I navigate to User for Passport CRI dev Page
-    And I enter number 5 and click Go to Passport CRI Dev button
+    Then I navigate to User for Passport CRI dev Page
+    When I enter number 5 and click Go to Passport CRI Dev button
     And A user enters the passport details "<Passport number>", "<Surname>", "<Given names>", "<birthDay>", "<birthMonth>", "<birthYear>", "<expiryDay>","<expiryMonth>" and "<expiryYear>"
-    And  I click Response from Passport CRI dev
+    And I validate the link Response from Passport CRI dev
+    Then  I click Response from Passport CRI dev
     Examples:
       | Passport number | Surname     | Given names  | birthDay | birthMonth | birthYear | expiryDay | expiryMonth | expiryYear |
       | 321654987       | DECERQUEIRA | KENNETH      | 23       | 8         | 1959      | 27        | 5           | 2029        |

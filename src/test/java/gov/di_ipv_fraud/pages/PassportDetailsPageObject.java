@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import static gov.di_ipv_fraud.pages.Headers.IPV_CORE_STUB;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PassportDetailsPageObject extends UniversalSteps {
 
@@ -19,13 +20,13 @@ public class PassportDetailsPageObject extends UniversalSteps {
     public WebElement VisitCredentialIssuers;
 
     @FindBy(xpath = "//*[@id=\"main-content\"]/p[4]/a")
-    public WebElement PassportCRIDevButton;
+    public WebElement passportCRIDevButton;
 
     @FindBy(id = "rowNumber")
     public WebElement selectRow;
 
     @FindBy(xpath = "//*[@id=\"main-content\"]/form[2]/div/button")
-    public WebElement PassportCRIDevPageButton;
+    public WebElement passportCRIDevPageButton;
 
     @FindBy(id = "passportNumber")
     public WebElement passportNumberField;
@@ -64,7 +65,10 @@ public class PassportDetailsPageObject extends UniversalSteps {
     public WebElement dcsCheckIsComplete;
 
     @FindBy(xpath = "//*[@id=\"main-content\"]/div/details/summary/span")
-    public WebElement CRIDevResponseButton;
+    public WebElement criDevResponseButton;
+
+    @FindBy(xpath = "//*[@id=\"data\"]/text()")
+    public WebElement GivenNameResponse;
 
     private ConfigurationService configurationService;
 
@@ -80,12 +84,12 @@ public class PassportDetailsPageObject extends UniversalSteps {
 
     public void navigateToPassportCRIDev() {
         VisitCredentialIssuers.click();
-        PassportCRIDevButton.click();
+        passportCRIDevButton.click();
     }
 
-    public void GoToPassportCRIDevPage(String number) {
+    public void goToPassportCRIDevPage(String number) {
         selectRow.sendKeys(number);
-        PassportCRIDevPageButton.click();
+        passportCRIDevPageButton.click();
         BrowserUtils.waitForPageToLoad(100);
     }
 
@@ -136,8 +140,23 @@ public class PassportDetailsPageObject extends UniversalSteps {
         passportExpiryYearField.sendKeys(expiryYear);
         continueButton.click();
     }
-    public void PassportCRIDev() {
-        CRIDevResponseButton.click();
+
+    public void responseFromPassportCRIDevlink() {
+        //criDevResponseButton.getText();
+        String expectedText = "Response from Passport CRI dev";
+        String actualText = criDevResponseButton.getText();
+        if(actualText.equals(expectedText))
+        {
+            System.out.println(actualText + "is same");
+        }
+        else
+        {
+            System.out.println(actualText + "is not same");
+        }
+    }
+
+    public void passportCRIDev() {
+        criDevResponseButton.click();
     }
 }
 
