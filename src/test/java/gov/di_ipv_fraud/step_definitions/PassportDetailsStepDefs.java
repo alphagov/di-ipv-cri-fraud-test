@@ -71,10 +71,11 @@ public class PassportDetailsStepDefs extends PassportDetailsPageObject {
             responseFromPassportCRIDevlink();
     }
 
-    @Then("^I click Response from Passport CRI dev$")
-    public void i_click_response_from_passport_cri_dev() {
-        passportCRIDev();
+    @And("^I navigate to the verifiable issuer to check for valid response from Passport CRI dev$")
+    public void navigateToVerifiableIssuer() {
+        validOrInvalidResponse();
     }
+
 }
 
 

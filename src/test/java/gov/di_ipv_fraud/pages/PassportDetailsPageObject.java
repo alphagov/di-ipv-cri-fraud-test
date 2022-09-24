@@ -64,11 +64,11 @@ public class PassportDetailsPageObject extends UniversalSteps {
     @FindBy(id = "header")
     public WebElement dcsCheckIsComplete;
 
-    @FindBy(xpath = "//*[@id=\"main-content\"]/div/details/summary/span")
-    public WebElement criDevResponseButton;
+     @FindBy(xpath = "//*[@id=\"main-content\"]/div/details/summary/span")
+     public WebElement criDevResponseButton;
 
-    @FindBy(xpath = "//*[@id=\"data\"]/text()")
-    public WebElement GivenNameResponse;
+    @FindBy(xpath = "//*[@id=\"main-content\"]/div/details")
+    public WebElement unMatchResponse;
 
     private ConfigurationService configurationService;
 
@@ -145,19 +145,27 @@ public class PassportDetailsPageObject extends UniversalSteps {
         //criDevResponseButton.getText();
         String expectedText = "Response from Passport CRI dev";
         String actualText = criDevResponseButton.getText();
-        if(actualText.equals(expectedText))
+        if (actualText.equals(expectedText))
         {
-            System.out.println(actualText + "is same");
-        }
-        else
-        {
-            System.out.println(actualText + "is not same");
+            System.out.println(actualText + " is same");
+         }
+         else
+         {
+            System.out.println(actualText + " is not same");
         }
     }
 
-    public void passportCRIDev() {
-        criDevResponseButton.click();
+    public void validOrInvalidResponse() {
+        String validResponse = criDevResponseButton.getText();
+        String inValidResponse = unMatchResponse.getText();
+        if (validResponse.equals(validResponse)) {
+            criDevResponseButton.click();
+        } else {
+            unMatchResponse.click();
+          }
+       }
     }
-}
+
+
 
 
