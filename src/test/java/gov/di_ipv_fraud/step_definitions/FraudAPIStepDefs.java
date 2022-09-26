@@ -36,8 +36,7 @@ public class FraudAPIStepDefs {
         }
 
         String jsonString =
-                getClaimsForUser(
-                        coreStubUrl, criId, LindaDuffExperianRowNumber);
+                getClaimsForUser(coreStubUrl, criId, LindaDuffExperianRowNumber);
         SESSION_REQUEST_BODY = createRequest(coreStubUrl, criId, jsonString);
         LOGGER.info("SESSION_REQUEST_BODY = " + SESSION_REQUEST_BODY);
     }
