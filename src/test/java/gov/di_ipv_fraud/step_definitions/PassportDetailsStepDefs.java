@@ -73,7 +73,7 @@ public class PassportDetailsStepDefs extends PassportDetailsPageObject {
 
     @And("^I navigate to the verifiable issuer to check for valid response from Passport CRI dev$")
     public void navigateToVerifiableIssuer() {
-        validOrInvalidResponse();
+        passportCRIDev();
     }
 
 }

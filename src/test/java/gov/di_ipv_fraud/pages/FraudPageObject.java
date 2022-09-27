@@ -124,9 +124,15 @@ public class FraudPageObject extends UniversalSteps {
         String coreStubUsername = configurationService.getCoreStubUsername();
         String coreStubPassword = configurationService.getCoreStubPassword();
         String coreStubUrl = configurationService.getCoreStubUrl();
-       Driver.get()
-                .get("http://" + coreStubUsername + ":" + coreStubPassword + "@" + coreStubUrl);
-                waitForTextToAppear(IPV_CORE_STUB);
+        String httpsEnabled = configurationService.gethttpsEnabled();
+        if (httpsEnabled.equals("yes")) {
+            Driver.get()
+                    .get("https://" + coreStubUsername + ":" + coreStubPassword + "@" + coreStubUrl);
+        } else {
+            Driver.get()
+                    .get("http://" + coreStubUrl);
+        }
+        waitForTextToAppear(IPV_CORE_STUB);
     }
     public void navigateToFraudCRI(String environment) {
         visitCredentialIssuers.click();

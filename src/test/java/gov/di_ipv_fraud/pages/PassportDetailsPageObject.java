@@ -155,7 +155,7 @@ public class PassportDetailsPageObject extends UniversalSteps {
         }
     }
 
-    public void validOrInvalidResponse() {
+    public void passportCRIDev() {
         String validResponse = criDevResponseButton.getText();
         String inValidResponse = unMatchResponse.getText();
         if (validResponse.equals(validResponse)) {

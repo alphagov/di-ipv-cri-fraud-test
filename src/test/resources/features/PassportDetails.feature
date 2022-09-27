@@ -12,8 +12,7 @@ Feature: Passport Test
       | 824159122       | Gok     | Hakan Thomas | 03       | 12         | 1980      | 01        | 01          | 2030       |
 
 
-    @add_passport_to_stub_for_testing
-    Scenario Outline: Add Passport to stub for testing for Passport CRI Dev
+  Scenario Outline: Add Passport to stub for testing
     Given I navigate to the IPV Core Stub
     And I navigate to User for Passport CRI dev Page
     When I enter number 5 and click Go to Passport CRI Dev button
