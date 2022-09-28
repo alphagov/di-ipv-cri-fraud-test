@@ -24,6 +24,7 @@ public class ConfigurationService {
     private final String coreStubPassword;
     private final String passportCriUrl;
     private final String orchestratorStubUrl;
+    private final String httpsEnabled;
 
     public ConfigurationService(String env) {
 
@@ -42,6 +43,8 @@ public class ConfigurationService {
         this.coreStubPassword = getParameter("coreStubPassword");
         this.passportCriUrl = getParameter("passportCriUrl");
         this.orchestratorStubUrl = getParameter("orchestratorStubUrl");
+        this.httpsEnabled = getParameter("httpsEnabled");
+
     }
 
     private String getParameter(String paramName) {
@@ -89,4 +92,9 @@ public class ConfigurationService {
     public String getOrchestratorStubUrl() {
         return orchestratorStubUrl;
     }
+
+    public String gethttpsEnabled() {return httpsEnabled;}
+
 }
+
+
