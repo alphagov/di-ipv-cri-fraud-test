@@ -6,8 +6,8 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
 import static gov.di_ipv_fraud.pages.Headers.IPV_CORE_STUB;
+import java.io.IOException;
 
 public class FraudStepDefs extends FraudPageObject {
 
@@ -97,8 +97,15 @@ public class FraudStepDefs extends FraudPageObject {
     }
 
     @And("^JSON payload should contain user's House name as (.*) and House number as (.*)$")
-    public void userHouseNameAndNumberInJsonPayload(String testHouseName, String testHouseNumber) throws JsonProcessingException {
+    public void userHouseNameAndNumberInJsonPayload(String testHouseName, String testHouseNumber)
+            throws JsonProcessingException {
         userHouseNameAndNumber(testHouseName, testHouseNumber);
+    }
+
+    @And("^JSON payload should contain ci (.*) and score (.*)$")
+    public void contraIndicatorInVerifiableCredential(String ci, String score) throws IOException {
+        ciInVC(ci);
+        identityScoreIs(score);
     }
 
     @And("^I clear existing House number$")
@@ -109,6 +116,31 @@ public class FraudStepDefs extends FraudPageObject {
     @And("^I enter (.*) in the House number field$")
     public void enterHouseNumber(String housenumber) {
         addHouseNumber(housenumber);
+    }
+
+    @And("^I clear existing first name$")
+    public void clearUserFirstName() {
+        clearFirstname();
+    }
+
+    @And("^I clear existing surname$")
+    public void clearUserSurname() {
+        clearSurname();
+    }
+
+    @And("^I enter name (.*)$")
+    public void enterUsername(String name) {
+        enterName(name);
+    }
+
+    @And("^I clear existing Date of Birth$")
+    public void clearExistingDoB() {
+        clearDoB();
+    }
+
+    @And("^I submit user updates$")
+    public void submitUserUpdates() {
+        clickSubmit();
     }
 
     @And("^I am on (.*) page$")
