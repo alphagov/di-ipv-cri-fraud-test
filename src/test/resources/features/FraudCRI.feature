@@ -151,16 +151,6 @@ Feature: Fraud CRI
     And I check for a Valid response from experian
     And The test is complete and I close the driver
 
-  @userSearch_by_invalid_userName @build
-  Scenario: User Search By Invalid UserName(STUB)
-    Given I navigate to the IPV Core Stub
-    And I click the Fraud CRI for the Build environment
-    When I search for user name Debra Kiritharnathan in the Experian table
-    And I click on Go to Fraud CRI link
-    Then I navigate to the verifiable issuer to check for a Invalid response from experian
-    And JSON response should contain error details and status code as 302
-    And The test is complete and I close the driver
-
   @userSearch_by_invalid_userName @staging
   Scenario: User Search By Invalid UserName(STUB)
     Given I navigate to the IPV Core Stub
@@ -221,15 +211,6 @@ Feature: Fraud CRI
     And I enter 455 in the House number field
     Then I navigate to the verifiable issuer to check for a Valid response from experian
     And JSON payload should contain user's House name as Test 45 and House number as 455
-    And The test is complete and I close the driver
-
-  @happy_path_with_ci_fraud @build
-  Scenario: User Journey Happy Path with A01 CI (STUB)
-    Given I navigate to the IPV Core Stub
-    And I click the Fraud CRI for the Build environment
-    Then I search for user number 34 in the Experian table
-    And I navigate to the verifiable issuer to check for a Valid response from experian
-    And JSON payload should contain ci A01 and score 2
     And The test is complete and I close the driver
 
   @happy_path_with_ci_fraud @staging
