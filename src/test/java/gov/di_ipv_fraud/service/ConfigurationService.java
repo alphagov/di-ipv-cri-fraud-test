@@ -44,7 +44,6 @@ public class ConfigurationService {
         this.passportCriUrl = getParameter("passportCriUrl");
         this.orchestratorStubUrl = getParameter("orchestratorStubUrl");
         this.httpsEnabled = getParameter("httpsEnabled");
-
     }
 
     private String getParameter(String paramName) {
@@ -93,8 +92,7 @@ public class ConfigurationService {
         return orchestratorStubUrl;
     }
 
-    public String gethttpsEnabled() {return httpsEnabled;}
-
+    public String gethttpsEnabled() {
+        return httpsEnabled;
+    }
 }
-
-

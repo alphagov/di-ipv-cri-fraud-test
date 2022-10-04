@@ -128,13 +128,19 @@ public class FraudPageObject extends UniversalSteps {
         coreStubUrl = coreStubUrl.substring(8);
         if (httpsEnabled.equals("yes")) {
             Driver.get()
-                    .get("https://" + coreStubUsername + ":" + coreStubPassword + "@" + coreStubUrl);
+                    .get(
+                            "https://"
+                                    + coreStubUsername
+                                    + ":"
+                                    + coreStubPassword
+                                    + "@"
+                                    + coreStubUrl);
         } else {
-            Driver.get()
-                    .get("http://" + coreStubUrl);
+            Driver.get().get("http://" + coreStubUrl);
         }
         waitForTextToAppear(IPV_CORE_STUB);
     }
+
     public void navigateToFraudCRI(String environment) {
         visitCredentialIssuers.click();
         assertURLContains("credential-issuers");
