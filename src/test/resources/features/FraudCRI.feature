@@ -283,7 +283,6 @@ Feature: Fraud CRI
       | INDUMATHY OSHEA         | 19/12/1961     |  |      2   |
       | MICHELLE VORAPRAWAT     | 19/08/1978     |  |      2   |
       | DOUGLAS BEASLEY         | 25/08/1980     |  |      2   |
-      | SIMON LEPPIK            | 19/10/1971     | P01 |   2   |
       | PHILLIP CRIS            | 16/12/1988     | P01 |   2   |
       | JOYCE BASU              | 23/02/1943     |  |      2   |
       | MARY MURTAGH            | 22/02/1960     | P01 |   2   |
