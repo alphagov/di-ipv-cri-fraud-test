@@ -34,16 +34,16 @@ public class FraudPageObject extends UniversalSteps {
 
     public static final String IPV_CORE_STUB_ENDPOINT = "ipvCoreStubEndpoint";
 
-    @FindBy(xpath = "//*[@id=\"main-content\"]/p[7]/a/input")
+    @FindBy(xpath = "//*[@value=\"Fraud CRI Build\"]")
     public WebElement fraudCRIBuild;
 
-    @FindBy(xpath = "//*[@id=\"main-content\"]/p[8]/a/input")
+    @FindBy(xpath = "//*[@value=\"Fraud CRI Staging\"]")
     public WebElement fraudCRIStaging;
 
     @FindBy(id = "rowNumber")
     public WebElement selectRow;
 
-    @FindBy(xpath = "//*[@id=\"main-content\"]/p[9]/a/input")
+    @FindBy(xpath = "//*[@value=\"Fraud CRI Integration\"]")
     public WebElement fraudCRIIntegration;
 
     @FindBy(xpath = "//*[@id=\"main-content\"]/div/div/form/button")
@@ -61,7 +61,7 @@ public class FraudPageObject extends UniversalSteps {
     @FindBy(xpath = "//*[@id=\"main-content\"]/div/div/form/details/div/p[1]/a")
     public WebElement experianLink;
 
-    @FindBy(xpath = "//*[@id=\"main-content\"]/div/div/form/details/div/p[2]/a")
+    @FindBy(xpath = "//*[@id=\"main-content\"]/div/div/form/details/div/p[3]/a")
     public WebElement privacyPolicyLink;
 
     @FindBy(xpath = "//*[@id=\"main-content\"]/div/details")
@@ -125,6 +125,7 @@ public class FraudPageObject extends UniversalSteps {
         String coreStubPassword = configurationService.getCoreStubPassword();
         String coreStubUrl = configurationService.getCoreStubUrl();
         String httpsEnabled = configurationService.gethttpsEnabled();
+        coreStubUrl = coreStubUrl.substring(8);
         if (httpsEnabled.equals("yes")) {
             Driver.get()
                     .get("https://" + coreStubUsername + ":" + coreStubPassword + "@" + coreStubUrl);
