@@ -1,9 +1,9 @@
 package gov.di_ipv_fraud.step_definitions;
 
 import gov.di_ipv_fraud.pages.PassportDetailsPageObject;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
 
 public class PassportDetailsStepDefs extends PassportDetailsPageObject {
@@ -42,8 +42,18 @@ public class PassportDetailsStepDefs extends PassportDetailsPageObject {
         dcsCompletionHeader();
     }
 
-    @And("A user enters the passport details {string}, {string}, {string}, {string}, {string}, {string}, {string},{string} and {string}")
-    public void a_user_enters_the_passport_details_and(String passportNumber, String surname, String givenName, String birthDay, String birthMonth, String birthYear, String expiryDay, String expiryMonth, String expiryYear) {
+    @And(
+            "A user enters the passport details {string}, {string}, {string}, {string}, {string}, {string}, {string},{string} and {string}")
+    public void a_user_enters_the_passport_details_and(
+            String passportNumber,
+            String surname,
+            String givenName,
+            String birthDay,
+            String birthMonth,
+            String birthYear,
+            String expiryDay,
+            String expiryMonth,
+            String expiryYear) {
         userEntersThePassportDetails(
                 passportNumber,
                 surname,
@@ -68,17 +78,11 @@ public class PassportDetailsStepDefs extends PassportDetailsPageObject {
 
     @And("^I validate the link Response from Passport CRI dev$")
     public void i_validate_the_link_response_from_passport_cri_dev() {
-            responseFromPassportCRIDevlink();
+        responseFromPassportCRIDevlink();
     }
 
     @And("^I navigate to the verifiable issuer to check for valid response from Passport CRI dev$")
     public void navigateToVerifiableIssuer() {
         passportCRIDev();
     }
-
 }
-
-
-
-
-

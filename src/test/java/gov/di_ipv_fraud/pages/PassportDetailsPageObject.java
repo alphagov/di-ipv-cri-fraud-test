@@ -9,9 +9,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static gov.di_ipv_fraud.pages.Headers.IPV_CORE_STUB;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public class PassportDetailsPageObject extends UniversalSteps {
 
     private final PassportAPIGlobals passportAPIGlobals;
@@ -64,8 +61,8 @@ public class PassportDetailsPageObject extends UniversalSteps {
     @FindBy(id = "header")
     public WebElement dcsCheckIsComplete;
 
-     @FindBy(xpath = "//*[@id=\"main-content\"]/div/details/summary/span")
-     public WebElement criDevResponseButton;
+    @FindBy(xpath = "//*[@id=\"main-content\"]/div/details/summary/span")
+    public WebElement criDevResponseButton;
 
     @FindBy(xpath = "//*[@id=\"main-content\"]/div/details")
     public WebElement unMatchResponse;
@@ -142,15 +139,12 @@ public class PassportDetailsPageObject extends UniversalSteps {
     }
 
     public void responseFromPassportCRIDevlink() {
-        //criDevResponseButton.getText();
+        // criDevResponseButton.getText();
         String expectedText = "Response from Passport CRI dev";
         String actualText = criDevResponseButton.getText();
-        if (actualText.equals(expectedText))
-        {
+        if (actualText.equals(expectedText)) {
             System.out.println(actualText + " is same");
-         }
-         else
-         {
+        } else {
             System.out.println(actualText + " is not same");
         }
     }
@@ -162,10 +156,6 @@ public class PassportDetailsPageObject extends UniversalSteps {
             criDevResponseButton.click();
         } else {
             unMatchResponse.click();
-          }
-       }
+        }
     }
-
-
-
-
+}
