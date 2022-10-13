@@ -24,6 +24,7 @@ import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+
 public class FraudPageObject extends UniversalSteps {
 
     private final ConfigurationService configurationService;
@@ -99,6 +100,9 @@ public class FraudPageObject extends UniversalSteps {
 
     @FindBy(xpath = "//*[@class=\"govuk-heading-xl\"]")
     public WebElement pagetTitle;
+
+    @FindBy(xpath = "//*[@id=\"postCode\"]")
+    public WebElement clearPostcode;
 
     @FindBy(id = "dateOfBirth-day")
     public WebElement dobDay;
@@ -371,6 +375,14 @@ public class FraudPageObject extends UniversalSteps {
         pagetTitle.getText();
     }
 
+    public void removePostcode() {
+        clearPostcode.clear();
+    }
+
+    public void goTofraudCRILinkAfterEdit() {
+        fraudCRIButton.click();
+    }
+
     private JsonNode userAddressInJsonResponse() throws JsonProcessingException {
         String result = JSONPayload.getText();
         LOGGER.info("result = " + result);
@@ -382,4 +394,5 @@ public class FraudPageObject extends UniversalSteps {
         JsonNode addressContent = insideAddress.get(0);
         return addressContent;
     }
+
 }

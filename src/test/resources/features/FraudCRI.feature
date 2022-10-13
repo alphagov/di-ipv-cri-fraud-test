@@ -299,3 +299,23 @@ Feature: Fraud CRI
       | SIMON HAMMOND           | 19/08/1980     |  |      2   |
       | DIPTI STUPPART          | 26/01/1989     | P02 |   2   |
       | JAMALA BROWER           | 27/10/1963     | P02 |   2   |
+
+  @Search_user_with_MissingDetails_and_EditUser_Unhappypath
+  Scenario Outline: Search for user with missing details and edit user UnHappy Path (STUB)'
+    Given I navigate to the IPV Core Stub
+    And I click the Fraud CRI for the <environment> environment
+    And I search for user name Richard Gillis in the Experian table
+    When I click on Edit User link
+    And I clear the postcode
+    And I clear existing House number
+    And I click on Go to Fraud CRI link after Edit
+    Then I navigate to the verifiable issuer to check for a Invalid response from experian
+    And JSON response should contain error details and status code as 302
+    And Validate User navigation back to core for invalid users
+    And The test is complete and I close the driver
+
+    Examples:
+      | environment |
+      | Build       |
+      | Staging     |
+      | Integration |
