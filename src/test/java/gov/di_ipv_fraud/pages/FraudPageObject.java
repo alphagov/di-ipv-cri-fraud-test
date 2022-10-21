@@ -16,6 +16,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import static gov.di_ipv_fraud.pages.Headers.CHECKING_YOUR_DETAILS;
@@ -83,6 +84,9 @@ public class FraudPageObject extends UniversalSteps {
     @FindBy(xpath = "//*[@id=\"main-content\"]/table/tbody/tr/td[1]/p[1]/a")
     public WebElement fraudCRILink;
 
+    @FindBy(xpath = "//*[@class=\"govuk-details__summary-text\"]")
+    public WebElement secondAddressLink;
+
     @FindBy(xpath = "//*[@id=\"main-content\"]/div/details/div/pre")
     public WebElement JSONPayload;
 
@@ -118,6 +122,27 @@ public class FraudPageObject extends UniversalSteps {
 
     @FindBy(id = "surname")
     public WebElement surname;
+
+    @FindBy(id = "SecondaryUKAddress.buildingNumber")
+    public WebElement secondAddressHousenumberField;
+
+    @FindBy(id = "SecondaryUKAddress.street")
+    public WebElement secondAddressStreetnameField;
+
+    @FindBy(id = "SecondaryUKAddress.townCity")
+    public WebElement secondAddresssTownOrCityField;
+
+    @FindBy(id = "SecondaryUKAddress.postCode")
+    public WebElement secondAddresssPostcodeField;
+
+    @FindBy(id = "SecondaryUKAddress.validUntilDay")
+    public WebElement secondAddresssvalidToDayField;
+
+    @FindBy(id = "SecondaryUKAddress.validUntilMonth")
+    public WebElement secondAddresssvalidToMonthField;
+
+    @FindBy(id = "SecondaryUKAddress.validUntilYear")
+    public WebElement secondAddresssvalidToYearField;
 
     public FraudPageObject() {
         this.configurationService = new ConfigurationService(System.getenv("ENVIRONMENT"));
@@ -393,6 +418,23 @@ public class FraudPageObject extends UniversalSteps {
         JsonNode insideAddress = addressNode.get("address");
         JsonNode addressContent = insideAddress.get(0);
         return addressContent;
+    }
+
+    public void selectSecondAddressLink() {
+        secondAddressLink.click();
+    }
+
+    public void addSecondAddressDetails(List<Map<String, String>> secondAddressDetails) {
+        secondAddressHousenumberField.sendKeys(secondAddressDetails.get(0).get("housenumber"));
+        secondAddressStreetnameField.sendKeys(secondAddressDetails.get(0).get("streetname"));
+        secondAddresssTownOrCityField.sendKeys(secondAddressDetails.get(0).get("townorcity"));
+        secondAddresssPostcodeField.sendKeys(secondAddressDetails.get(0).get("postcode"));
+    }
+
+    public void addValidFromDate(String day, String month, String year) {
+        secondAddresssvalidToDayField.sendKeys(day);
+        secondAddresssvalidToMonthField.sendKeys(month);
+        secondAddresssvalidToYearField.sendKeys(year);
     }
 
 }
