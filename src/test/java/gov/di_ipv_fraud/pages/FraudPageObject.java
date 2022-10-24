@@ -25,7 +25,6 @@ import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
 public class FraudPageObject extends UniversalSteps {
 
     private final ConfigurationService configurationService;
@@ -436,5 +435,4 @@ public class FraudPageObject extends UniversalSteps {
         secondAddresssvalidToMonthField.sendKeys(month);
         secondAddresssvalidToYearField.sendKeys(year);
     }
-
 }

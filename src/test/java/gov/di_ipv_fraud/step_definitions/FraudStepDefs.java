@@ -6,10 +6,12 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import static gov.di_ipv_fraud.pages.Headers.IPV_CORE_STUB;
-import java.util.Map;
-import java.util.List;
+
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
+import static gov.di_ipv_fraud.pages.Headers.IPV_CORE_STUB;
 
 public class FraudStepDefs extends FraudPageObject {
 
@@ -169,5 +171,4 @@ public class FraudStepDefs extends FraudPageObject {
     public void enterValidFromDate(String day, String month, String year) {
         addValidFromDate(day, month, year);
     }
-
 }
