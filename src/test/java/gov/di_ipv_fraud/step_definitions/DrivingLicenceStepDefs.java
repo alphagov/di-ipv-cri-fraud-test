@@ -2,20 +2,15 @@ package gov.di_ipv_fraud.step_definitions;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import gov.di_ipv_fraud.pages.DrivingLicencePageObject;
-
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.en.And;
 
-import java.io.IOException;
-
-
-public class DrivingLicenceStepDefs extends DrivingLicencePageObject
-{
+public class DrivingLicenceStepDefs extends DrivingLicencePageObject {
     @And("^I click the Driving Licence CRI for the (.*) environment$")
     public void i_click_driving_licence_cri_button(String environment) {
-       navigateToSelectDrivingLicenceCRI(environment);
+        navigateToSelectDrivingLicenceCRI(environment);
     }
 
     @And("^I click Go to Driving Licence CRI button$")
@@ -32,20 +27,20 @@ public class DrivingLicenceStepDefs extends DrivingLicencePageObject
     public void i_check_the_page_title_who_was_your_uk_driving_license_issued_by() {
         validateDLPageTitle();
     }
+
     @And("I assert the URL is valid")
     public void i_assert_the_url_is_valid() {
         drivingLicencePageURLValidation();
     }
 
     @Given("I check the page title {string}")
-    public void i_check_the_page_titled()
-    {
-      validateDLPageTitle();
+    public void i_check_the_page_titled() {
+        validateDLPageTitle();
     }
 
     @Given("I can see a radio button titled “DVLA”")
     public void i_can_see_a_radio_button_titled_dvla() {
-           titleDVLAWithRadioBtn();
+        titleDVLAWithRadioBtn();
     }
 
     @Then("I can see a radio button titled “DVA”")
@@ -55,7 +50,7 @@ public class DrivingLicenceStepDefs extends DrivingLicencePageObject
 
     @And("I can see a radio button titled “I do not have a UK driving licence”")
     public void i_can_see_a_radio_button_titled_i_do_not_have_a_uk_driving_licence() {
-     noDrivingLicenceBtn();
+        noDrivingLicenceBtn();
     }
 
     @Then("I can see CTA {string}")
@@ -68,12 +63,14 @@ public class DrivingLicenceStepDefs extends DrivingLicencePageObject
         clickOnDVLARadioButton();
     }
 
-    @Then("^I should on the page DVLA Enter your details exactly as they appear on your UK driving licence$")
+    @Then(
+            "^I should on the page DVLA Enter your details exactly as they appear on your UK driving licence$")
     public void i_should_be_on_the_DVLA_page() {
         pageTitleDVLAValidation();
     }
 
-    @Then("^I should be on the page DVA Enter your details exactly as they appear on your UK driving licence$")
+    @Then(
+            "^I should be on the page DVA Enter your details exactly as they appear on your UK driving licence$")
     public void i_should_be_on_the_DVA_page() {
         pageTitleDVAValidation();
     }
@@ -85,52 +82,53 @@ public class DrivingLicenceStepDefs extends DrivingLicencePageObject
 
     @Given("I click I do not have UK Driving License and continue")
     public void i_select_i_do_not_have_uk_driving_license() {
-          noDrivingLicenceOption();
+        noDrivingLicenceOption();
     }
 
     @When("I am directed to the IPV Core routing page")
     public void i_am_directed_to_the_ipv_core_routing_page() {
-           ipvCoreRoutingPage();
+        ipvCoreRoutingPage();
     }
-
 
     @Given("I have not selected anything and Continue")
     public void i_have_not_selected_anything() {
-           noSelectContinue();
+        noSelectContinue();
     }
 
     @When("I can see an error box highlighted red")
     public void i_can_see_an_error_box_highlighted_red() {
-            errormessage();
+        errormessage();
     }
 
     @And("An error heading copy “You must choose an option to continue”")
     public void an_error_heading_copy_you_must_choose_an_option_to_continue() {
-            errorTitle();
+        errorTitle();
     }
 
     @Then("I can select a link which directs to the problem field")
     public void i_can_select_a_link_which_directs_to_the_problem_field() {
-           errorLink();
+        errorLink();
     }
 
     @And("The field error copy “You must choose an option to continue”")
     public void the_field_error_copy_you_must_choose_an_option_to_continue() {
-          validateErrorText();
+        validateErrorText();
     }
 
     @And("I validate the URL having access denied")
     public void iValidateTheURLHavingAccessDenied() {
-          ipvCoreRoutingPageURL();
+        ipvCoreRoutingPageURL();
     }
 
     @Then("^I navigate to the Driving Licence verifiable issuer to check for a (.*) response$")
-    public void i_navigate_to_driving_licence_verifiable_issuer_for_valid_response(String validOrInvalid) {
-          errorDetails(validOrInvalid);
+    public void i_navigate_to_driving_licence_verifiable_issuer_for_valid_response(
+            String validOrInvalid) {
+        errorDetails(validOrInvalid);
     }
 
     @And("^JSON response should contain error description (.*) and status code as (.*)$")
-    public void errorInJsonResponse(String testErrorDescription, String testStatusCode) throws JsonProcessingException {
-          jsonErrorResponse(testErrorDescription, testStatusCode);
+    public void errorInJsonResponse(String testErrorDescription, String testStatusCode)
+            throws JsonProcessingException {
+        jsonErrorResponse(testErrorDescription, testStatusCode);
     }
 }
