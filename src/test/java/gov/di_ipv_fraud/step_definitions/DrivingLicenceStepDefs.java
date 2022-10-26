@@ -9,13 +9,8 @@ import io.cucumber.java.en.When;
 
 public class DrivingLicenceStepDefs extends DrivingLicencePageObject {
     @And("^I click the Driving Licence CRI for the (.*) environment$")
-    public void i_click_driving_licence_cri_button(String environment) {
-        navigateToSelectDrivingLicenceCRI(environment);
-    }
-
-    @And("^I click Go to Driving Licence CRI button$")
-    public void i_click_go_to_driving_cri_button() {
-        navigateToDrivingLicenceCRI();
+    public void navigateToDrivingLicence(String environment) {
+        navigateToDrivingLicenceCRI(environment);
     }
 
     @Then("^I search for Driving Licence user number (.*) in the Experian table$")
@@ -62,15 +57,12 @@ public class DrivingLicenceStepDefs extends DrivingLicencePageObject {
     public void i_click_on_DVLA_radio_button_and_Continue() {
         clickOnDVLARadioButton();
     }
-
-    @Then(
-            "^I should on the page DVLA Enter your details exactly as they appear on your UK driving licence$")
+    @Then("^I should on the page DVLA Enter your details exactly as they appear on your UK driving licence$")
     public void i_should_be_on_the_DVLA_page() {
         pageTitleDVLAValidation();
     }
 
-    @Then(
-            "^I should be on the page DVA Enter your details exactly as they appear on your UK driving licence$")
+    @Then("^I should be on the page DVA Enter your details exactly as they appear on your UK driving licence$")
     public void i_should_be_on_the_DVA_page() {
         pageTitleDVAValidation();
     }
@@ -121,14 +113,12 @@ public class DrivingLicenceStepDefs extends DrivingLicencePageObject {
     }
 
     @Then("^I navigate to the Driving Licence verifiable issuer to check for a (.*) response$")
-    public void i_navigate_to_driving_licence_verifiable_issuer_for_valid_response(
-            String validOrInvalid) {
-        errorDetails(validOrInvalid);
+    public void i_navigate_to_driving_licence_verifiable_issuer_for_valid_response(String validOrInvalid) {
+        navigateToDrivingLicenceResponse(validOrInvalid);
     }
 
     @And("^JSON response should contain error description (.*) and status code as (.*)$")
-    public void errorInJsonResponse(String testErrorDescription, String testStatusCode)
-            throws JsonProcessingException {
+    public void errorInJsonResponse(String testErrorDescription, String testStatusCode) throws JsonProcessingException {
         jsonErrorResponse(testErrorDescription, testStatusCode);
     }
 }
