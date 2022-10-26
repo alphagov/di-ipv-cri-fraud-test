@@ -11,7 +11,3 @@ Feature: Driving License Test
     And I can see the heading Sorry there is a error page
     And The test is complete and I close the driver
 
-
-
-
-
