@@ -4,7 +4,6 @@ Feature: Driving License Test
     Given I navigate to the IPV Core Stub
     And I click the Driving Licence CRI for the Build environment
     Then I search for Driving Licence user number 5 in the Experian table
-    And I click Go to Driving Licence CRI button
     Then I check the page title who was your UK driving license issued by?
     And I assert the URL is valid
 
