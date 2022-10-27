@@ -8,7 +8,7 @@ Feature: Driving Licence Test
     And I click on DVLA radio button and Continue
     And I should be on `Enter your details exactly as they appear on your UK driving licence` page
 
-  @DVLADrivingLicence_test @build
+  @DVLADrivingLicence_test @build @happy_DVLA @tmsLink=LIME-178
   Scenario Outline:  DVLA Driving Licence details page happy path
     Given User enters data as a <DrivingLicenceSubject>
     When User clicks on continue
