@@ -3,6 +3,7 @@ package gov.di_ipv_fraud.step_definitions;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import gov.di_ipv_fraud.pages.*;
 import gov.di_ipv_fraud.utilities.BrowserUtils;
+import gov.di_ipv_fraud.utilities.DVADrivingLicenceSubject;
 import gov.di_ipv_fraud.utilities.DrivingLicenceSubject;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -18,6 +19,11 @@ public class DVLADrivingLicenceSteps extends DrivingLicencePageObject  {
     @When("User enters data as a {}")
     public void user_enters_and(DrivingLicenceSubject drivingLicenceSubject) {
         userEntersData(drivingLicenceSubject);
+    }
+
+    @When("User enters DVA data as a {}")
+    public void user_enters_dva_data_and(DVADrivingLicenceSubject dvaDrivingLicenceSubject) {
+        new DVAEnterYourDetailsExactlyPage().userEntersDVAData(dvaDrivingLicenceSubject);
     }
 
     @When("User clicks on continue")
@@ -45,9 +51,19 @@ public class DVLADrivingLicenceSteps extends DrivingLicencePageObject  {
         userEntersInvalidDrivingDetails();
     }
 
+    @Given("User enters invalid Driving Licence DVA details")
+    public void userInputsInvalidDVADrivingDetails() {
+        new DVAEnterYourDetailsExactlyPage().userEntersInvalidDVADrivingDetails();
+    }
+
     @When("User Re-enters data as a {}")
     public void userReInputsDataAsADrivingLicenceSubject(DrivingLicenceSubject drivingLicenceSubject) {
         userReEntersDataAsADrivingLicenceSubject(drivingLicenceSubject);
+    }
+
+    @When("User Re-enters DVA data as a {}")
+    public void userReInputsDataAsDVAADrivingLicenceSubject(DVADrivingLicenceSubject dvaDrivingLicenceSubject) {
+        new DVAEnterYourDetailsExactlyPage().userReEntersDataAsDVADrivingLicenceSubject(dvaDrivingLicenceSubject);
     }
 
     @Given("User click on ‘prove your identity another way' Link")
@@ -63,6 +79,11 @@ public class DVLADrivingLicenceSteps extends DrivingLicencePageObject  {
     @Then("I should be on `Enter your details exactly as they appear on your UK driving licence` page")
     public void i_should_be_on_enter_your_details_exactly_as_they_appear_on_your_uk_driving_licence_page() {
         Assert.assertTrue(new EnterYourDetailsExactlyDVLAPage().drivingLicenceNumber.isDisplayed());
+    }
+
+    @Then("I should be on DVA `Enter your details exactly as they appear on your UK driving licence` page")
+    public void i_should_be_on_DVA_enter_your_details_exactly_as_they_appear_on_your_uk_driving_licence_page() {
+        Assert.assertTrue(new DVAEnterYourDetailsExactlyPage().dvaLicenceNumber.isDisplayed());
     }
 
     @Then("I should be on `Who was your UK driving licence issued by` page")

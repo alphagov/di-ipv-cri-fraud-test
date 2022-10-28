@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 import gov.di_ipv_fraud.utilities.BrowserUtils;
+import gov.di_ipv_fraud.utilities.DVADrivingLicenceSubject;
 import gov.di_ipv_fraud.utilities.Driver;
 import gov.di_ipv_fraud.utilities.DrivingLicenceSubject;
 import org.junit.Assert;
@@ -329,6 +330,22 @@ public class DrivingLicencePageObject extends UniversalSteps {
         IssueNumber.sendKeys(drivingLicenceSubject.getlicenceIssueNumber());
         Postcode.sendKeys(drivingLicenceSubject.getpostcode());
     }
+
+//    public void userEntersDVAData(DVADrivingLicenceSubject dvaDrivingLicenceSubject) {
+//        dvaLicenceNumber.sendKeys(dvaDrivingLicenceSubject.getlicenceNumber());
+//        Lastname.sendKeys(dvaDrivingLicenceSubject.getlastName());
+//        Firstname.sendKeys(dvaDrivingLicenceSubject.getfirstName());
+//        DayOfBirth.sendKeys(dvaDrivingLicenceSubject.getbirthDay());
+//        MonthOfBirth.sendKeys(dvaDrivingLicenceSubject.getbirthMonth());
+//        YearOfBirth.sendKeys(dvaDrivingLicenceSubject.getbirthYear());
+//        LicenceValidToDay.sendKeys(dvaDrivingLicenceSubject.getvalidtoDay());
+//        LicenceValidToMonth.sendKeys(dvaDrivingLicenceSubject.getvalidtoMonth());
+//        LicenceValidToYear.sendKeys(dvaDrivingLicenceSubject.getvalidtoYear());
+//        LicenceIssueDay.sendKeys(dvaDrivingLicenceSubject.getlicenceIssueDay());
+//        LicenceIssueMonth.sendKeys(dvaDrivingLicenceSubject.getlicenceIssueMonth());
+//        LicenceIssueYear.sendKeys(dvaDrivingLicenceSubject.getlicenceIssueYear());
+//        Postcode.sendKeys(dvaDrivingLicenceSubject.getpostcode());
+//    }
 
     public void userEntersInvalidDrivingDetails() {
         new EnterYourDetailsExactlyDVLAPage().drivingLicenceNumber.sendKeys("PARKE610112PBFGI");
