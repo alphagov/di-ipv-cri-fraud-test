@@ -4,10 +4,10 @@ public enum DVADrivingLicenceSubject implements TestInput {
     DVADrivingLicenceSubjectHappyBilly("55667788", "BATSON", "BILLY", "26", "07", "1981", "01", "10", "2042", "19", "04", "2001", "NW3 5RG"),
     DVADrivingLicenceSubjectUnhappySelina("88776655", "KYLE", "SELINA", "12", "08", "1985", "04", "08", "2032", "14", "09", "2009", "E20 2AQ"),
     IncorrectDVADrivingLicenceNumber("88776655", "BATSON", "BILLY", "26", "07", "1981", "01", "10", "2042", "19", "04", "2001", "NW3 5RG"),
-    IncorrectDVADateOfBirth("55667780", "BATSON", "BILLY", "12", "08", "1985", "01", "10", "2042", "19", "04", "2001", "NW3 5RG"),
-    IncorrectDVALastName("55667780", "KYLE", "BILLY", "26", "07", "1981", "01", "10", "2042", "19", "04", "2001", "NW3 5RG"),
-    IncorrectDVAFirstName("55667780", "BATSON", "SELINA", "26", "07", "1981", "01", "10", "2042", "19", "04", "2001", "NW3 5RG"),
-    IncorrectDVAIssueDate("55667780", "BATSON", "BILLY", "26", "07", "1981", "01", "10", "2042", "14", "09", "2009", "NW3 5RG"),
+    IncorrectDVADateOfBirth("55667788", "BATSON", "BILLY", "12", "08", "1985", "01", "10", "2042", "19", "04", "2001", "NW3 5RG"),
+    IncorrectDVALastName("55667788", "KYLE", "BILLY", "26", "07", "1981", "01", "10", "2042", "19", "04", "2001", "NW3 5RG"),
+    IncorrectDVAFirstName("55667788", "BATSON", "SELINA", "26", "07", "1981", "01", "10", "2042", "19", "04", "2001", "NW3 5RG"),
+    IncorrectDVAIssueDate("55667788", "BATSON", "BILLY", "26", "07", "1981", "01", "10", "2042", "14", "09", "2009", "NW3 5RG"),
     IncorrectDVAValidToDate("55667788", "BATSON", "BILLY", "26", "07", "1981", "04", "08", "2032", "19", "04", "2001", "NW3 5RG"),
     IncorrectDVAPostcode("55667788", "BATSON", "BILLY", "26", "07", "1981", "01", "10", "2042", "19", "04", "2001", "E20 2AQ");
 

@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 import gov.di_ipv_fraud.utilities.BrowserUtils;
-import gov.di_ipv_fraud.utilities.DVADrivingLicenceSubject;
 import gov.di_ipv_fraud.utilities.Driver;
 import gov.di_ipv_fraud.utilities.DrivingLicenceSubject;
 import org.junit.Assert;
@@ -138,6 +137,9 @@ public class DrivingLicencePageObject extends UniversalSteps {
 
     @FindBy(xpath = "//*[@class='govuk-error-summary error-summary']//*[@class='govuk-error-summary__body']//*[@class='govuk-list govuk-error-summary__list']//*[contains(@href,'#drivingLicenceNumber')]")
     public WebElement InvalidDrivingLicenceError;
+
+    @FindBy(xpath = "//*[@class='govuk-back-link']")
+    public WebElement back;
 
     public DrivingLicencePageObject () {
         PageFactory.initElements(Driver.get(), this);
@@ -308,7 +310,7 @@ public class DrivingLicencePageObject extends UniversalSteps {
         assertEquals(StrengthScore, strengthScore);
     }
 
-    public void couldNotFindDetailsDVLAErrorDisplayed() {
+    public void couldNotFindDetailsErrorDisplayed() {
         Assert.assertTrue(InvalidLicenceDetailsError.isDisplayed());
         LOGGER.info(InvalidLicenceDetailsError.getText());
     }
@@ -330,22 +332,6 @@ public class DrivingLicencePageObject extends UniversalSteps {
         IssueNumber.sendKeys(drivingLicenceSubject.getlicenceIssueNumber());
         Postcode.sendKeys(drivingLicenceSubject.getpostcode());
     }
-
-//    public void userEntersDVAData(DVADrivingLicenceSubject dvaDrivingLicenceSubject) {
-//        dvaLicenceNumber.sendKeys(dvaDrivingLicenceSubject.getlicenceNumber());
-//        Lastname.sendKeys(dvaDrivingLicenceSubject.getlastName());
-//        Firstname.sendKeys(dvaDrivingLicenceSubject.getfirstName());
-//        DayOfBirth.sendKeys(dvaDrivingLicenceSubject.getbirthDay());
-//        MonthOfBirth.sendKeys(dvaDrivingLicenceSubject.getbirthMonth());
-//        YearOfBirth.sendKeys(dvaDrivingLicenceSubject.getbirthYear());
-//        LicenceValidToDay.sendKeys(dvaDrivingLicenceSubject.getvalidtoDay());
-//        LicenceValidToMonth.sendKeys(dvaDrivingLicenceSubject.getvalidtoMonth());
-//        LicenceValidToYear.sendKeys(dvaDrivingLicenceSubject.getvalidtoYear());
-//        LicenceIssueDay.sendKeys(dvaDrivingLicenceSubject.getlicenceIssueDay());
-//        LicenceIssueMonth.sendKeys(dvaDrivingLicenceSubject.getlicenceIssueMonth());
-//        LicenceIssueYear.sendKeys(dvaDrivingLicenceSubject.getlicenceIssueYear());
-//        Postcode.sendKeys(dvaDrivingLicenceSubject.getpostcode());
-//    }
 
     public void userEntersInvalidDrivingDetails() {
         new EnterYourDetailsExactlyDVLAPage().drivingLicenceNumber.sendKeys("PARKE610112PBFGI");
@@ -401,11 +387,6 @@ public class DrivingLicencePageObject extends UniversalSteps {
 
     public void clickOnIDoNotHaveAUKDrivingLicenceRadioButton() {
         nodrivinglicenceradio.click();
-        Continue.click();
-    }
-
-    public void selectDVLARadioButton() {
-        new EnterYourDetailsExactlyDVLAPage().DVLA.click();
         Continue.click();
     }
 

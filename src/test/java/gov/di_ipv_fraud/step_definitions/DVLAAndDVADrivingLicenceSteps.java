@@ -1,8 +1,6 @@
 package gov.di_ipv_fraud.step_definitions;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import gov.di_ipv_fraud.pages.*;
-import gov.di_ipv_fraud.utilities.BrowserUtils;
 import gov.di_ipv_fraud.utilities.DVADrivingLicenceSubject;
 import gov.di_ipv_fraud.utilities.DrivingLicenceSubject;
 import io.cucumber.java.en.And;
@@ -10,11 +8,10 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.support.ui.Select;
 
 import java.io.IOException;
 
-public class DVLADrivingLicenceSteps extends DrivingLicencePageObject  {
+public class DVLAAndDVADrivingLicenceSteps extends DrivingLicencePageObject  {
 
     @When("User enters data as a {}")
     public void user_enters_and(DrivingLicenceSubject drivingLicenceSubject) {
@@ -31,17 +28,17 @@ public class DVLADrivingLicenceSteps extends DrivingLicencePageObject  {
         Continue.click();
     }
 
-    @Then("Proper error message for Could not find DVLA details is displayed")
+    @Then("Proper error message for Could not find your details is displayed")
     public void properErrorMessageForCouldNotFindDVLADetailsIsDisplayed() {
-        couldNotFindDetailsDVLAErrorDisplayed();
+        couldNotFindDetailsErrorDisplayed();
     }
 
-    @Then("proper error message for invalid Date of Birth should be displayed")
+    @Then("Proper error message for invalid Date of Birth should be displayed")
     public void properErrorMessageForInvalidDOBIsDisplayed() {
         invalidDOBErrorDisplayed();
     }
 
-    @Then("proper error message for invalid Driving Licence should be displayed")
+    @Then("Proper error message for invalid Driving Licence should be displayed")
     public void properErrorMessageForInvalidDrivingLicenceIsDisplayed() {
         invalidDrivingLicenceErrorDisplayed();
     }
@@ -100,6 +97,11 @@ public class DVLADrivingLicenceSteps extends DrivingLicencePageObject  {
     @And("^JSON payload should contain validity score (.*) and strength score (.*)$")
     public void scoresInVerifiableCredential(String validityScore, String strengthScore) throws IOException {
         scoreIs(validityScore, strengthScore);
+    }
+
+    @Given("User click on ‘Back' Link")
+    public void userClickOnBackLink() {
+        back.click();
     }
 
 }

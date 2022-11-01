@@ -19,24 +19,22 @@ Feature: DVA Driving Licence Test
       |DVADrivingLicenceSubject             |
       |DVADrivingLicenceSubjectHappyBilly   |
 
-#  @DVADrivingLicence_test @build
-#  Scenario Outline: DVA Driving Licence details page unhappy path with incorrect DVA Licence number and Date of birth
-#    Given User enters DVA data as a <DVADrivingLicenceSubject>
-#    When User clicks on continue
-#    Then Proper error message for Could not find DVLA details is displayed
-#    When User clicks on continue
-#    Then I navigate to the Driving Licence verifiable issuer to check for a Valid response
-#    And JSON payload should contain ci DO2, validity score 0 and strength score 3
-#    And The test is complete and I close the driver
-#    Examples:
-#      |DVADrivingLicenceSubject      |
-#      |DVADrivingLicenceSubjectUnhappySelina |
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence details page unhappy path with InvalidDVADrivingLicenceDetails
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then I navigate to the Driving Licence verifiable issuer to check for a Invalid response
+    And JSON response should contain error description Authorization permission denied and status code as 302
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject      |
+      |DVADrivingLicenceSubjectUnhappySelina |
 
   @DVADrivingLicence_test @build
   Scenario Outline: DVA Driving Licence details page unhappy path with IncorrectDVADrivingLicenceNumber
     Given User enters DVA data as a <DVADrivingLicenceSubject>
     When User clicks on continue
-    Then Proper error message for Could not find DVLA details is displayed
+    Then Proper error message for Could not find your details is displayed
     When User clicks on continue
     Then I navigate to the Driving Licence verifiable issuer to check for a Valid response
     And JSON payload should contain ci DO2, validity score 0 and strength score 3
@@ -50,7 +48,7 @@ Feature: DVA Driving Licence Test
   Scenario Outline: DVA Driving Licence details page unhappy path with IncorrectDVADateOfBirth
     Given User enters DVA data as a <DVADrivingLicenceSubject>
     When User clicks on continue
-    Then Proper error message for Could not find DVLA details is displayed
+    Then Proper error message for Could not find your details is displayed
     When User clicks on continue
     Then I navigate to the Driving Licence verifiable issuer to check for a Valid response
     And JSON payload should contain ci DO2, validity score 0 and strength score 3
@@ -59,11 +57,11 @@ Feature: DVA Driving Licence Test
       |DVADrivingLicenceSubject |
       |IncorrectDVADateOfBirth |
 
-  @DVLADrivingLicence_test @build
-  Scenario Outline: DVLA Driving Licence details page unhappy path with IncorrectDVAFirstName
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence details page unhappy path with IncorrectDVAFirstName
     Given User enters DVA data as a <DVADrivingLicenceSubject>
     When User clicks on continue
-    Then Proper error message for Could not find DVLA details is displayed
+    Then Proper error message for Could not find your details is displayed
     When User clicks on continue
     Then I navigate to the Driving Licence verifiable issuer to check for a Valid response
     And JSON payload should contain ci DO2, validity score 0 and strength score 3
@@ -76,7 +74,7 @@ Feature: DVA Driving Licence Test
   Scenario Outline: DVA Driving Licence details page unhappy path with IncorrectDVALastName
     Given User enters DVA data as a <DVADrivingLicenceSubject>
     When User clicks on continue
-    Then Proper error message for Could not find DVLA details is displayed
+    Then Proper error message for Could not find your details is displayed
     When User clicks on continue
     Then I navigate to the Driving Licence verifiable issuer to check for a Valid response
     And JSON payload should contain ci DO2, validity score 0 and strength score 3
@@ -89,7 +87,7 @@ Feature: DVA Driving Licence Test
   Scenario Outline: DVA Driving Licence details page unhappy path with IncorrectDVAIssueDate
     Given User enters DVA data as a <DVADrivingLicenceSubject>
     When User clicks on continue
-    Then Proper error message for Could not find DVLA details is displayed
+    Then Proper error message for Could not find your details is displayed
     When User clicks on continue
     Then I navigate to the Driving Licence verifiable issuer to check for a Valid response
     And JSON payload should contain ci DO2, validity score 0 and strength score 3
@@ -102,7 +100,7 @@ Feature: DVA Driving Licence Test
   Scenario Outline: DVA Driving Licence details page unhappy path with IncorrectDVAValidToDate
     Given User enters DVA data as a <DVADrivingLicenceSubject>
     When User clicks on continue
-    Then Proper error message for Could not find DVLA details is displayed
+    Then Proper error message for Could not find your details is displayed
     When User clicks on continue
     Then I navigate to the Driving Licence verifiable issuer to check for a Valid response
     And JSON payload should contain ci DO2, validity score 0 and strength score 3
@@ -115,7 +113,7 @@ Feature: DVA Driving Licence Test
   Scenario Outline: DVA Driving Licence details page unhappy path with IncorrectDVAPostcode
     Given User enters DVA data as a <DVADrivingLicenceSubject>
     When User clicks on continue
-    Then Proper error message for Could not find DVLA details is displayed
+    Then Proper error message for Could not find your details is displayed
     When User clicks on continue
     Then I navigate to the Driving Licence verifiable issuer to check for a Valid response
     And JSON payload should contain ci DO2, validity score 0 and strength score 3
@@ -128,7 +126,7 @@ Feature: DVA Driving Licence Test
   Scenario Outline: DVA Driving Licence Retry Test Happy Path
     Given User enters invalid Driving Licence DVA details
     When User clicks on continue
-    Then Proper error message for Could not find DVLA details is displayed
+    Then Proper error message for Could not find your details is displayed
     When User Re-enters DVA data as a <DVADrivingLicenceSubject>
     And User clicks on continue
     Then I navigate to the Driving Licence verifiable issuer to check for a Valid response
@@ -142,7 +140,7 @@ Feature: DVA Driving Licence Test
   Scenario Outline: DVA Driving Licence User failed second attempt
     Given User enters invalid Driving Licence DVA details
     When User clicks on continue
-    Then Proper error message for Could not find DVLA details is displayed
+    Then Proper error message for Could not find your details is displayed
     When User Re-enters DVA data as a <DVADrivingLicenceSubject>
     And User clicks on continue
     Then I navigate to the Driving Licence verifiable issuer to check for a Valid response
@@ -156,7 +154,7 @@ Feature: DVA Driving Licence Test
   Scenario: DVA Driving Licence User cancels after failed first attempt
     Given User enters invalid Driving Licence DVA details
     When User clicks on continue
-    Then Proper error message for Could not find DVLA details is displayed
+    Then Proper error message for Could not find your details is displayed
     When User click on ‘prove your identity another way' Link
     Then I navigate to the Driving Licence verifiable issuer to check for a Valid response
     And JSON payload should contain ci DO2, validity score 0 and strength score 3

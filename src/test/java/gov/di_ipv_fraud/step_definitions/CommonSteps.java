@@ -30,8 +30,4 @@ public class CommonSteps {
         Assert.assertTrue(new OrchestratorStubPage().UkDrivingLicence.isDisplayed());
     }
 
-    @Given("User click on ‘Back' Link")
-    public void userClickOnBackLink() {
-        new EnterYourDetailsExactlyDVLAPage().back.click();
-    }
 }

@@ -1,11 +1,9 @@
 package gov.di_ipv_fraud.pages;
 
 import gov.di_ipv_fraud.utilities.Driver;
-import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import java.util.logging.Logger;
 
 public class EnterYourDetailsExactlyDVLAPage {
     public EnterYourDetailsExactlyDVLAPage() {
@@ -42,9 +40,6 @@ public class EnterYourDetailsExactlyDVLAPage {
     @FindBy(id = "expiryDate-year")
     public WebElement LicenceValidToYear;
 
-    @FindBy(id = "licenceIssuerRadio")
-    public WebElement DVLA;
-
     @FindBy(id = "licenceIssuerRadio-DVLA-label")
     public WebElement DVLALabel;
 
@@ -62,8 +57,5 @@ public class EnterYourDetailsExactlyDVLAPage {
 
     @FindBy(id = "postcode")
     public WebElement Postcode;
-
-    @FindBy(xpath = "//*[@class='govuk-back-link']")
-    public WebElement back;
 
 }
