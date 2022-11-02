@@ -15,7 +15,7 @@ import static com.github.automatedowl.tools.AllureEnvironmentWriter.allureEnviro
 
 public class Hooks {
 
-    @Before("@happy_DVLA")
+    @Before("@DVLADrivingLicence_test")
     public void setUp() {
         Capabilities capabilities = ((RemoteWebDriver) Driver.get()).getCapabilities();
         allureEnvironmentWriter(
@@ -26,7 +26,7 @@ public class Hooks {
                         .build());
     }
 
-    @After("@happy_DVLA")
+    @After("@DVLADrivingLicence_test")
     public void onFailure(Scenario scenario) {
         if (scenario.isFailed()) {
             Allure.addAttachment("Screenshot", new ByteArrayInputStream(((TakesScreenshot) Driver.get()).getScreenshotAs(OutputType.BYTES)));
