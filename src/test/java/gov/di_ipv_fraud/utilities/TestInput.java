@@ -26,4 +26,7 @@ public interface TestInput {
         return null;
     }
 
+    public default String getDVAlicenceNumber() {
+        return null;
+    }
 }

@@ -1,27 +1,38 @@
-Feature: Driving Licence Test
+Feature: DVA Driving Licence Test
 
   Background:
     Given I navigate to the IPV Core Stub
     And I click the Driving Licence CRI for the Build environment
     And I search for Driving Licence user number 5 in the Experian table
     And I should be on `Who was your UK driving licence issued by` page
-    And I click on DVLA radio button and Continue
-    And I should be on `Enter your details exactly as they appear on your UK driving licence` page
+    And I click on DVA radio button and Continue
+    And I should be on DVA `Enter your details exactly as they appear on your UK driving licence` page
 
-  @DVLADrivingLicence_test @build
-  Scenario Outline:  DVLA Driving Licence details page happy path
-    Given User enters data as a <DrivingLicenceSubject>
+  @DVADrivingLicence_test @build
+  Scenario Outline:  DVA Driving Licence details page happy path
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
     When User clicks on continue
     Then I navigate to the Driving Licence verifiable issuer to check for a Valid response
     And JSON payload should contain validity score 2 and strength score 3
     And The test is complete and I close the driver
     Examples:
-      |DrivingLicenceSubject             |
-      |DrivingLicenceSubjectHappyPeter   |
+      |DVADrivingLicenceSubject             |
+      |DVADrivingLicenceSubjectHappyBilly   |
 
-  @DVLADrivingLicence_test @build
-  Scenario Outline: DVLA Driving Licence details page unhappy path with IncorrectDrivingLicenceNumber
-    Given User enters data as a <DrivingLicenceSubject>
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence details page unhappy path with InvalidDVADrivingLicenceDetails
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then I navigate to the Driving Licence verifiable issuer to check for a Invalid response
+    And JSON response should contain error description Authorization permission denied and status code as 302
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject      |
+      |DVADrivingLicenceSubjectUnhappySelina |
+
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence details page unhappy path with IncorrectDVADrivingLicenceNumber
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
     When User clicks on continue
     Then Proper error message for Could not find your details is displayed
     When User clicks on continue
@@ -29,34 +40,13 @@ Feature: Driving Licence Test
     And JSON payload should contain ci DO2, validity score 0 and strength score 3
     And The test is complete and I close the driver
     Examples:
-      |DrivingLicenceSubject      |
-      |IncorrectDrivingLicenceNumber |
+      |DVADrivingLicenceSubject      |
+      |IncorrectDVADrivingLicenceNumber |
 
-  @DVLADrivingLicence_test @build
-  Scenario Outline: DVLA Driving Licence details page unhappy path when licence number date format does not match with User's Date Of Birth
-    Given User enters data as a <DrivingLicenceSubject>
-    When User clicks on continue
-    Then Proper error message for invalid Driving Licence should be displayed
-    And Proper error message for invalid Date of Birth should be displayed
-    And The test is complete and I close the driver
-    Examples:
-      |DrivingLicenceSubject      |
-      |InvalidDrivingLicenceNumber |
 
-  @DVLADrivingLicence_test @build
-  Scenario Outline: DVLA Driving Licence details page unhappy path with IncorrectDateOfBirth
-    Given User enters data as a <DrivingLicenceSubject>
-    When User clicks on continue
-    Then Proper error message for invalid Date of Birth should be displayed
-    And Proper error message for invalid Driving Licence should be displayed
-    And The test is complete and I close the driver
-    Examples:
-      |DrivingLicenceSubject |
-      |IncorrectDateOfBirth |
-
-  @DVLADrivingLicence_test @build
-  Scenario Outline: DVLA Driving Licence details page unhappy path with IncorrectFirstName
-    Given User enters data as a <DrivingLicenceSubject>
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence details page unhappy path with IncorrectDVADateOfBirth
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
     When User clicks on continue
     Then Proper error message for Could not find your details is displayed
     When User clicks on continue
@@ -64,12 +54,12 @@ Feature: Driving Licence Test
     And JSON payload should contain ci DO2, validity score 0 and strength score 3
     And The test is complete and I close the driver
     Examples:
-      |DrivingLicenceSubject |
-      |IncorrectFirstName|
+      |DVADrivingLicenceSubject |
+      |IncorrectDVADateOfBirth |
 
-  @DVLADrivingLicence_test @build
-  Scenario Outline: DVLA Driving Licence details page unhappy path with IncorrectLastName
-    Given User enters data as a <DrivingLicenceSubject>
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence details page unhappy path with IncorrectDVAFirstName
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
     When User clicks on continue
     Then Proper error message for Could not find your details is displayed
     When User clicks on continue
@@ -77,12 +67,12 @@ Feature: Driving Licence Test
     And JSON payload should contain ci DO2, validity score 0 and strength score 3
     And The test is complete and I close the driver
     Examples:
-      |DrivingLicenceSubject      |
-      |IncorrectLastName|
+      |DVADrivingLicenceSubject |
+      |IncorrectDVAFirstName|
 
-  @DVLADrivingLicence_test @build
-  Scenario Outline: DVLA Driving Licence details page unhappy path with IncorrectIssueDate
-    Given User enters data as a <DrivingLicenceSubject>
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence details page unhappy path with IncorrectDVALastName
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
     When User clicks on continue
     Then Proper error message for Could not find your details is displayed
     When User clicks on continue
@@ -90,12 +80,12 @@ Feature: Driving Licence Test
     And JSON payload should contain ci DO2, validity score 0 and strength score 3
     And The test is complete and I close the driver
     Examples:
-      |DrivingLicenceSubject |
-      |IncorrectIssueDate|
+      |DVADrivingLicenceSubject |
+      |IncorrectDVALastName|
 
-  @DVLADrivingLicence_test @build
-  Scenario Outline: DVLA Driving Licence details page unhappy path with IncorrectValidToDate
-    Given User enters data as a <DrivingLicenceSubject>
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence details page unhappy path with IncorrectDVAIssueDate
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
     When User clicks on continue
     Then Proper error message for Could not find your details is displayed
     When User clicks on continue
@@ -103,12 +93,12 @@ Feature: Driving Licence Test
     And JSON payload should contain ci DO2, validity score 0 and strength score 3
     And The test is complete and I close the driver
     Examples:
-      |DrivingLicenceSubject |
-      |IncorrectValidToDate|
+      |DVADrivingLicenceSubject |
+      |IncorrectDVAIssueDate|
 
-  @DVLADrivingLicence_test @build
-  Scenario Outline: DVLA Driving Licence details page unhappy path with IncorrectIssueNumber
-    Given User enters data as a <DrivingLicenceSubject>
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence details page unhappy path with IncorrectDVAValidToDate
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
     When User clicks on continue
     Then Proper error message for Could not find your details is displayed
     When User clicks on continue
@@ -116,12 +106,12 @@ Feature: Driving Licence Test
     And JSON payload should contain ci DO2, validity score 0 and strength score 3
     And The test is complete and I close the driver
     Examples:
-      |DrivingLicenceSubject |
-      |IncorrectIssueNumber|
+      |DVADrivingLicenceSubject |
+      |IncorrectDVAValidToDate|
 
-  @DVLADrivingLicence_test @build
-  Scenario Outline: DVLA Driving Licence details page unhappy path with IncorrectPostcode
-    Given User enters data as a <DrivingLicenceSubject>
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence details page unhappy path with IncorrectDVAPostcode
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
     When User clicks on continue
     Then Proper error message for Could not find your details is displayed
     When User clicks on continue
@@ -129,40 +119,40 @@ Feature: Driving Licence Test
     And JSON payload should contain ci DO2, validity score 0 and strength score 3
     And The test is complete and I close the driver
     Examples:
-      |DrivingLicenceSubject |
-      |IncorrectPostcode|
+      |DVADrivingLicenceSubject |
+      |IncorrectDVAPostcode|
 
-  @DVLADrivingLicence_test @build
-  Scenario Outline: DVLA Driving Licence Retry Test Happy Path
-    Given User enters invalid Driving Licence DVLA details
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence Retry Test Happy Path
+    Given User enters invalid Driving Licence DVA details
     When User clicks on continue
     Then Proper error message for Could not find your details is displayed
-    When User Re-enters data as a <DrivingLicenceSubject>
+    When User Re-enters DVA data as a <DVADrivingLicenceSubject>
     And User clicks on continue
     Then I navigate to the Driving Licence verifiable issuer to check for a Valid response
     And JSON payload should contain validity score 2 and strength score 3
     And The test is complete and I close the driver
     Examples:
-      |DrivingLicenceSubject             |
-      |DrivingLicenceSubjectHappyPeter |
+      |DVADrivingLicenceSubject |
+      |DVADrivingLicenceSubjectHappyBilly |
 
-  @DVLADrivingLicence_test @build
-  Scenario Outline: DVLA Driving Licence User failed second attempt
-    Given User enters invalid Driving Licence DVLA details
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence User failed second attempt
+    Given User enters invalid Driving Licence DVA details
     When User clicks on continue
     Then Proper error message for Could not find your details is displayed
-    When User Re-enters data as a <DrivingLicenceSubject>
+    When User Re-enters DVA data as a <DVADrivingLicenceSubject>
     And User clicks on continue
     Then I navigate to the Driving Licence verifiable issuer to check for a Valid response
     And JSON payload should contain ci DO2, validity score 0 and strength score 3
     And The test is complete and I close the driver
     Examples:
-      |DrivingLicenceSubject |
-      |IncorrectDrivingLicenceNumber |
+      |DVADrivingLicenceSubject |
+      |IncorrectDVADrivingLicenceNumber |
 
-  @DVLADrivingLicence_test @build
-  Scenario: DVLA Driving Licence User cancels after failed first attempt
-    Given User enters invalid Driving Licence DVLA details
+  @DVADrivingLicence_test @build
+  Scenario: DVA Driving Licence User cancels after failed first attempt
+    Given User enters invalid Driving Licence DVA details
     When User clicks on continue
     Then Proper error message for Could not find your details is displayed
     When User click on ‘prove your identity another way' Link
@@ -170,15 +160,15 @@ Feature: Driving Licence Test
     And JSON payload should contain ci DO2, validity score 0 and strength score 3
     And The test is complete and I close the driver
 
-  @DVLADrivingLicence_test @build
-  Scenario: DVLA Driving Licence User cancels before first attempt via prove your identity another way route
+  @DVADrivingLicence_test @build
+  Scenario: DVA Driving Licence User cancels before first attempt via prove your identity another way route
     Given User click on ‘prove your identity another way' Link
     Then I navigate to the Driving Licence verifiable issuer to check for a Invalid response
     And JSON response should contain error description Authorization permission denied and status code as 302
     And The test is complete and I close the driver
 
-  @DVLADrivingLicence_test @build
-  Scenario: DVLA Driving Licence User cancels before first attempt via I do not have a UK driving licence route
+  @DVADrivingLicence_test @build
+  Scenario: DVA Driving Licence User cancels before first attempt via I do not have a UK driving licence route
     Given User click on ‘Back' Link
     When User click on I do not have a UK driving licence radio button
     Then I navigate to the Driving Licence verifiable issuer to check for a Invalid response

@@ -138,6 +138,9 @@ public class DrivingLicencePageObject extends UniversalSteps {
     @FindBy(xpath = "//*[@class='govuk-error-summary error-summary']//*[@class='govuk-error-summary__body']//*[@class='govuk-list govuk-error-summary__list']//*[contains(@href,'#drivingLicenceNumber')]")
     public WebElement InvalidDrivingLicenceError;
 
+    @FindBy(xpath = "//*[@class='govuk-back-link']")
+    public WebElement back;
+
     public DrivingLicencePageObject () {
         PageFactory.initElements(Driver.get(), this);
     }
@@ -307,7 +310,7 @@ public class DrivingLicencePageObject extends UniversalSteps {
         assertEquals(StrengthScore, strengthScore);
     }
 
-    public void couldNotFindDetailsDVLAErrorDisplayed() {
+    public void couldNotFindDetailsErrorDisplayed() {
         Assert.assertTrue(InvalidLicenceDetailsError.isDisplayed());
         LOGGER.info(InvalidLicenceDetailsError.getText());
     }
@@ -384,11 +387,6 @@ public class DrivingLicencePageObject extends UniversalSteps {
 
     public void clickOnIDoNotHaveAUKDrivingLicenceRadioButton() {
         nodrivinglicenceradio.click();
-        Continue.click();
-    }
-
-    public void selectDVLARadioButton() {
-        new EnterYourDetailsExactlyDVLAPage().DVLA.click();
         Continue.click();
     }
 

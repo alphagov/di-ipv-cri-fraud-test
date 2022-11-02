@@ -1,23 +1,26 @@
 package gov.di_ipv_fraud.step_definitions;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import gov.di_ipv_fraud.pages.*;
-import gov.di_ipv_fraud.utilities.BrowserUtils;
+import gov.di_ipv_fraud.utilities.DVADrivingLicenceSubject;
 import gov.di_ipv_fraud.utilities.DrivingLicenceSubject;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.support.ui.Select;
 
 import java.io.IOException;
 
-public class DVLADrivingLicenceSteps extends DrivingLicencePageObject  {
+public class DVLAAndDVADrivingLicenceSteps extends DrivingLicencePageObject  {
 
     @When("User enters data as a {}")
     public void user_enters_and(DrivingLicenceSubject drivingLicenceSubject) {
         userEntersData(drivingLicenceSubject);
+    }
+
+    @When("User enters DVA data as a {}")
+    public void user_enters_dva_data_and(DVADrivingLicenceSubject dvaDrivingLicenceSubject) {
+        new DVAEnterYourDetailsExactlyPage().userEntersDVAData(dvaDrivingLicenceSubject);
     }
 
     @When("User clicks on continue")
@@ -25,17 +28,17 @@ public class DVLADrivingLicenceSteps extends DrivingLicencePageObject  {
         Continue.click();
     }
 
-    @Then("Proper error message for Could not find DVLA details is displayed")
+    @Then("Proper error message for Could not find your details is displayed")
     public void properErrorMessageForCouldNotFindDVLADetailsIsDisplayed() {
-        couldNotFindDetailsDVLAErrorDisplayed();
+        couldNotFindDetailsErrorDisplayed();
     }
 
-    @Then("proper error message for invalid Date of Birth should be displayed")
+    @Then("Proper error message for invalid Date of Birth should be displayed")
     public void properErrorMessageForInvalidDOBIsDisplayed() {
         invalidDOBErrorDisplayed();
     }
 
-    @Then("proper error message for invalid Driving Licence should be displayed")
+    @Then("Proper error message for invalid Driving Licence should be displayed")
     public void properErrorMessageForInvalidDrivingLicenceIsDisplayed() {
         invalidDrivingLicenceErrorDisplayed();
     }
@@ -45,9 +48,19 @@ public class DVLADrivingLicenceSteps extends DrivingLicencePageObject  {
         userEntersInvalidDrivingDetails();
     }
 
+    @Given("User enters invalid Driving Licence DVA details")
+    public void userInputsInvalidDVADrivingDetails() {
+        new DVAEnterYourDetailsExactlyPage().userEntersInvalidDVADrivingDetails();
+    }
+
     @When("User Re-enters data as a {}")
     public void userReInputsDataAsADrivingLicenceSubject(DrivingLicenceSubject drivingLicenceSubject) {
         userReEntersDataAsADrivingLicenceSubject(drivingLicenceSubject);
+    }
+
+    @When("User Re-enters DVA data as a {}")
+    public void userReInputsDataAsDVAADrivingLicenceSubject(DVADrivingLicenceSubject dvaDrivingLicenceSubject) {
+        new DVAEnterYourDetailsExactlyPage().userReEntersDataAsDVADrivingLicenceSubject(dvaDrivingLicenceSubject);
     }
 
     @Given("User click on ‘prove your identity another way' Link")
@@ -65,6 +78,11 @@ public class DVLADrivingLicenceSteps extends DrivingLicencePageObject  {
         Assert.assertTrue(new EnterYourDetailsExactlyDVLAPage().drivingLicenceNumber.isDisplayed());
     }
 
+    @Then("I should be on DVA `Enter your details exactly as they appear on your UK driving licence` page")
+    public void i_should_be_on_DVA_enter_your_details_exactly_as_they_appear_on_your_uk_driving_licence_page() {
+        Assert.assertTrue(new DVAEnterYourDetailsExactlyPage().dvaLicenceNumber.isDisplayed());
+    }
+
     @Then("I should be on `Who was your UK driving licence issued by` page")
     public void i_should_be_on_who_was_your_uk_driving_licence_issued_by_page() {
         Assert.assertTrue(new EnterYourDetailsExactlyDVLAPage().DVLALabel.isDisplayed());
@@ -79,6 +97,11 @@ public class DVLADrivingLicenceSteps extends DrivingLicencePageObject  {
     @And("^JSON payload should contain validity score (.*) and strength score (.*)$")
     public void scoresInVerifiableCredential(String validityScore, String strengthScore) throws IOException {
         scoreIs(validityScore, strengthScore);
+    }
+
+    @Given("User click on ‘Back' Link")
+    public void userClickOnBackLink() {
+        back.click();
     }
 
 }
