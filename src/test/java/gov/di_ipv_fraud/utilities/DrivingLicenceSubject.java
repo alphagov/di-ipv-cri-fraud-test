@@ -10,7 +10,23 @@ public enum DrivingLicenceSubject implements TestInput {
     IncorrectValidToDate("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "11", "11", "2030", "23", "05", "1982", "12", "BS98 1TL"),
     IncorrectIssueNumber("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "20", "BS98 1TL"),
     IncorrectPostcode("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "BS98 1AA"),
-    IncorrectDateOfBirth("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "09", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "BS98 1TL");
+    IncorrectDateOfBirth("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "09", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "BS98 1TL"),
+    InvalidLastNameWithNumbers("PARKE610112PBFGH", "PARKER123", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "BS98 1TL"),
+    InvalidLastNameWithSpecialCharacters("PARKE610112PBFGH", "PARKER*$%", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "BS98 1TL"),
+    NoLastName("PARKE610112PBFGH", "", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "BS98 1TL"),
+    InvalidFirstNameWithNumbers("PARKE610112PBFGH", "PARKER", "PETERE987", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "BS98 1TL"),
+    InvalidFirstNameWithSpecialCharacters("PARKE610112PBFGH", "PARKER", "PETERE$£@", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "BS98 1TL"),
+    NoFirstName("PARKE610112PBFGH", "PARKER", "", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "BS98 1TL"),
+    InvalidMiddleNamesWithNumbers("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN567", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "BS98 1TL"),
+    InvalidDateOfBirth("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "50", "72", "197", "09", "12", "2062", "23", "05", "1982", "12", "BS98 1TL"),
+    DateOfBirthWithSpecialCharacters("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "@", "%*", "19 7", "09", "12", "2062", "23", "05", "1982", "12", "BS98 1TL"),
+    DateOfBirthInFuture("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "10", "10", "2042", "09", "12", "2062", "23", "05", "1982", "12", "BS98 1TL"),
+    NoDateOfBirth("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "", "", "", "09", "12", "2062", "23", "05", "1982", "12", "BS98 1TL"),
+    InvalidIssueDate("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "AA", "BB", "ABCD", "12", "BS98 1TL"),
+    IssueDateWithSpecialCharacters("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "&^", "*£", "19 0", "12", "BS98 1TL"),
+    IssueDateInFuture("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "01", "02", "2042", "12", "BS98 1TL"),
+    NoIssueDate("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "", "", "", "12", "BS98 1TL");
+
 
     private String licenceNumber, lastName, firstName, middleNames, birthDay, birthMonth, birthYear, validToDay, validToMonth, validToYear, issueDay, issueMonth, issueYear, issueNumber, postcode;
 

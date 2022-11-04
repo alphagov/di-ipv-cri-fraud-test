@@ -141,6 +141,33 @@ public class DrivingLicencePageObject extends UniversalSteps {
     @FindBy(xpath = "//*[@class='govuk-back-link']")
     public WebElement back;
 
+    @FindBy(id = "dateOfBirth-error")
+    public WebElement InvalidDateOfBirthFieldError;
+
+    @FindBy(xpath = "//*[@class='govuk-error-summary error-summary']//*[@class='govuk-error-summary__body']//*[@class='govuk-list govuk-error-summary__list']//*[contains(@href,'#surname')]")
+    public WebElement InvalidLastNameError;
+
+    @FindBy(id = "surname-error")
+    public WebElement InvalidLastNameFieldError;
+
+    @FindBy(xpath = "//*[@class='govuk-error-summary error-summary']//*[@class='govuk-error-summary__body']//*[@class='govuk-list govuk-error-summary__list']//*[contains(@href,'#firstName')]")
+    public WebElement InvalidFirstNameError;
+
+    @FindBy(id = "firstName-error")
+    public WebElement InvalidFirstNameFieldError;
+
+    @FindBy(xpath = "//*[@class='govuk-error-summary error-summary']//*[@class='govuk-error-summary__body']//*[@class='govuk-list govuk-error-summary__list']//*[contains(@href,'#middleNames')]")
+    public WebElement InvalidMiddleNamesError;
+
+    @FindBy(id = "middleNames-error")
+    public WebElement InvalidMiddleNamesFieldError;
+
+    @FindBy(xpath = "//*[@class='govuk-error-summary error-summary']//*[@class='govuk-error-summary__body']//*[@class='govuk-list govuk-error-summary__list']//*[contains(@href,'#issueDate-day')]")
+    public WebElement InvalidIssueDateError;
+
+    @FindBy(id = "issueDate-error")
+    public WebElement InvalidIssueDateFieldError;
+
     public DrivingLicencePageObject () {
         PageFactory.initElements(Driver.get(), this);
     }
@@ -410,9 +437,58 @@ public class DrivingLicencePageObject extends UniversalSteps {
         LOGGER.info(InvalidDOBError.getText());
     }
 
+    public void invalidDateOfBirthFieldErrorDisplayed() {
+        Assert.assertTrue(InvalidDateOfBirthFieldError.isDisplayed());
+        LOGGER.info(InvalidDateOfBirthFieldError.getText());
+    }
+
+    public void invalidIssueDateErrorDisplayed() {
+        Assert.assertTrue(InvalidIssueDateError.isDisplayed());
+        LOGGER.info(InvalidIssueDateError.getText());
+    }
+
+//    public void invalidIssueDateErrorDisplayed() {
+//        Assert.assertEquals("The issue date must be in the past",InvalidIssueDateError.getText());
+//    }
+
+    public void invalidIssueDateFieldErrorDisplayed() {
+        Assert.assertTrue(InvalidIssueDateFieldError.isDisplayed());
+        LOGGER.info(InvalidIssueDateFieldError.getText());
+    }
+
     public void invalidDrivingLicenceErrorDisplayed() {
         Assert.assertTrue(InvalidDrivingLicenceError.isDisplayed());
         LOGGER.info(InvalidDrivingLicenceError.getText());
+    }
+
+    public void invalidLastNameErrorDisplayed() {
+        Assert.assertTrue(InvalidLastNameError.isDisplayed());
+        LOGGER.info(InvalidLastNameError.getText());
+    }
+
+    public void invalidLastNameFieldErrorDisplayed() {
+        Assert.assertTrue(InvalidLastNameFieldError.isDisplayed());
+        LOGGER.info(InvalidLastNameFieldError.getText());
+    }
+
+    public void invalidFirstNameErrorDisplayed() {
+        Assert.assertTrue(InvalidFirstNameError.isDisplayed());
+        LOGGER.info(InvalidFirstNameError.getText());
+    }
+
+    public void invalidFirstNameFieldErrorDisplayed() {
+        Assert.assertTrue(InvalidFirstNameFieldError.isDisplayed());
+        LOGGER.info(InvalidFirstNameFieldError.getText());
+    }
+
+    public void invalidMiddleNamesErrorDisplayed() {
+        Assert.assertTrue(InvalidMiddleNamesError.isDisplayed());
+        LOGGER.info(InvalidMiddleNamesError.getText());
+    }
+
+    public void invalidMiddleNamesFieldErrorDisplayed() {
+        Assert.assertTrue(InvalidMiddleNamesFieldError.isDisplayed());
+        LOGGER.info(InvalidMiddleNamesFieldError.getText());
     }
 
 }

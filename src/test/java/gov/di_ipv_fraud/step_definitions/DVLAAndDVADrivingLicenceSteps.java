@@ -38,9 +38,54 @@ public class DVLAAndDVADrivingLicenceSteps extends DrivingLicencePageObject  {
         invalidDOBErrorDisplayed();
     }
 
+    @Then("Field error message for invalid Date of Birth should be displayed")
+    public void fieldErrorMessageForInvalidDateOfBirthIsDisplayed() {
+        invalidDateOfBirthFieldErrorDisplayed();
+    }
+
+    @Then("Proper error message for invalid Issue date should be displayed in the Error summary")
+    public void properErrorMessageForInvalidIssueDateIsDisplayed() {
+        invalidIssueDateErrorDisplayed();
+    }
+
+    @Then("Field error message for invalid Issue date should be displayed")
+    public void fieldErrorMessageForInvalidIssueDateIsDisplayed() {
+        invalidIssueDateFieldErrorDisplayed();
+    }
+
     @Then("Proper error message for invalid Driving Licence should be displayed")
     public void properErrorMessageForInvalidDrivingLicenceIsDisplayed() {
         invalidDrivingLicenceErrorDisplayed();
+    }
+
+    @Then("Proper error message for invalid Last name should be displayed in the Error summary")
+    public void properErrorMessageForInvalidLastNameIsDisplayed() {
+        invalidLastNameErrorDisplayed();
+    }
+
+    @Then("Field error message for invalid Last name should be displayed")
+    public void fieldErrorMessageForInvalidLastNameIsDisplayed() {
+        invalidLastNameFieldErrorDisplayed();
+    }
+
+    @Then("Proper error message for invalid First name should be displayed in the Error summary")
+    public void properErrorMessageForInvalidFirstNameIsDisplayed() {
+        invalidFirstNameErrorDisplayed();
+    }
+
+    @Then("Field error message for invalid First name should be displayed")
+    public void fieldErrorMessageForInvalidFirstNameIsDisplayed() {
+        invalidFirstNameFieldErrorDisplayed();
+    }
+
+    @Then("Proper error message for invalid Middle names should be displayed in the Error summary")
+    public void properErrorMessageForInvalidMiddleNamesIsDisplayed() {
+        invalidMiddleNamesErrorDisplayed();
+    }
+
+    @Then("Field error message for invalid Middle names should be displayed")
+    public void fieldErrorMessageForInvalidMiddleNamesIsDisplayed() {
+        invalidMiddleNamesFieldErrorDisplayed();
     }
 
     @Given("User enters invalid Driving Licence DVLA details")

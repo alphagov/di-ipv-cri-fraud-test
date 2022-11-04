@@ -184,3 +184,168 @@ Feature: Driving Licence Test
     Then I navigate to the Driving Licence verifiable issuer to check for a Invalid response
     And JSON response should contain error description Authorization permission denied and status code as 302
     And The test is complete and I close the driver
+
+  @DVLADrivingLicence_test @build
+  Scenario Outline: DVLA Driving Licence Last name with numbers error validation
+    Given User enters data as a <DrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for invalid Last name should be displayed in the Error summary
+    And Field error message for invalid Last name should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DrivingLicenceSubject      |
+      |InvalidLastNameWithNumbers |
+
+  @DVLADrivingLicence_test @build
+  Scenario Outline: DVLA Driving Licence Last name with special characters error validation
+    Given User enters data as a <DrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for invalid Last name should be displayed in the Error summary
+    And Field error message for invalid Last name should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DrivingLicenceSubject |
+      |InvalidLastNameWithSpecialCharacters |
+
+  @DVLADrivingLicence_test @build
+  Scenario Outline: DVLA Driving Licence No Last name in the Last name field error validation
+    Given User enters data as a <DrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for invalid Last name should be displayed in the Error summary
+    And Field error message for invalid Last name should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DrivingLicenceSubject |
+      |NoLastName |
+
+  @DVLADrivingLicence_test @build
+  Scenario Outline: DVLA Driving Licence First name with numbers error validation
+    Given User enters data as a <DrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for invalid First name should be displayed in the Error summary
+    And Field error message for invalid First name should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DrivingLicenceSubject      |
+      |InvalidFirstNameWithNumbers |
+
+  @DVLADrivingLicence_test @build
+  Scenario Outline: DVLA Driving Licence First name with special characters error validation
+    Given User enters data as a <DrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for invalid First name should be displayed in the Error summary
+    And Field error message for invalid First name should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DrivingLicenceSubject |
+      |InvalidFirstNameWithSpecialCharacters |
+
+  @DVLADrivingLicence_test @build
+  Scenario Outline: DVLA Driving Licence No First name in the First name field error validation
+    Given User enters data as a <DrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for invalid First name should be displayed in the Error summary
+    And Field error message for invalid First name should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DrivingLicenceSubject |
+      |NoFirstName |
+
+  @DVLADrivingLicence_test @build
+  Scenario Outline: DVLA Driving Licence Middle names with numbers error validation
+    Given User enters data as a <DrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for invalid Middle names should be displayed in the Error summary
+    And Field error message for invalid Middle names should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DrivingLicenceSubject      |
+      |InvalidMiddleNamesWithNumbers |
+
+  @DVLADrivingLicence_test @build
+  Scenario Outline: DVLA Driving Licence Date of birth that are not real error validation
+    Given User enters data as a <DrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for invalid Date of Birth should be displayed
+    And Field error message for invalid Date of Birth should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DrivingLicenceSubject |
+      |InvalidDateOfBirth |
+
+  @DVLADrivingLicence_test @build
+  Scenario Outline: DVLA Driving Licence Date of birth with special characters error validation
+    Given User enters data as a <DrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for invalid Date of Birth should be displayed
+    And Field error message for invalid Date of Birth should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DrivingLicenceSubject |
+      |DateOfBirthWithSpecialCharacters |
+
+  @DVLADrivingLicence_test @build
+  Scenario Outline: DVLA Driving Licence Date of birth in the future error validation
+    Given User enters data as a <DrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for invalid Date of Birth should be displayed
+    And Field error message for invalid Date of Birth should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DrivingLicenceSubject |
+      |DateOfBirthInFuture |
+
+  @DVLADrivingLicence_test @build
+  Scenario Outline: DVLA Driving Licence No Date of birth in the Date of birth field error validation
+    Given User enters data as a <DrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for invalid Date of Birth should be displayed
+    And Field error message for invalid Date of Birth should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DrivingLicenceSubject |
+      |NoDateOfBirth |
+
+  @DVLADrivingLicence_test @build
+  Scenario Outline: DVLA Driving Licence Issue date that are not real error validation
+    Given User enters data as a <DrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for invalid Issue date should be displayed in the Error summary
+    And Field error message for invalid Issue date should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DrivingLicenceSubject |
+      |InvalidIssueDate |
+
+  @DVLADrivingLicence_test @build
+  Scenario Outline: DVLA Driving Licence Issue date with special characters error validation
+    Given User enters data as a <DrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for invalid Issue date should be displayed in the Error summary
+    And Field error message for invalid Issue date should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DrivingLicenceSubject |
+      |IssueDateWithSpecialCharacters |
+
+  @DVLADrivingLicence_test @build
+  Scenario Outline: DVLA Driving Licence - Issue date in the future - error validation
+    Given User enters data as a <DrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for invalid Issue date should be displayed in the Error summary
+    And Field error message for invalid Issue date should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DrivingLicenceSubject |
+      |IssueDateInFuture |
+
+  @DVLADrivingLicence_test @build
+  Scenario Outline: DVLA Driving Licence - No Issue date in the Issue date field - error validation
+    Given User enters data as a <DrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for invalid Issue date should be displayed in the Error summary
+    And Field error message for invalid Issue date should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DrivingLicenceSubject |
+      |NoIssueDate |
