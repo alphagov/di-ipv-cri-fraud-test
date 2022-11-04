@@ -8,13 +8,6 @@ import io.cucumber.java.en.When;
 
 public class DLUnrecoverableErrorStepDefs extends DLUnrecoverableErrorPageObject
 {
-   @Given("I navigate to the IPV Core Stub localhost")
-   public void i_navigate_to_IPV_Local()
-   {
-      navigateToLocalHost();
-   }
-
-
    @When("I navigate to User for Driving Licence CRI dev Page")
    public void i_navigate_to_user_for_driving_licence_cri_dev_page()
    {
@@ -38,4 +31,10 @@ public class DLUnrecoverableErrorStepDefs extends DLUnrecoverableErrorPageObject
    {
       validateErrorPageHeading();
    }
+
+   @Given("I delete the cookie to get the unexpected error")
+    public void iDeleteTheCookieToGetTheUnexpectedError()
+   {
+      deletecookie();
+    }
 }

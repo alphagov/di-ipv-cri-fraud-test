@@ -1,13 +1,14 @@
 package gov.di_ipv_fraud.pages;
 
 import gov.di_ipv_fraud.service.ConfigurationService;
-import gov.di_ipv_fraud.utilities.BrowserUtils;
 import gov.di_ipv_fraud.utilities.Driver;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 
+import java.util.Set;
 import java.util.logging.Logger;
 
 import static gov.di_ipv_fraud.pages.Headers.IPV_CORE_STUB;
@@ -26,7 +27,7 @@ public class DLUnrecoverableErrorPageObject extends UniversalSteps {
     @FindBy(xpath = "//*[@id=\"main-content\"]/form[2]/div/button")
     public WebElement goToDLCRIButton;
 
-    @FindBy(id = "header")
+    @FindBy(xpath = "//*[@id=\"header\"]")
     public WebElement errorTitle;
 
     public void DrivingLicenceCRIDev() {
@@ -39,29 +40,26 @@ public class DLUnrecoverableErrorPageObject extends UniversalSteps {
         PageFactory.initElements(Driver.get(), this);
     }
 
-    public void navigateToLocalHost() {
-        String coreStubUsername = configurationService.getCoreStubUsername();
-        String coreStubPassword = configurationService.getCoreStubPassword();
-        String coreStubUrl = configurationService.getCoreStubUrl();
-        String httpsEnabled = configurationService.gethttpsEnabled();
-        coreStubUrl = coreStubUrl.substring(8);
-        if (httpsEnabled.equals("yes")) {
-            Driver.get()
-                    .get(
-                            "https://"
-                                    + coreStubUsername
-                                    + ":"
-                                    + coreStubPassword
-                                    + "@"
-                                    + coreStubUrl);
-        } else {
-            Driver.get().get("http://" + coreStubUrl);
-        }
-        waitForTextToAppear(IPV_CORE_STUB);
-    }
-
     public void navigateToDrivingLicenceCRI() {
         goToDLCRIButton.click();
+    }
+
+    public void deletecookie() {
+
+   Set <Cookie> cookies = Driver.get().manage().getCookies();
+   System.out.println("Size of Cookies:" +cookies.size());
+
+
+  for(Cookie cookie:cookies)
+ {
+    System.out.println(cookie.getName()+":" +cookie.getValue());
+
+  }
+     Driver.get().manage().deleteCookieNamed("service_session");
+    // Driver.get().manage().deleteAllCookies();
+     Driver.get().navigate().refresh();
+
+
     }
 
     public void errorPageURLValidation() {
@@ -72,6 +70,7 @@ public class DLUnrecoverableErrorPageObject extends UniversalSteps {
         } else {
             LOGGER.info("Fail : Who was your UK driving licence issued by? is displayed");
         }
+       System.out.println("title:"  +actualTitle);
     }
 
     public void validateErrorPageHeading() {
