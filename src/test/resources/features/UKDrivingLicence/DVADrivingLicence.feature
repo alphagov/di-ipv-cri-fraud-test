@@ -174,3 +174,40 @@ Feature: DVA Driving Licence Test
     Then I navigate to the Driving Licence verifiable issuer to check for a Invalid response
     And JSON response should contain error description Authorization permission denied and status code as 302
     And The test is complete and I close the driver
+
+  @DVADrivingLicence_test @build
+  Scenario Outline:  DVA Driving Licence Generate VC with valid DL number and save in attempt 1 happy path
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then I navigate to the Driving Licence verifiable issuer to check for a Valid response
+    And JSON response should contain documentNumber 55667788 same as given Driving Licence
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject             |
+      |DVADrivingLicenceSubjectHappyBilly     |
+
+  @DVADrivingLicence_test @build
+  Scenario Outline:  DVA Driving Licence Generate VC with invalid DL number and save in attempt 2 unhappy path
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for Could not find your details is displayed
+    Then User clicks on continue again
+    Then I navigate to the Driving Licence verifiable issuer to check for a Valid response
+    And JSON response should contain documentNumber 88776655 same as given Driving Licence
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject |
+      |IncorrectDVADrivingLicenceNumber |
+
+
+  @DVADrivingLicence_test @build
+  Scenario Outline:  DVA Driving Licence Generate VC with invalid DL number and prove in another way unhappy path
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    When User click on ‘prove your identity another way' Link
+    Then I navigate to the Driving Licence verifiable issuer to check for a Valid response
+    And JSON response should contain documentNumber 88776655 same as given Driving Licence
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject           |
+      | IncorrectDVADrivingLicenceNumber     |
