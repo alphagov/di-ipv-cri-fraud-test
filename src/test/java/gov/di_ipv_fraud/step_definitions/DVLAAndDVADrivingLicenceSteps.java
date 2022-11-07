@@ -53,9 +53,114 @@ public class DVLAAndDVADrivingLicenceSteps extends DrivingLicencePageObject  {
         invalidIssueDateFieldErrorDisplayed();
     }
 
-    @Then("Proper error message for invalid Driving Licence should be displayed")
+    @Then("Proper error message for invalid Valid to date should be displayed in the Error summary")
+    public void properErrorMessageForInvalidValidToDateIsDisplayed() {
+        invalidValidToDateErrorDisplayed();
+    }
+
+    @Then("Field error message for invalid Valid to date should be displayed")
+    public void fieldErrorMessageForInvalidValidToDateIsDisplayed() {
+        invalidValidToDateFieldErrorDisplayed();
+    }
+
+    @Then("Proper error message for expired driving licence should be displayed in the Error summary")
+    public void properErrorMessageForExpiredDrivingLicenceIsDisplayed() {
+        expiredDrivingLicenceErrorDisplayed();
+    }
+
+    @Then("Field error message for expired driving licence should be displayed")
+    public void fieldErrorMessageForExpiredDrivingLicenceIsDisplayed() {
+        expiredDrivingLicenceFieldErrorDisplayed();
+    }
+
+    @Then("Your licence number should be 16 characters long error message should be displayed in the Error summary")
+    public void shortDrivingLicenceNumberErrorMessageIsDisplayed() {
+        shortDrivingLicenceNumberErrorDisplayed();
+    }
+
+    @Then("Your licence number should be 16 characters long Field error should be displayed")
+    public void shortDrivingLicenceNumberFieldErrorMessageIsDisplayed() {
+        shortDrivingLicenceNumberFieldErrorDisplayed();
+    }
+
+    @Then("Your licence number should not include any symbols or spaces error message should be displayed in the Error summary")
+    public void errorMessageForDrivingLicenceNumWithSpecialCharIsDisplayed() {
+        specialCharDrivingLicenceErrorDisplayed();
+    }
+
+    @Then("Your licence number should not include any symbols or spaces Field error should be displayed")
+    public void fieldErrorForDrivingLicenceNumWithSpecialCharIsDisplayed() {
+        specialCharDrivingLicenceFieldErrorDisplayed();
+    }
+
+    @Then("Proper error message for invalid Licence number should be displayed in the Error summary")
     public void properErrorMessageForInvalidDrivingLicenceIsDisplayed() {
         invalidDrivingLicenceErrorDisplayed();
+    }
+
+    @Then("Field error message for invalid Licence number should be displayed")
+    public void fieldErrorMessageForInvalidDrivingLicenceIsDisplayed() {
+        invalidDrivingLicenceFieldErrorDisplayed();
+    }
+
+//    @Then("Proper error message for invalid Driving Licence should be displayed")
+//    public void properErrorMessageForInvalidDrivingLicenceIsDisplayed() {
+//        invalidDrivingLicenceErrorDisplayed();
+//    }
+
+    @Then("Your issue number should be 2 numbers long error message should be displayed in the Error summary")
+    public void shortIssueNumberErrorMessageIsDisplayed() {
+        shortIssueNumberErrorDisplayed();
+    }
+
+    @Then("Your issue number should be 2 numbers long Field error should be displayed")
+    public void shortIssueNumberFieldErrorMessageIsDisplayed() {
+        shortIssueNumberFieldErrorDisplayed();
+    }
+
+    @Then("Proper error message for invalid Issue number should be displayed in the Error summary")
+    public void properErrorMessageForInvalidIssueNumberIsDisplayed() {
+        invalidIssueNumberErrorDisplayed();
+    }
+
+    @Then("Field error message for invalid Issue number should be displayed")
+    public void fieldErrorMessageForInvalidIssueNumberIsDisplayed() {
+        invalidIssueNumberFieldErrorDisplayed();
+    }
+
+    @Then("Your issue number should not include any symbols or spaces error message should be displayed in the Error summary")
+    public void errorMessageForIssueNumberWithSpecialCharIsDisplayed() {
+        specialCharIssueNumberErrorDisplayed();
+    }
+
+    @Then("Your issue number should not include any symbols or spaces Field error should be displayed")
+    public void fieldErrorMessageForIssueNumberWithSpecialCharIsDisplayed() {
+        specialCharIssueNumberFieldErrorDisplayed();
+    }
+
+    @Then("Your postcode should be between 5 and 7 characters error should be displayed in the Error summary")
+    public void shortPostcodeErrorMessageIsDisplayed() {
+        shortPostcodeErrorDisplayed();
+    }
+
+    @Then("Your postcode should be between 5 and 7 characters Field error should be displayed")
+    public void shortPostcodeFieldErrorMessageIsDisplayed() {
+        shortPostcodeFieldErrorDisplayed();
+    }
+
+    @Then("Your postcode should only include numbers and letters error message should be displayed in the Error summary")
+    public void errorMessageForPostcodeWithSpecialCharIsDisplayed() {
+        specialCharPostcodeErrorDisplayed();
+    }
+
+    @Then("Your postcode should only include numbers and letters Field error should be displayed")
+    public void fieldErrorMessageForPostcodeWithSpecialCharIsDisplayed() {
+        specialCharPostcodeFieldErrorDisplayed();
+    }
+
+    @Then("Proper error message for invalid Postcode should be displayed in the Error summary")
+    public void properErrorMessageForInvalidPostcodeIsDisplayed() {
+        invalidPostcodeErrorDisplayed();
     }
 
     @Then("Proper error message for invalid Last name should be displayed in the Error summary")

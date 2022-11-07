@@ -168,6 +168,27 @@ public class DrivingLicencePageObject extends UniversalSteps {
     @FindBy(id = "issueDate-error")
     public WebElement InvalidIssueDateFieldError;
 
+    @FindBy(xpath = "//*[@class='govuk-error-summary error-summary']//*[@class='govuk-error-summary__body']//*[@class='govuk-list govuk-error-summary__list']//*[contains(@href,'#expiryDate-day')]")
+    public WebElement InvalidValidToDateError;
+
+    @FindBy(id = "expiryDate-error")
+    public WebElement InvalidValidToDateFieldError;
+
+    @FindBy(id = "drivingLicenceNumber-error")
+    public WebElement DrivingLicenceFieldError;
+
+    @FindBy(xpath = "//*[@class='govuk-error-summary error-summary']//*[@class='govuk-error-summary__body']//*[@class='govuk-list govuk-error-summary__list']//*[contains(@href,'#issueNumber')]")
+    public WebElement InvalidIssueNumberError;
+
+    @FindBy(id = "issueNumber-error")
+    public WebElement InvalidIssueNumberFieldError;
+
+    @FindBy(xpath = "//*[@class='govuk-error-summary error-summary']//*[@class='govuk-error-summary__body']//*[@class='govuk-list govuk-error-summary__list']//*[contains(@href,'#postcode')]")
+    public WebElement InvalidPostcodeError;
+
+    @FindBy(id = "postcode-error")
+    public WebElement InvalidPostcodeFieldError;
+
     public DrivingLicencePageObject () {
         PageFactory.initElements(Driver.get(), this);
     }
@@ -456,9 +477,106 @@ public class DrivingLicencePageObject extends UniversalSteps {
         LOGGER.info(InvalidIssueDateFieldError.getText());
     }
 
+    public void invalidValidToDateErrorDisplayed() {
+        Assert.assertEquals("Enter the date as it appears on your driving licence",InvalidValidToDateError.getText());
+    }
+
+    public void invalidValidToDateFieldErrorDisplayed() {
+        Assert.assertEquals("Error:\n" +
+                "Enter the date as it appears on your driving licence",InvalidValidToDateFieldError.getText());
+    }
+
+    public void expiredDrivingLicenceErrorDisplayed() {
+        Assert.assertEquals("You cannot use an expired driving licence",InvalidValidToDateError.getText());
+    }
+
+    public void expiredDrivingLicenceFieldErrorDisplayed() {
+        Assert.assertEquals("Error:\n" +
+                "You cannot use an expired driving licence",InvalidValidToDateFieldError.getText());
+    }
+
+    public void shortDrivingLicenceNumberErrorDisplayed() {
+        Assert.assertEquals("Your licence number should be 16 characters long",InvalidDrivingLicenceError.getText());
+    }
+
+    public void shortDrivingLicenceNumberFieldErrorDisplayed() {
+        Assert.assertEquals("Error:\n" +
+                "Your licence number should be 16 characters long",DrivingLicenceFieldError.getText());
+    }
+
+    public void specialCharDrivingLicenceErrorDisplayed() {
+        Assert.assertEquals("Your licence number should not include any symbols or spaces",InvalidDrivingLicenceError.getText());
+    }
+
+    public void specialCharDrivingLicenceFieldErrorDisplayed() {
+        Assert.assertEquals("Error:\n" +
+                "Your licence number should not include any symbols or spaces",DrivingLicenceFieldError.getText());
+    }
+
     public void invalidDrivingLicenceErrorDisplayed() {
-        Assert.assertTrue(InvalidDrivingLicenceError.isDisplayed());
-        LOGGER.info(InvalidDrivingLicenceError.getText());
+//        Assert.assertEquals("Enter the number exactly as it appears on your driving licence",InvalidDrivingLicenceError.getText());
+        Assert.assertEquals("Enter the number as it appears on your driving licence",InvalidDrivingLicenceError.getText());
+    }
+
+    public void invalidDrivingLicenceFieldErrorDisplayed() {
+        Assert.assertEquals("Error:\n" +
+                "Enter the number as it appears on your driving licence",DrivingLicenceFieldError.getText());
+//        Assert.assertEquals("Error:\n" +
+//                "Enter the number exactly as it appears on your driving licence",DrivingLicenceFieldError.getText());
+    }
+
+//    public void invalidDrivingLicenceErrorDisplayed() {
+//        Assert.assertTrue(InvalidDrivingLicenceError.isDisplayed());
+//        LOGGER.info(InvalidDrivingLicenceError.getText());
+//    }
+
+    public void shortIssueNumberErrorDisplayed() {
+        Assert.assertEquals("Your issue number should be 2 numbers long",InvalidIssueNumberError.getText());
+    }
+
+    public void shortIssueNumberFieldErrorDisplayed() {
+        Assert.assertEquals("Error:\n" +
+                "Your issue number should be 2 numbers long",InvalidIssueNumberFieldError.getText());
+    }
+
+    public void invalidIssueNumberErrorDisplayed() {
+        Assert.assertEquals("Enter the issue number as it appears on your driving licence",InvalidIssueNumberError.getText());
+    }
+
+    public void invalidIssueNumberFieldErrorDisplayed() {
+        Assert.assertEquals("Error:\n" +
+                "Enter the issue number as it appears on your driving licence",InvalidIssueNumberFieldError.getText());
+    }
+
+    public void specialCharIssueNumberErrorDisplayed() {
+        Assert.assertEquals("Your issue number should not include any symbols or spaces",InvalidIssueNumberError.getText());
+    }
+
+    public void specialCharIssueNumberFieldErrorDisplayed() {
+        Assert.assertEquals("Error:\n" +
+                "Your issue number should not include any symbols or spaces",InvalidIssueNumberFieldError.getText());
+    }
+
+    public void shortPostcodeErrorDisplayed() {
+        Assert.assertEquals("Your postcode should be between 5 and 7 characters",InvalidPostcodeError.getText());
+    }
+
+    public void shortPostcodeFieldErrorDisplayed() {
+        Assert.assertEquals("Error:\n" +
+                "Your postcode should be between 5 and 7 characters",InvalidPostcodeFieldError.getText());
+    }
+
+    public void specialCharPostcodeErrorDisplayed() {
+        Assert.assertEquals("Your postcode should only include numbers and letters",InvalidPostcodeError.getText());
+    }
+
+    public void specialCharPostcodeFieldErrorDisplayed() {
+        Assert.assertEquals("Error:\n" +
+                "Your postcode should only include numbers and letters",InvalidPostcodeFieldError.getText());
+    }
+
+    public void invalidPostcodeErrorDisplayed() {
+        Assert.assertEquals("Enter your postcode",InvalidPostcodeError.getText());
     }
 
     public void invalidLastNameErrorDisplayed() {

@@ -25,7 +25,24 @@ public enum DrivingLicenceSubject implements TestInput {
     InvalidIssueDate("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "AA", "BB", "ABCD", "12", "BS98 1TL"),
     IssueDateWithSpecialCharacters("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "&^", "*£", "19 0", "12", "BS98 1TL"),
     IssueDateInFuture("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "01", "02", "2042", "12", "BS98 1TL"),
-    NoIssueDate("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "", "", "", "12", "BS98 1TL");
+    NoIssueDate("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "", "", "", "12", "BS98 1TL"),
+    InvalidValidToDate("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "48", "10", "2030", "23", "05", "1982", "12", "BS98 1TL"),
+    ValidToDateWithSpecialCharacters("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "4*", "£$", "^&8", "23", "05", "1982", "12", "BS98 1TL"),
+    ValidToDateInPast("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2000", "23", "05", "1982", "12", "BS98 1TL"),
+    NoValidToDate("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "", "", "", "23", "05", "1982", "12", "BS98 1TL"),
+    DrivingLicenceNumLessThan16Char("PARKE6101", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "BS98 1TL"),
+    DrivingLicenceNumberWithSpecialChar("PARKE£ %^&*^&*()", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "BS98 1TL"),
+    DrivingLicenceNumberWithNumericChar("1234567890123456", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "BS98 1TL"),
+    DrivingLicenceNumberWithAlphaChar("ABCDEFGHIJKLMNOP", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "BS98 1TL"),
+    NoDrivingLicenceNumber("", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "BS98 1TL"),
+    IssueNumberLessThan2Char("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "1", "BS98 1TL"),
+    IssueNumberWithSpecialChar("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "$%", "BS98 1TL"),
+    IssueNumberWithAlphanumericChar("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "A1", "BS98 1TL"),
+    IssueNumberWithAlphaChar("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "AA", "BS98 1TL"),
+    NoIssueNumber("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "", "BS98 1TL"),
+    PostcodeLessThan5Char("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "BS98"),
+    PostcodeWithSpecialChar("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "B£$% 1$L"),
+    PostcodeWithNumericChar("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "1234 567");
 
 
     private String licenceNumber, lastName, firstName, middleNames, birthDay, birthMonth, birthYear, validToDay, validToMonth, validToYear, issueDay, issueMonth, issueYear, issueNumber, postcode;
