@@ -9,7 +9,18 @@ public enum DVADrivingLicenceSubject implements TestInput {
     IncorrectDVAFirstName("55667788", "BATSON", "SELINA", "26", "07", "1981", "01", "10", "2042", "19", "04", "2001", "NW3 5RG"),
     IncorrectDVAIssueDate("55667788", "BATSON", "BILLY", "26", "07", "1981", "01", "10", "2042", "14", "09", "2009", "NW3 5RG"),
     IncorrectDVAValidToDate("55667788", "BATSON", "BILLY", "26", "07", "1981", "04", "08", "2032", "19", "04", "2001", "NW3 5RG"),
-    IncorrectDVAPostcode("55667788", "BATSON", "BILLY", "26", "07", "1981", "01", "10", "2042", "19", "04", "2001", "E20 2AQ");
+    IncorrectDVAPostcode("55667788", "BATSON", "BILLY", "26", "07", "1981", "01", "10", "2042", "19", "04", "2001", "E20 2AQ"),
+    InvalidDVALastNameWithNumbers("55667788", "KYLE123", "BILLY", "26", "07", "1981", "01", "10", "2042", "19", "04", "2001", "NW3 5RG"),
+    InvalidDVALastNameWithSpecialChar("55667788", "KYLE^&(", "BILLY", "26", "07", "1981", "01", "10", "2042", "19", "04", "2001", "NW3 5RG"),
+    NoDVALastName("55667788", "", "BILLY", "26", "07", "1981", "01", "10", "2042", "19", "04", "2001", "NW3 5RG"),
+    InvalidDVAFirstNameWithNumbers("55667788", "BATSON", "SELINA987", "26", "07", "1981", "01", "10", "2042", "19", "04", "2001", "NW3 5RG"),
+    InvalidDVAFirstNameWithSpecialChar("55667788", "BATSON", "SELINA%$@", "26", "07", "1981", "01", "10", "2042", "19", "04", "2001", "NW3 5RG"),
+    NoDVAFirstName("55667788", "BATSON", "", "26", "07", "1981", "01", "10", "2042", "19", "04", "2001", "NW3 5RG"),
+    InvalidDVADateOfBirth("55667788", "BATSON", "BILLY", "51", "71", "198", "01", "10", "2042", "19", "04", "2001", "NW3 5RG"),
+    DVADOBWithSpecialCharacters("55667788", "BATSON", "BILLY", "@", "*&", "19 7", "01", "10", "2042", "19", "04", "2001", "NW3 5RG"),
+    DVADateOfBirthInFuture("55667788", "BATSON", "BILLY", "10", "10", "2042", "01", "10", "2042", "19", "04", "2001", "NW3 5RG"),
+    NoDVADateOfBirth("55667788", "BATSON", "BILLY", "", "", "", "01", "10", "2042", "19", "04", "2001", "NW3 5RG"),
+    NoDVAIssueDate("55667788", "BATSON", "BILLY", "26", "07", "1981", "01", "10", "2042", "", "", "", "NW3 5RG");
 
     private String dvaLicenceNumber, lastName, firstName, birthDay, birthMonth, birthYear, validToDay, validToMonth, validToYear, issueDay, issueMonth, issueYear, postcode;
 

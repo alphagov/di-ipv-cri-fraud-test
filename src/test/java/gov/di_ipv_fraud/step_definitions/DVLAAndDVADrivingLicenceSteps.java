@@ -294,4 +294,34 @@ public class DVLAAndDVADrivingLicenceSteps extends DrivingLicencePageObject  {
         back.click();
     }
 
+    @Then("Check you have entered your date of birth correctly DVA error should be displayed in the Error summary")
+    public void errorMessageForInvalidDVADOBIsDisplayed() {
+        new DVAEnterYourDetailsExactlyPage().invalidDVADOBErrorDisplayed();
+    }
+
+    @Then("Check you have entered your date of birth correctly DVA Field error message should be displayed")
+    public void fieldErrorMessageForInvalidDVADOBIsDisplayed() {
+        new DVAEnterYourDetailsExactlyPage().invalidDVADOBFieldErrorDisplayed();
+    }
+
+    @Then("Your date of birth must be in the past DVA error should be displayed in the Error summary")
+    public void errorMessageForFutureDVADOBIsDisplayed() {
+        new DVAEnterYourDetailsExactlyPage().futureDVADOBErrorDisplayed();
+    }
+
+    @Then("Your date of birth must be in the past DVA Field error message should be displayed")
+    public void fieldErrorForFutureDVADOBIsDisplayed() {
+        new DVAEnterYourDetailsExactlyPage().futureDVADOBFieldErrorDisplayed();
+    }
+
+    @Then("Proper DVA error message for no Date of Birth should be displayed")
+    public void properErrorMessageForNoDVADOBIsDisplayed() {
+        new DVAEnterYourDetailsExactlyPage().noDVADOBErrorDisplayed();
+    }
+
+    @Then("Field DVA error message for no Date of Birth should be displayed")
+    public void fieldErrorMessageForNoDVADOBIsDisplayed() {
+        new DVAEnterYourDetailsExactlyPage().noDVADOBFieldErrorDisplayed();
+    }
+
 }

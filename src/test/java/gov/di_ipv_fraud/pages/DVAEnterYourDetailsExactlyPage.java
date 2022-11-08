@@ -3,6 +3,7 @@ package gov.di_ipv_fraud.pages;
 import gov.di_ipv_fraud.utilities.BrowserUtils;
 import gov.di_ipv_fraud.utilities.DVADrivingLicenceSubject;
 import gov.di_ipv_fraud.utilities.Driver;
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -50,6 +51,12 @@ public class DVAEnterYourDetailsExactlyPage {
 
     @FindBy(id = "dvaLicenceNumber")
     public WebElement dvaLicenceNumber;
+
+    @FindBy(xpath = "//*[@class='govuk-error-summary error-summary']//*[@class='govuk-error-summary__body']//*[@class='govuk-list govuk-error-summary__list']//*[contains(@href,'#dvaDateOfBirth-day')]")
+    public WebElement DVAInvalidDOBError;
+
+    @FindBy(id = "dvaDateOfBirth-error")
+    public WebElement DVAInvalidDOBFieldError;
 
     public void userEntersDVAData(DVADrivingLicenceSubject dvaDrivingLicenceSubject) {
         dvaLicenceNumber.sendKeys(dvaDrivingLicenceSubject.getDVAlicenceNumber());
@@ -112,6 +119,36 @@ public class DVAEnterYourDetailsExactlyPage {
         LicenceIssueMonth.sendKeys(dvaDrivingLicenceSubject.getlicenceIssueMonth());
         LicenceIssueYear.sendKeys(dvaDrivingLicenceSubject.getlicenceIssueYear());
         Postcode.sendKeys(dvaDrivingLicenceSubject.getpostcode());
+    }
+
+    public void invalidDVADOBErrorDisplayed() {
+//        Assert.assertEquals("Enter your date of birth as it appears on your driving licence",DVAInvalidDOBError.getText());
+        Assert.assertEquals("Check you have entered your date of birth correctly",DVAInvalidDOBError.getText());
+    }
+
+    public void invalidDVADOBFieldErrorDisplayed() {
+        Assert.assertEquals("Error:\n" +
+                "Check you have entered your date of birth correctly",DVAInvalidDOBFieldError.getText());
+//        Assert.assertEquals("Error:\n" +
+//                "Enter your date of birth as it appears on your driving licence",DVAInvalidDOBFieldError.getText());
+    }
+
+    public void futureDVADOBErrorDisplayed() {
+        Assert.assertEquals("Your date of birth must be in the past",DVAInvalidDOBError.getText());
+    }
+
+    public void futureDVADOBFieldErrorDisplayed() {
+        Assert.assertEquals("Error:\n" +
+                "Your date of birth must be in the past",DVAInvalidDOBFieldError.getText());
+    }
+
+    public void noDVADOBErrorDisplayed() {
+        Assert.assertEquals("Enter your date of birth as it appears on your driving licence",DVAInvalidDOBError.getText());
+    }
+
+    public void noDVADOBFieldErrorDisplayed() {
+        Assert.assertEquals("Error:\n" +
+                "Enter your date of birth as it appears on your driving licence",DVAInvalidDOBFieldError.getText());
     }
 
 }

@@ -173,3 +173,126 @@ Feature: DVA Driving Licence Test
     Then I navigate to the Driving Licence verifiable issuer to check for a Invalid response
     And JSON response should contain error description Authorization permission denied and status code as 302
     And The test is complete and I close the driver
+
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence Last name with numbers error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for invalid Last name should be displayed in the Error summary
+    And Field error message for invalid Last name should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject      |
+      |InvalidDVALastNameWithNumbers |
+
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence Last name with special characters error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for invalid Last name should be displayed in the Error summary
+    And Field error message for invalid Last name should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject |
+      |InvalidDVALastNameWithSpecialChar |
+
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence No Last name in the Last name field error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for invalid Last name should be displayed in the Error summary
+    And Field error message for invalid Last name should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject |
+      |NoDVALastName |
+
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence First name with numbers error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for invalid First name should be displayed in the Error summary
+    And Field error message for invalid First name should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject      |
+      |InvalidDVAFirstNameWithNumbers |
+
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence First name with special characters error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for invalid First name should be displayed in the Error summary
+    And Field error message for invalid First name should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject |
+      |InvalidDVAFirstNameWithSpecialChar |
+
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence No First name in the First name field error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for invalid First name should be displayed in the Error summary
+    And Field error message for invalid First name should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject |
+      |NoDVAFirstName |
+
+    #    Currently failing
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence Date of birth that are not real error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Check you have entered your date of birth correctly DVA error should be displayed in the Error summary
+    And Check you have entered your date of birth correctly DVA Field error message should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject |
+      |InvalidDVADateOfBirth |
+
+#    Currently failing
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence Date of birth with special characters error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Check you have entered your date of birth correctly DVA error should be displayed in the Error summary
+    And Check you have entered your date of birth correctly DVA Field error message should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject |
+      |DVADOBWithSpecialCharacters |
+
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence Date of birth in the future error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Your date of birth must be in the past DVA error should be displayed in the Error summary
+    And Your date of birth must be in the past DVA Field error message should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject |
+      |DVADateOfBirthInFuture |
+
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence No Date in the Date of birth field error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper DVA error message for no Date of Birth should be displayed
+    And Field DVA error message for no Date of Birth should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject |
+      |NoDVADateOfBirth |
+
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence - No date in the Issue date field error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for invalid Issue date should be displayed in the Error summary
+    And Field error message for invalid Issue date should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject |
+      |NoDVAIssueDate |
