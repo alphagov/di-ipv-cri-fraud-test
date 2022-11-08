@@ -18,6 +18,7 @@ public enum DrivingLicenceSubject implements TestInput {
     InvalidFirstNameWithSpecialCharacters("PARKE610112PBFGH", "PARKER", "PETERE$£@", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "BS98 1TL"),
     NoFirstName("PARKE610112PBFGH", "PARKER", "", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "BS98 1TL"),
     InvalidMiddleNamesWithNumbers("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN567", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "BS98 1TL"),
+    InvalidMiddleNamesWithSpecialCharacters("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN)(*", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "BS98 1TL"),
     InvalidDateOfBirth("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "50", "72", "197", "09", "12", "2062", "23", "05", "1982", "12", "BS98 1TL"),
     DateOfBirthWithSpecialCharacters("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "@", "%*", "19 7", "09", "12", "2062", "23", "05", "1982", "12", "BS98 1TL"),
     DateOfBirthInFuture("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "10", "10", "2042", "09", "12", "2062", "23", "05", "1982", "12", "BS98 1TL"),
@@ -42,7 +43,10 @@ public enum DrivingLicenceSubject implements TestInput {
     NoIssueNumber("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "", "BS98 1TL"),
     PostcodeLessThan5Char("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "BS98"),
     PostcodeWithSpecialChar("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "B£$% 1$L"),
-    PostcodeWithNumericChar("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "1234 567");
+    PostcodeWithNumericChar("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "1234 567"),
+    PostcodeWithAlphaChar("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "ABCD XYZ"),
+    NoPostcode("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", ""),
+    InternationalPostcode("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "CA 95128");
 
 
     private String licenceNumber, lastName, firstName, middleNames, birthDay, birthMonth, birthYear, validToDay, validToMonth, validToYear, issueDay, issueMonth, issueYear, issueNumber, postcode;

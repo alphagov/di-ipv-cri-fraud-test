@@ -454,27 +454,48 @@ public class DrivingLicencePageObject extends UniversalSteps {
     }
 
     public void invalidDOBErrorDisplayed() {
-        Assert.assertTrue(InvalidDOBError.isDisplayed());
-        LOGGER.info(InvalidDOBError.getText());
+        Assert.assertEquals("Check you have entered your date of birth correctly",InvalidDOBError.getText());
     }
 
     public void invalidDateOfBirthFieldErrorDisplayed() {
-        Assert.assertTrue(InvalidDateOfBirthFieldError.isDisplayed());
-        LOGGER.info(InvalidDateOfBirthFieldError.getText());
+        Assert.assertEquals("Error:\n" +
+                "Check you have entered your date of birth correctly",InvalidDateOfBirthFieldError.getText());
+    }
+
+    public void noDOBErrorDisplayed() {
+        Assert.assertEquals("Enter your date of birth as it appears on your driving licence",InvalidDOBError.getText());
+    }
+
+    public void noDateOfBirthFieldErrorDisplayed() {
+        Assert.assertEquals("Error:\n" +
+                "Enter your date of birth as it appears on your driving licence",InvalidDateOfBirthFieldError.getText());
+    }
+
+    public void futureDOBErrorDisplayed() {
+        Assert.assertEquals("Your date of birth must be in the past",InvalidDOBError.getText());
+    }
+
+    public void futureDOBFieldErrorDisplayed() {
+        Assert.assertEquals("Error:\n" +
+                "Your date of birth must be in the past",InvalidDateOfBirthFieldError.getText());
     }
 
     public void invalidIssueDateErrorDisplayed() {
-        Assert.assertTrue(InvalidIssueDateError.isDisplayed());
-        LOGGER.info(InvalidIssueDateError.getText());
+        Assert.assertEquals("Enter the date as it appears on your driving licence",InvalidIssueDateError.getText());
     }
 
-//    public void invalidIssueDateErrorDisplayed() {
-//        Assert.assertEquals("The issue date must be in the past",InvalidIssueDateError.getText());
-//    }
-
     public void invalidIssueDateFieldErrorDisplayed() {
-        Assert.assertTrue(InvalidIssueDateFieldError.isDisplayed());
-        LOGGER.info(InvalidIssueDateFieldError.getText());
+        Assert.assertEquals("Error:\n" +
+                "Enter the date as it appears on your driving licence",InvalidIssueDateFieldError.getText());
+    }
+
+    public void futureIssueDateErrorDisplayed() {
+        Assert.assertEquals("The issue date must be in the past",InvalidIssueDateError.getText());
+    }
+
+    public void futureIssueDateFieldErrorDisplayed() {
+        Assert.assertEquals("Error:\n" +
+                "The issue date must be in the past",InvalidIssueDateFieldError.getText());
     }
 
     public void invalidValidToDateErrorDisplayed() {
@@ -514,15 +535,15 @@ public class DrivingLicencePageObject extends UniversalSteps {
     }
 
     public void invalidDrivingLicenceErrorDisplayed() {
-//        Assert.assertEquals("Enter the number exactly as it appears on your driving licence",InvalidDrivingLicenceError.getText());
-        Assert.assertEquals("Enter the number as it appears on your driving licence",InvalidDrivingLicenceError.getText());
+        Assert.assertEquals("Enter the number exactly as it appears on your driving licence",InvalidDrivingLicenceError.getText());
+//        Assert.assertEquals("Enter the number as it appears on your driving licence",InvalidDrivingLicenceError.getText());
     }
 
     public void invalidDrivingLicenceFieldErrorDisplayed() {
-        Assert.assertEquals("Error:\n" +
-                "Enter the number as it appears on your driving licence",DrivingLicenceFieldError.getText());
 //        Assert.assertEquals("Error:\n" +
-//                "Enter the number exactly as it appears on your driving licence",DrivingLicenceFieldError.getText());
+//                "Enter the number as it appears on your driving licence",DrivingLicenceFieldError.getText());
+        Assert.assertEquals("Error:\n" +
+                "Enter the number exactly as it appears on your driving licence",DrivingLicenceFieldError.getText());
     }
 
 //    public void invalidDrivingLicenceErrorDisplayed() {
@@ -579,34 +600,45 @@ public class DrivingLicencePageObject extends UniversalSteps {
         Assert.assertEquals("Enter your postcode",InvalidPostcodeError.getText());
     }
 
+    public void invalidPostcodeFieldErrorDisplayed() {
+        Assert.assertEquals("Error:\n" +
+                "Enter your postcode",InvalidPostcodeFieldError.getText());
+    }
+
+    public void internationalPostcodeErrorDisplayed() {
+        Assert.assertEquals("Enter a UK postcode",InvalidPostcodeError.getText());
+    }
+
+    public void internationalPostcodeFieldErrorDisplayed() {
+        Assert.assertEquals("Error:\n" +
+                "Enter a UK postcode",InvalidPostcodeFieldError.getText());
+    }
+
     public void invalidLastNameErrorDisplayed() {
-        Assert.assertTrue(InvalidLastNameError.isDisplayed());
-        LOGGER.info(InvalidLastNameError.getText());
+        Assert.assertEquals("Enter your last name as it appears on your driving licence",InvalidLastNameError.getText());
     }
 
     public void invalidLastNameFieldErrorDisplayed() {
-        Assert.assertTrue(InvalidLastNameFieldError.isDisplayed());
-        LOGGER.info(InvalidLastNameFieldError.getText());
+        Assert.assertEquals("Error:\n" +
+                "Enter your last name as it appears on your driving licence",InvalidLastNameFieldError.getText());
     }
 
     public void invalidFirstNameErrorDisplayed() {
-        Assert.assertTrue(InvalidFirstNameError.isDisplayed());
-        LOGGER.info(InvalidFirstNameError.getText());
+        Assert.assertEquals("Enter your first name as it appears on your driving licence",InvalidFirstNameError.getText());
     }
 
     public void invalidFirstNameFieldErrorDisplayed() {
-        Assert.assertTrue(InvalidFirstNameFieldError.isDisplayed());
-        LOGGER.info(InvalidFirstNameFieldError.getText());
+        Assert.assertEquals("Error:\n" +
+                "Enter your first name as it appears on your driving licence",InvalidFirstNameFieldError.getText());
     }
 
     public void invalidMiddleNamesErrorDisplayed() {
-        Assert.assertTrue(InvalidMiddleNamesError.isDisplayed());
-        LOGGER.info(InvalidMiddleNamesError.getText());
+        Assert.assertEquals("Enter any middle names as they appear on your driving licence",InvalidMiddleNamesError.getText());
     }
 
     public void invalidMiddleNamesFieldErrorDisplayed() {
-        Assert.assertTrue(InvalidMiddleNamesFieldError.isDisplayed());
-        LOGGER.info(InvalidMiddleNamesFieldError.getText());
+        Assert.assertEquals("Error:\n" +
+                "Enter any middle names as they appear on your driving licence",InvalidMiddleNamesFieldError.getText());
     }
 
 }

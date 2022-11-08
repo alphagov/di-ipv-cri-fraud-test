@@ -33,14 +33,34 @@ public class DVLAAndDVADrivingLicenceSteps extends DrivingLicencePageObject  {
         couldNotFindDetailsErrorDisplayed();
     }
 
-    @Then("Proper error message for invalid Date of Birth should be displayed")
-    public void properErrorMessageForInvalidDOBIsDisplayed() {
+    @Then("Check you have entered your date of birth correctly error should be displayed in the Error summary")
+    public void errorMessageForInvalidDOBIsDisplayed() {
         invalidDOBErrorDisplayed();
     }
 
-    @Then("Field error message for invalid Date of Birth should be displayed")
+    @Then("Check you have entered your date of birth correctly Field error message should be displayed")
     public void fieldErrorMessageForInvalidDateOfBirthIsDisplayed() {
         invalidDateOfBirthFieldErrorDisplayed();
+    }
+
+    @Then("Proper error message for no Date of Birth should be displayed")
+    public void properErrorMessageForNoDOBIsDisplayed() {
+        noDOBErrorDisplayed();
+    }
+
+    @Then("Field error message for no Date of Birth should be displayed")
+    public void fieldErrorMessageForNoDOBIsDisplayed() {
+        noDateOfBirthFieldErrorDisplayed();
+    }
+
+    @Then("Your date of birth must be in the past error should be displayed in the Error summary")
+    public void errorMessageForFutureDOBIsDisplayed() {
+        futureDOBErrorDisplayed();
+    }
+
+    @Then("Your date of birth must be in the past Field error message should be displayed")
+    public void fieldErrorMessageForFutureDOBIsDisplayed() {
+        futureDOBFieldErrorDisplayed();
     }
 
     @Then("Proper error message for invalid Issue date should be displayed in the Error summary")
@@ -51,6 +71,16 @@ public class DVLAAndDVADrivingLicenceSteps extends DrivingLicencePageObject  {
     @Then("Field error message for invalid Issue date should be displayed")
     public void fieldErrorMessageForInvalidIssueDateIsDisplayed() {
         invalidIssueDateFieldErrorDisplayed();
+    }
+
+    @Then("The issue date must be in the past error message should be displayed in the Error summary")
+    public void errorMessageForFutureIssueDateIsDisplayed() {
+        futureIssueDateErrorDisplayed();
+    }
+
+    @Then("The issue date must be in the past Field error message should be displayed")
+    public void fieldErrorMessageForFutureIssueDateIsDisplayed() {
+        futureIssueDateFieldErrorDisplayed();
     }
 
     @Then("Proper error message for invalid Valid to date should be displayed in the Error summary")
@@ -102,11 +132,6 @@ public class DVLAAndDVADrivingLicenceSteps extends DrivingLicencePageObject  {
     public void fieldErrorMessageForInvalidDrivingLicenceIsDisplayed() {
         invalidDrivingLicenceFieldErrorDisplayed();
     }
-
-//    @Then("Proper error message for invalid Driving Licence should be displayed")
-//    public void properErrorMessageForInvalidDrivingLicenceIsDisplayed() {
-//        invalidDrivingLicenceErrorDisplayed();
-//    }
 
     @Then("Your issue number should be 2 numbers long error message should be displayed in the Error summary")
     public void shortIssueNumberErrorMessageIsDisplayed() {
@@ -161,6 +186,21 @@ public class DVLAAndDVADrivingLicenceSteps extends DrivingLicencePageObject  {
     @Then("Proper error message for invalid Postcode should be displayed in the Error summary")
     public void properErrorMessageForInvalidPostcodeIsDisplayed() {
         invalidPostcodeErrorDisplayed();
+    }
+
+    @Then("Field error message for invalid Postcode should be displayed")
+    public void fieldErrorMessageForInvalidPostcodeIsDisplayed() {
+        invalidPostcodeFieldErrorDisplayed();
+    }
+
+    @Then("Enter a UK postcode should be displayed in the Error summary")
+    public void errorMessageForInternationalPostcodeIsDisplayed() {
+        internationalPostcodeErrorDisplayed();
+    }
+
+    @Then("Enter a UK postcode Field error message should be displayed")
+    public void fieldErrorMessageForInternationalPostcodeIsDisplayed() {
+        internationalPostcodeFieldErrorDisplayed();
     }
 
     @Then("Proper error message for invalid Last name should be displayed in the Error summary")

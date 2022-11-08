@@ -43,7 +43,6 @@ Feature: DVA Driving Licence Test
       |DVADrivingLicenceSubject      |
       |IncorrectDVADrivingLicenceNumber |
 
-
   @DVADrivingLicence_test @build
   Scenario Outline: DVA Driving Licence details page unhappy path with IncorrectDVADateOfBirth
     Given User enters DVA data as a <DVADrivingLicenceSubject>
