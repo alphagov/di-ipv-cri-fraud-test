@@ -57,5 +57,4 @@ public class EnterYourDetailsExactlyDVLAPage {
 
     @FindBy(id = "postcode")
     public WebElement Postcode;
-
 }

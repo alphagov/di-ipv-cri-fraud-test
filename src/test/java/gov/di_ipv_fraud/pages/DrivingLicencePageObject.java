@@ -1,6 +1,5 @@
 package gov.di_ipv_fraud.pages;
 
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -13,10 +12,13 @@ import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class DrivingLicencePageObject extends UniversalSteps {
 
     private static final Logger LOGGER = Logger.getLogger(DrivingLicencePageObject.class.getName());
@@ -132,16 +134,20 @@ public class DrivingLicencePageObject extends UniversalSteps {
     @FindBy(xpath = "//button[@class='govuk-button button']")
     public WebElement Continue;
 
-    @FindBy(xpath = "//*[@class='govuk-error-summary error-summary']//*[@class='govuk-error-summary__body']//*[@class='govuk-list govuk-error-summary__list']//*[contains(@href,'#dateOfBirth-day')]")
+    @FindBy(
+            xpath =
+                    "//*[@class='govuk-error-summary error-summary']//*[@class='govuk-error-summary__body']//*[@class='govuk-list govuk-error-summary__list']//*[contains(@href,'#dateOfBirth-day')]")
     public WebElement InvalidDOBError;
 
-    @FindBy(xpath = "//*[@class='govuk-error-summary error-summary']//*[@class='govuk-error-summary__body']//*[@class='govuk-list govuk-error-summary__list']//*[contains(@href,'#drivingLicenceNumber')]")
+    @FindBy(
+            xpath =
+                    "//*[@class='govuk-error-summary error-summary']//*[@class='govuk-error-summary__body']//*[@class='govuk-list govuk-error-summary__list']//*[contains(@href,'#drivingLicenceNumber')]")
     public WebElement InvalidDrivingLicenceError;
 
     @FindBy(xpath = "//*[@class='govuk-back-link']")
     public WebElement back;
 
-    public DrivingLicencePageObject () {
+    public DrivingLicencePageObject() {
         PageFactory.initElements(Driver.get(), this);
     }
 
@@ -271,7 +277,8 @@ public class DrivingLicencePageObject extends UniversalSteps {
         Assert.assertEquals(expectedText, actualText);
     }
 
-    public void jsonErrorResponse(String testErrorDescription, String testStatusCode) throws JsonProcessingException {
+    public void jsonErrorResponse(String testErrorDescription, String testStatusCode)
+            throws JsonProcessingException {
         String result = JSONPayload.getText();
         LOGGER.info("result = " + result);
 
@@ -352,7 +359,8 @@ public class DrivingLicencePageObject extends UniversalSteps {
         BrowserUtils.waitForPageToLoad(10);
     }
 
-    public void userReEntersDataAsADrivingLicenceSubject(DrivingLicenceSubject drivingLicenceSubject) {
+    public void userReEntersDataAsADrivingLicenceSubject(
+            DrivingLicenceSubject drivingLicenceSubject) {
         LicenceNumber.clear();
         LastName.clear();
         FirstName.clear();
@@ -414,5 +422,4 @@ public class DrivingLicencePageObject extends UniversalSteps {
         Assert.assertTrue(InvalidDrivingLicenceError.isDisplayed());
         LOGGER.info(InvalidDrivingLicenceError.getText());
     }
-
 }

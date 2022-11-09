@@ -4,12 +4,10 @@ import gov.di_ipv_fraud.pages.*;
 import gov.di_ipv_fraud.utilities.BrowserUtils;
 import gov.di_ipv_fraud.utilities.ConfigurationReader;
 import gov.di_ipv_fraud.utilities.Driver;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-
 
 public class CommonSteps {
 
@@ -29,5 +27,4 @@ public class CommonSteps {
     public void i_should_get_five_options() {
         Assert.assertTrue(new OrchestratorStubPage().UkDrivingLicence.isDisplayed());
     }
-
 }

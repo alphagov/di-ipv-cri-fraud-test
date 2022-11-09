@@ -40,7 +40,8 @@ public class ConfigurationReader {
     private static String getEnvironmentVariableOrError(String variable) {
         String value = System.getenv(variable);
         if (value == null) {
-            throw new IllegalArgumentException(String.format("Environment variable %s is not set", variable));
+            throw new IllegalArgumentException(
+                    String.format("Environment variable %s is not set", variable));
         }
         return value;
     }
