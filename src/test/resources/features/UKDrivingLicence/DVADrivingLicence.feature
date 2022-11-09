@@ -174,6 +174,7 @@ Feature: DVA Driving Licence Test
     And JSON response should contain error description Authorization permission denied and status code as 302
     And The test is complete and I close the driver
 
+###########  DVA Field Validations ##########
   @DVADrivingLicence_test @build
   Scenario Outline: DVA Driving Licence Last name with numbers error validation
     Given User enters DVA data as a <DVADrivingLicenceSubject>
@@ -276,7 +277,7 @@ Feature: DVA Driving Licence Test
       |DVADateOfBirthInFuture |
 
   @DVADrivingLicence_test @build
-  Scenario Outline: DVA Driving Licence No Date in the Date of birth field error validation
+  Scenario Outline: DVA Driving Licence - No Date in the Date of birth field error validation
     Given User enters DVA data as a <DVADrivingLicenceSubject>
     When User clicks on continue
     Then Proper DVA error message for no Date of Birth should be displayed
@@ -287,12 +288,215 @@ Feature: DVA Driving Licence Test
       |NoDVADateOfBirth |
 
   @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence Issue date that are not real error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper DVA error message for invalid Issue date should be displayed in the Error summary
+    And Field DVA error message for invalid Issue date should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject |
+      |DVAInvalidIssueDate |
+
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence Issue date with special characters error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper DVA error message for invalid Issue date should be displayed in the Error summary
+    And Field DVA error message for invalid Issue date should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject |
+      |DVAIssueDateWithSpecialChar |
+
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence Issue date in the future error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then The issue date must be in the past DVA error message should be displayed in the Error summary
+    And The issue date must be in the past DVA Field error message should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject |
+      |DVAIssueDateInFuture |
+
+  @DVADrivingLicence_test @build
   Scenario Outline: DVA Driving Licence - No date in the Issue date field error validation
     Given User enters DVA data as a <DVADrivingLicenceSubject>
     When User clicks on continue
-    Then Proper error message for invalid Issue date should be displayed in the Error summary
-    And Field error message for invalid Issue date should be displayed
+    Then Proper DVA error message for invalid Issue date should be displayed in the Error summary
+    And Field DVA error message for invalid Issue date should be displayed
     And The test is complete and I close the driver
     Examples:
       |DVADrivingLicenceSubject |
       |NoDVAIssueDate |
+
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence Valid to date that are not real error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for invalid Valid to date should be displayed in the Error summary
+    And Field error message for invalid Valid to date should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject |
+      |DVAInvalidValidToDate |
+
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence Valid to date with special characters error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for invalid Valid to date should be displayed in the Error summary
+    And Field error message for invalid Valid to date should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject |
+      |DVAValidToDateWithSpecialChar |
+
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence Valid to date in the past error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for expired driving licence should be displayed in the Error summary
+    And Field error message for expired driving licence should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject |
+      |DVAValidToDateInPast |
+
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence - No date in the Valid to date field error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for invalid Valid to date should be displayed in the Error summary
+    And Field error message for invalid Valid to date should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject |
+      |NoDVAValidToDate |
+
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence number less than 8 characters error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Your licence number should be 8 characters long error message should be displayed in the Error summary
+    And Your licence number should be 8 characters long Field error should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject |
+      |DVADrivingLicenceNumLessThan8Char |
+
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence number with special characters and spaces error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Your licence number should not include any symbols or spaces DVA error should be displayed in the Error summary
+    And Your licence number should not include any symbols or spaces DVA Field error should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject |
+      |DVADrivingLicenceNumWithSpecialChar |
+
+    #    Currently failing
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence number with alpha numeric characters error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper DVA error message for invalid Licence number should be displayed in the Error summary
+    And Field DVA error message for invalid Licence number should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject |
+      |DVADrivingLicenceNumWithAlphanumericChar |
+
+    #    Currently failing
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence number with alpha characters error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper DVA error message for invalid Licence number should be displayed in the Error summary
+    And Field DVA error message for invalid Licence number should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject |
+      |DVADrivingLicenceNumberWithAlphaChar |
+
+    #    Currently failing
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence - No Licence number in the Licence number field error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper DVA error message for invalid Licence number should be displayed in the Error summary
+    And Field DVA error message for invalid Licence number should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject |
+      |NoDVADrivingLicenceNumber |
+
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence Postcode less than 5 characters error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Your postcode should be between 5 and 7 characters error should be displayed in the Error summary
+    And Your postcode should be between 5 and 7 characters Field error should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject |
+      |DVAPostcodeLessThan5Char |
+
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence Postcode with special characters error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Your postcode should only include numbers and letters error message should be displayed in the Error summary
+    And Your postcode should only include numbers and letters Field error should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject |
+      |DVAPostcodeWithSpecialChar |
+
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence Postcode with numeric characters error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Your postcode should only include numbers and letters error message should be displayed in the Error summary
+    And Your postcode should only include numbers and letters Field error should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject |
+      |DVAPostcodeWithNumericChar |
+
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence Postcode with alpha characters error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Your postcode should only include numbers and letters error message should be displayed in the Error summary
+    And Your postcode should only include numbers and letters Field error should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject |
+      |DVAPostcodeWithAlphaChar |
+
+    #    currently failing
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence - No Postcode in the Postcode field error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Proper error message for invalid Postcode should be displayed in the Error summary
+    And Field error message for invalid Postcode should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject |
+      |NoDVAPostcode |
+
+    #    currently failing
+  @DVADrivingLicence_test @build
+  Scenario Outline: DVA Driving Licence International Postcode error validation
+    Given User enters DVA data as a <DVADrivingLicenceSubject>
+    When User clicks on continue
+    Then Enter a UK postcode should be displayed in the Error summary
+    And Enter a UK postcode Field error message should be displayed
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject      |
+      |DVAInternationalPostcode |

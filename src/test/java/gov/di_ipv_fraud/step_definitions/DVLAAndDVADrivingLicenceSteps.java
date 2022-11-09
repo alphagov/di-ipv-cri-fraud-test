@@ -324,4 +324,54 @@ public class DVLAAndDVADrivingLicenceSteps extends DrivingLicencePageObject  {
         new DVAEnterYourDetailsExactlyPage().noDVADOBFieldErrorDisplayed();
     }
 
+    @Then("Proper DVA error message for invalid Issue date should be displayed in the Error summary")
+    public void properDVAErrorForInvalidIssueDateIsDisplayed() {
+        new DVAEnterYourDetailsExactlyPage().invalidDVAIssueDateErrorDisplayed();
+    }
+
+    @Then("Field DVA error message for invalid Issue date should be displayed")
+    public void fieldDVAErrorForInvalidIssueDateIsDisplayed() {
+        new DVAEnterYourDetailsExactlyPage().invalidDVAIssueDateFieldErrorDisplayed();
+    }
+
+    @Then("The issue date must be in the past DVA error message should be displayed in the Error summary")
+    public void errorMessageForFutureDVAIssueDateIsDisplayed() {
+        new DVAEnterYourDetailsExactlyPage().futureIssueDateDVAErrorDisplayed();
+    }
+
+    @Then("The issue date must be in the past DVA Field error message should be displayed")
+    public void fieldErrorMessageForFutureDVAIssueDateIsDisplayed() {
+        new DVAEnterYourDetailsExactlyPage().futureIssueDateDVAFieldErrorDisplayed();
+    }
+
+    @Then("Your licence number should be 8 characters long error message should be displayed in the Error summary")
+    public void shortDVADrivingLicenceNumberErrorMessageIsDisplayed() {
+        new DVAEnterYourDetailsExactlyPage().shortDVADrivingLicenceNumErrorDisplayed();
+    }
+
+    @Then("Your licence number should be 8 characters long Field error should be displayed")
+    public void shortDVADrivingLicenceNumberFieldErrorIsDisplayed() {
+        new DVAEnterYourDetailsExactlyPage().shortDVADrivingLicenceNumFieldErrorDisplayed();
+    }
+
+    @Then("Your licence number should not include any symbols or spaces DVA error should be displayed in the Error summary")
+    public void errorForDVADrivingLicenceNumWithSpecialCharIsDisplayed() {
+        new DVAEnterYourDetailsExactlyPage().specialCharDrivingLicenceDVAErrorDisplayed();
+    }
+
+    @Then("Your licence number should not include any symbols or spaces DVA Field error should be displayed")
+    public void fieldErrorForDVADrivingLicenceNumWithSpecialCharIsDisplayed() {
+        new DVAEnterYourDetailsExactlyPage().specialCharDrivingLicenceDVAFieldErrorDisplayed();
+    }
+
+    @Then("Proper DVA error message for invalid Licence number should be displayed in the Error summary")
+    public void properDVAErrorForInvalidDrivingLicenceIsDisplayed() {
+        new DVAEnterYourDetailsExactlyPage().invalidDrivingLicenceDVAErrorDisplayed();
+    }
+
+    @Then("Field DVA error message for invalid Licence number should be displayed")
+    public void fieldDVAErrorForInvalidDrivingLicenceIsDisplayed() {
+        new DVAEnterYourDetailsExactlyPage().invalidDrivingLicenceFieldDVAErrorDisplayed();
+    }
+
 }

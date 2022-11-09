@@ -187,6 +187,7 @@ Feature: Driving Licence Test
     And JSON response should contain error description Authorization permission denied and status code as 302
     And The test is complete and I close the driver
 
+    ###########  DVLA Field Validations ##########
   @DVLADrivingLicence_test @build
   Scenario Outline: DVLA Driving Licence Last name with numbers error validation
     Given User enters data as a <DrivingLicenceSubject>
@@ -210,7 +211,7 @@ Feature: Driving Licence Test
       |InvalidLastNameWithSpecialCharacters |
 
   @DVLADrivingLicence_test @build
-  Scenario Outline: DVLA Driving Licence No Last name in the Last name field error validation
+  Scenario Outline: DVLA Driving Licence - No Last name in the Last name field error validation
     Given User enters data as a <DrivingLicenceSubject>
     When User clicks on continue
     Then Proper error message for invalid Last name should be displayed in the Error summary
@@ -243,7 +244,7 @@ Feature: Driving Licence Test
       |InvalidFirstNameWithSpecialCharacters |
 
   @DVLADrivingLicence_test @build
-  Scenario Outline: DVLA Driving Licence No First name in the First name field error validation
+  Scenario Outline: DVLA Driving Licence - No First name in the First name field error validation
     Given User enters data as a <DrivingLicenceSubject>
     When User clicks on continue
     Then Proper error message for invalid First name should be displayed in the Error summary
@@ -311,7 +312,7 @@ Feature: Driving Licence Test
       |DateOfBirthInFuture |
 
   @DVLADrivingLicence_test @build
-  Scenario Outline: DVLA Driving Licence No Date in the Date of birth field error validation
+  Scenario Outline: DVLA Driving Licence - No Date in the Date of birth field error validation
     Given User enters data as a <DrivingLicenceSubject>
     When User clicks on continue
     Then Proper error message for no Date of Birth should be displayed
@@ -388,7 +389,7 @@ Feature: Driving Licence Test
       |ValidToDateWithSpecialCharacters |
 
   @DVLADrivingLicence_test @build
-  Scenario Outline: DVLA Driving Licence Valid to date in the past - error validation
+  Scenario Outline: DVLA Driving Licence Valid to date in the past error validation
     Given User enters data as a <DrivingLicenceSubject>
     When User clicks on continue
     Then Proper error message for expired driving licence should be displayed in the Error summary
@@ -399,7 +400,7 @@ Feature: Driving Licence Test
       |ValidToDateInPast |
 
   @DVLADrivingLicence_test @build
-  Scenario Outline: DVLA Driving Licence - No date in the Valid to date field - error validation
+  Scenario Outline: DVLA Driving Licence - No date in the Valid to date field error validation
     Given User enters data as a <DrivingLicenceSubject>
     When User clicks on continue
     Then Proper error message for invalid Valid to date should be displayed in the Error summary
@@ -475,7 +476,7 @@ Feature: Driving Licence Test
     And Your issue number should be 2 numbers long Field error should be displayed
     And The test is complete and I close the driver
     Examples:
-      |DrivingLicenceSubject      |
+      |DrivingLicenceSubject |
       |IssueNumberLessThan2Char |
 
   @DVLADrivingLicence_test @build
@@ -486,7 +487,7 @@ Feature: Driving Licence Test
     And Your issue number should not include any symbols or spaces Field error should be displayed
     And The test is complete and I close the driver
     Examples:
-      |DrivingLicenceSubject      |
+      |DrivingLicenceSubject |
       |IssueNumberWithSpecialChar |
 
 #    currently failing
@@ -498,7 +499,7 @@ Feature: Driving Licence Test
     And Field error message for invalid Issue number should be displayed
     And The test is complete and I close the driver
     Examples:
-      |DrivingLicenceSubject      |
+      |DrivingLicenceSubject |
       |IssueNumberWithAlphanumericChar |
 
     #    currently failing
@@ -510,7 +511,7 @@ Feature: Driving Licence Test
     And Field error message for invalid Issue number should be displayed
     And The test is complete and I close the driver
     Examples:
-      |DrivingLicenceSubject      |
+      |DrivingLicenceSubject |
       |IssueNumberWithAlphaChar |
 
   @DVLADrivingLicence_test @build
@@ -521,7 +522,7 @@ Feature: Driving Licence Test
     And Field error message for invalid Issue number should be displayed
     And The test is complete and I close the driver
     Examples:
-      |DrivingLicenceSubject      |
+      |DrivingLicenceSubject |
       |NoIssueNumber |
 
   @DVLADrivingLicence_test @build
@@ -532,7 +533,7 @@ Feature: Driving Licence Test
     And Your postcode should be between 5 and 7 characters Field error should be displayed
     And The test is complete and I close the driver
     Examples:
-      |DrivingLicenceSubject      |
+      |DrivingLicenceSubject |
       |PostcodeLessThan5Char |
 
   @DVLADrivingLicence_test @build
@@ -543,7 +544,7 @@ Feature: Driving Licence Test
     And Your postcode should only include numbers and letters Field error should be displayed
     And The test is complete and I close the driver
     Examples:
-      |DrivingLicenceSubject      |
+      |DrivingLicenceSubject |
       |PostcodeWithSpecialChar |
 
   @DVLADrivingLicence_test @build
@@ -577,7 +578,7 @@ Feature: Driving Licence Test
     And Field error message for invalid Postcode should be displayed
     And The test is complete and I close the driver
     Examples:
-      |DrivingLicenceSubject      |
+      |DrivingLicenceSubject |
       |NoPostcode |
 
 #    currently failing
@@ -589,5 +590,5 @@ Feature: Driving Licence Test
     And Enter a UK postcode Field error message should be displayed
     And The test is complete and I close the driver
     Examples:
-      |DrivingLicenceSubject      |
+      |DrivingLicenceSubject |
       |InternationalPostcode |

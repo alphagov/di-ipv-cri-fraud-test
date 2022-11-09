@@ -20,7 +20,26 @@ public enum DVADrivingLicenceSubject implements TestInput {
     DVADOBWithSpecialCharacters("55667788", "BATSON", "BILLY", "@", "*&", "19 7", "01", "10", "2042", "19", "04", "2001", "NW3 5RG"),
     DVADateOfBirthInFuture("55667788", "BATSON", "BILLY", "10", "10", "2042", "01", "10", "2042", "19", "04", "2001", "NW3 5RG"),
     NoDVADateOfBirth("55667788", "BATSON", "BILLY", "", "", "", "01", "10", "2042", "19", "04", "2001", "NW3 5RG"),
-    NoDVAIssueDate("55667788", "BATSON", "BILLY", "26", "07", "1981", "01", "10", "2042", "", "", "", "NW3 5RG");
+    DVAInvalidIssueDate("55667788", "BATSON", "BILLY", "26", "07", "1981", "01", "10", "2042", "AA", "BB", "ABCC", "NW3 5RG"),
+    DVAIssueDateWithSpecialChar("55667788", "BATSON", "BILLY", "26", "07", "1981", "01", "10", "2042", "&", "^%", "£$ ^", "NW3 5RG"),
+    DVAIssueDateInFuture("55667788", "BATSON", "BILLY", "26", "07", "1981", "01", "10", "2042", "1", "10", "2043", "NW3 5RG"),
+    NoDVAIssueDate("55667788", "BATSON", "BILLY", "26", "07", "1981", "01", "10", "2042", "", "", "", "NW3 5RG"),
+    DVAInvalidValidToDate("55667788", "BATSON", "BILLY", "26", "07", "1981", "50", "10", "2030", "19", "04", "2001", "NW3 5RG"),
+    DVAValidToDateWithSpecialChar("55667788", "BATSON", "BILLY", "26", "07", "1981", "!@", "£$", "%^ *", "19", "04", "2001", "NW3 5RG"),
+    DVAValidToDateInPast("55667788", "BATSON", "BILLY", "26", "07", "1981", "10", "1", "2010", "19", "04", "2001", "NW3 5RG"),
+    NoDVAValidToDate("55667788", "BATSON", "BILLY", "26", "07", "1981", "", "", "", "19", "04", "2001", "NW3 5RG"),
+    DVADrivingLicenceNumLessThan8Char("5566778", "BATSON", "BILLY", "26", "07", "1981", "01", "10", "2042", "19", "04", "2001", "NW3 5RG"),
+    DVADrivingLicenceNumWithSpecialChar("55667^&*", "BATSON", "BILLY", "26", "07", "1981", "01", "10", "2042", "19", "04", "2001", "NW3 5RG"),
+    DVADrivingLicenceNumWithAlphanumericChar("55667ABC", "BATSON", "BILLY", "26", "07", "1981", "01", "10", "2042", "19", "04", "2001", "NW3 5RG"),
+    DVADrivingLicenceNumberWithAlphaChar("XYZabdAB", "BATSON", "BILLY", "26", "07", "1981", "01", "10", "2042", "19", "04", "2001", "NW3 5RG"),
+    NoDVADrivingLicenceNumber("", "BATSON", "BILLY", "26", "07", "1981", "01", "10", "2042", "19", "04", "2001", "NW3 5RG"),
+    DVAPostcodeLessThan5Char("55667788", "BATSON", "BILLY", "26", "07", "1981", "01", "10", "2042", "19", "04", "2001", "E20A"),
+    DVAPostcodeWithSpecialChar("55667788", "BATSON", "BILLY", "26", "07", "1981", "01", "10", "2042", "19", "04", "2001", "NW* ^%G"),
+    DVAPostcodeWithNumericChar("55667788", "BATSON", "BILLY", "26", "07", "1981", "01", "10", "2042", "19", "04", "2001", "123 456"),
+    DVAPostcodeWithAlphaChar("55667788", "BATSON", "BILLY", "26", "07", "1981", "01", "10", "2042", "19", "04", "2001", "ABC XYZ"),
+    NoDVAPostcode("55667788", "BATSON", "BILLY", "26", "07", "1981", "01", "10", "2042", "19", "04", "2001", ""),
+    DVAInternationalPostcode("55667788", "BATSON", "BILLY", "26", "07", "1981", "01", "10", "2042", "19", "04", "2001", "CA 95128");
+
 
     private String dvaLicenceNumber, lastName, firstName, birthDay, birthMonth, birthYear, validToDay, validToMonth, validToYear, issueDay, issueMonth, issueYear, postcode;
 
