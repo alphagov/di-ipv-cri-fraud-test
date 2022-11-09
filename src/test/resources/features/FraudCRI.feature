@@ -232,7 +232,7 @@ Feature: Fraud CRI
     And The test is complete and I close the driver
 
   # User with surname CI6 will return the U015 code and will return CI as P01 in the VC
-  @pep_test_all_users @build
+  @pep_test_all_users @build @test
   Scenario Outline: Edit User Happy Path with pep CI (STUB)
     Given I navigate to the IPV Core Stub
     And I click the Fraud CRI for the Build environment
@@ -250,8 +250,11 @@ Feature: Fraud CRI
     And The test is complete and I close the driver
 
     Examples:
-      | name            | dob            | ci  | score |
-      | ANTHONY CI6     | 17/02/1963     | P01 |    2  |
+      | name                  | dob            | ci   | score |
+      | ANTHONY CI6           | 17/02/1963     | P01  |    2  |
+      | ANTHONY CI4           | 17/02/1963     | T03  |    0  |
+      | ANTHONY NO_FILE_35    | 17/02/1963     |      |    1  |
+
 
   @pep_test_all_users @staging
   Scenario Outline: Edit User Happy Path with pep CI (STUB)
@@ -370,4 +373,4 @@ Feature: Fraud CRI
 
     Examples:
       | name                    | dob            | ci  | score |
-      | ANTHONY ROBERTS         | 25/06/1959     |     |   2   |
+      | ANTHONY ROBERTS         | 25/06/1959     |     |   1   |
