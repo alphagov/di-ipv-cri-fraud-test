@@ -345,9 +345,10 @@ Feature: Fraud CRI
     And JSON payload should contain ci <ci> and score <score>
     And The test is complete and I close the driver
 
+    #Pep is skipped due to zero decision score
     Examples:
       | name                    | dob            | ci  | score |
-      | ANTHONY ROBERTS         | 25/06/1959     |     |   2   |
+      | ANTHONY ROBERTS         | 25/06/1959     |     |   1   |
 
   @test_PEP_user_with_multiple_addresses @build
   Scenario Outline: Edit PEP User with multiple addresses (STUB)
