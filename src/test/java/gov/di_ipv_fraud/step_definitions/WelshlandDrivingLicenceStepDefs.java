@@ -12,7 +12,16 @@ public class WelshlandDrivingLicenceStepDefs extends WelshLangDrivingLicencePage
     public void iAddACookieToChangeTheLanguageToWelsh() {
 
         changeLanguageToWelsh();
+    }
 
+    @Given("I view the Beta banner")
+    public void iViewTheBetaBanner() {
+        betaBanner();
+    }
+
+    @Then("the text reads “BETA Mae hwn yn wasanaeth newydd – bydd eich adborth \\(agor mewn tab newydd) yn ein helpu i'w wella.”")
+    public void theTextReadsBETAMaeHwnYnWasanaethNewyddByddEichAdborthAgorMewnTabNewyddYnEinHelpuIWWella() {
+        betaBannerSentenceWelsh();
     }
 
     @Then("I check the page title Pwy wnaeth gyhoeddi eich trwydded yrru y DU?")
@@ -43,15 +52,9 @@ public class WelshlandDrivingLicenceStepDefs extends WelshLangDrivingLicencePage
 
 
     @And("I see the sentence  I see the sentence starts with “Gallwch ddod o hyd i hwn yn adran\"")
-    public void iSeeTheSentenceISeeTheSentenceStartsWithGallwchDdodOHydIHwnYnAdran() throws Throwable
-    {    licenceSelectionSentence();
+    public void iSeeTheSentenceISeeTheSentenceStartsWithGallwchDdodOHydIHwnYnAdran() throws Throwable {
+        licenceSelectionSentence();
     }
-
-
-   /* @Then("^I should on the page DVLA $")
-    public void i_should_be_on_the_DVLA_page() {
-        pageTitleDVLAValidation();
-    }*/
 
     @Then("I should on the page DVLA and validate title")
     public void iShouldOnThePageDVLAAndValidateTitle() {
@@ -62,6 +65,7 @@ public class WelshlandDrivingLicenceStepDefs extends WelshLangDrivingLicencePage
     public void iShouldOnThePageDVAAndValidateTitle() {
         pageTitleDVAValidationWelsh();
     }
+
     @And("I see the heading Rhowch eich manylion yn union fel maent yn ymddangos ar eich trwydded yrru")
     public void iSeeTheHeadingRhowchEichManylionYnUnionFelMaentYnYmddangosArEichTrwyddedYrru() {
         dvlaPageHeading();
@@ -72,6 +76,7 @@ public class WelshlandDrivingLicenceStepDefs extends WelshLangDrivingLicencePage
     public void iSeeTheSentenceByddwnYnGwirioEichManylionGydaRDVLA() {
         dvlaSentenceValidationWelsh();
     }
+
     @And("I see the sentence starts with “Byddwn yn gwirio eich manylion gyda'r DVA”")
     public void iSeeTheSentenceStartsWithByddwnYnGwirioEichManylionGydaRDVA() {
         dvaSentenceValidatioWelsh();
@@ -150,38 +155,31 @@ public class WelshlandDrivingLicenceStepDefs extends WelshLangDrivingLicencePage
     }
 
 
-
     @Then("Dyma r dyddiad yn adran 4b o ch trwydded, er enghraifft 27 5 2019")
     public void dymaRDyddiadYnAdranAOChTrwyddedErEnghraifftValidityDate() {
         validityDateSentence();
 
     }
 
-
-
     @Then("I can see the Valid to date field titled “Yn ddilys tan”")
     public void iCanSeeTheValidToDateFieldTitledYnDdilysTan() {
         dateFieldTitle();
     }
-
 
     @Given("I can see the licence number field titled “Rhif trwydded”")
     public void iSelectedDVLAOnThePreviousPage() {
         licenceNumberWelsh();
     }
 
-
     @And("I see the sentence “Dyma'r rhif hir yn adran  ar eich trwydded”")
     public void iSeeTheSentenceDymaRRhifHirYnAdranArEichTrwydded() {
         licenceSentence();
     }
 
-
     @Then("I can see the issue number field titled “Dyddiad cyhoeddi”")
     public void iCanSeeTheIssueNumberFieldTitledDyddiadCyhoeddi() {
         issueNumberWelsh();
     }
-
 
     @And("I  can see “Dyma r rhif  ddigid ar ôl y gofod yn adran  o'ch trwydded”")
     public void iCanSeeDymaRRhifDdigidArÔlYGofodYnAdranOChTrwydded() {
@@ -218,147 +216,205 @@ public class WelshlandDrivingLicenceStepDefs extends WelshLangDrivingLicencePage
         noDrivingLicenceOptionWelsh();
     }
 
+    @And("Proper error message for invalid Driving Licence \"Rhaid i'ch dyddiad geni fod yn y gorffennol”")
+    public void properErrorMessageForInvalidDrivingLicenceRhaidIChDyddiadGeniFodYnYGorffennol() throws Throwable {    // Write code here that turns the phrase above into concrete actions    throw new cucumber.api.PendingException();}
+        inValidDLText();
+    }
+
+    @Then("Proper error message for invalid IssueDate “Rhowch y dyddiad fel y mae'n ymddangos ar eich trwydded yrru”")
+    public void properErrorMessageForInvalidIssueDateRhowchYDyddiadFelYMaeNYmddangosArEichTrwyddedYrru() {
+        inValidIssueDateText();
+    }
+
+    @When("I enter the invalid last name and first name")
+    public void iEnterTheInvalidLastNameAndFirstName() {
+        invalidlastAndFirstNameWelsh();
+    }
+
+    @Then("the validation text reads “Mae problem”")
+    public void theValidationTextReadsMaeProblem() {
+        thereIsaProblemText();
+    }
+
+    @And("I see “Rhowch eich enw olaf fel y mae'n ymddangos ar eich trwydded yrru”")
+    public void rhowchEichEnwOlafFelYMaeNYmddangosArEichTrwyddedYrru() {
+        lastNameErrorSentenceWelsh();
+    }
+
+    @And("I see “Rhowch eich enw cyntaf fel y mae'n ymddangos ar eich trwydded yrru”")
+    public void iSeeRhowchEichEnwCyntafFelYMaeNYmddangosArEichTrwyddedYrru() {
+        firstNameErrorSentenceWelsh();
+    }
 
 
+    @And("I see “Rhowch unrhyw enwau canol fel y maent yn ymddangos ar eich trwydded yrru\"")
+    public void iSeeRhowchUnrhywEnwauCanolFelYMaentYnYmddangosArEichTrwyddedYrru() throws Throwable {    // Write code here that turns the phrase above into concrete actions    throw new cucumber.api.PendingException();}
+        middleNameErrorSentence();
+    }
+
+    @When("I enter the invalid date of birth")
+    public void iEnterTheInvalidDateOfBirth() {
+        invalidDob();
+    }
+
+    @When("I click Parhau without entering any details")
+    public void iClickParhauWithoutEnteringAnyDetails() {
+        Continue.click();
+    }
+
+    @And("I see “Rhowch y dyddiad fel y mae'n ymddangos ar eich trwydded yrru”")
+    public void iSeeRhowchYDyddiadFelYMaeNYmddangosArEichTrwyddedYrru() {
+        enterDOBErrorTextWelsh();
+    }
+
+    @And("I see “Gwiriwch eich bod wedi rhoi eich dyddiad geni yn gywir”")
+    public void iSeeGwiriwchEichBodWediRhoiEichDyddiadGeniYnGywir() {
+        enterValidDOBErrorTextWelsh();
+    }
+
+    @Then("I clear the data and re enter the date of birth")
+    public void iClearTheDataAndReEnterTheDateOfBirth() {
+        clearDOBandReEnterWelsh();
+    }
+
+    @Then("I clear the data and re enter the date of birth to enter futureDOB")
+    public void iClearTheDataAndReEnterTheDateOfBirthTo() {
+        clearDOBandReEnterWelshtofuture();
+    }
+
+    @Then("I see “Rhaid i'ch dyddiad geni fod yn y gorffennol”")
+    public void iSeeRhaidIChDyddiadGeniFodYnYGorffennol() {
+        errorMessageFutureDOBWelsh();
+    }
+
+    @When("I enter the invalid issue date")
+    public void iEnterTheInvalidIssueDate() {
+        enterInValidIssueDate();
+    }
+
+    @And("I see “Rhaid i ddyddiad cyhoeddi fod yn y gorffennol”")
+    public void iSeeRhaidIDdyddiadCyhoeddiFodYnYGorffennol() {
+        issueDateErrorWelsh();
+    }
+
+
+    @Then("I clear the data and re enter the invalid future year")
+    public void iClearTheDataAndReEnterTheInvalidFutureYear() {
+        enterInValidIssueDateWithFutureYear();
+    }
+
+    @When("I enter the invalid Valid to date field")
+    public void iEnterTheInvalidValidToDateField() {
+        enterIvValidValidUntilDate();
+    }
+
+
+    @Then("I can see the Valid to date field error “Rhowch y dyddiad fel y mae'n ymddangos ar eich trwydded yrru”")
+    public void iCanSeeTheValidToDateFieldErrorRhowchYDyddiadFelYMaeNYmddangosArEichTrwyddedYrru() {
+        //validToDateErrorWelsh();
+        inValidIssueDateText();
+    }
+
+
+    @Then("I clear the data and re enter the valid to expired year")
+    public void iClearTheDataAndReEnterTheValidToExpiredYear() {
+        enterTheValidToExpiredYear();
+    }
+
+    @And("I see Ni allwch ddefnyddio trwydded yrru sydd wedi dod i ben")
+    public void iSeeNiAllwchDdefnyddioTrwyddedYrruSyddWediDodIBen() {
+        validToErrorWelsh();
+    }
+
+    @When("I enter invalid driving licence less than 16 char")
+    public void iEnterInvalidDrivingLicence() {
+        invalidDrivingLicenceWithlessChar();
+    }
+
+    @And("I see “Dylai rhif eich trwydded fod yn [X] nod o hyd”")
+    public void iSeeDylaiRhifEichTrwyddedFodYnXNodOHyd() {
+        licenceNumberErrorWelsh();
+    }
+
+    @And("I clear the licence number enter the invalid Driving Licence")
+    public void iClearTheLicenceNumberEnterTheInvalidDrivingLicence() {
+        inValidDrivingLicence();
+    }
+
+    @And("I see “Rhowch y rhif yn union fel mae'n ymddangos ar eich trwydded yrru”")
+    public void iSeeRhowchYRhifYnUnionFelMaeNYmddangosArEichTrwyddedYrru() {
+        licenceErrorWelsh();
+    }
+
+    @When("I enter inValid issue number")
+    public void iEnterInValidIssueNumber() {
+        invalidIssueNumber();
+    }
+
+    @And("I see “Dylai eich rhif cyhoeddi fod yn  rif o hyd”")
+    public void iSeeDylaiEichRhifCyhoeddiFodYnRifOHyd() {
+        IssueNumberErrorWelsh();
+    }
+
+    @And("I clear Issue number to see the error Enter Issue number")
+    public void iClearIssueNumberToSeeTheErrorEnterIssueNumber() {
+        clearIssueNumber();
+    }
+
+    @And("I see “Rhowch y rhif cyhoeddi fel y mae'n ymddangos ar eich trwydded yrru”")
+    public void iSeeRhowchYRhifCyhoeddiFelYMaeNYmddangosArEichTrwyddedYrru() {
+        enterIssueNumberErrorWelsh();
+    }
+
+    @When("I enter the invalid Postcode")
+    public void iEnterTheInvalidPostcode() {
+        enterInValidPostCode();
+    }
+
+    @And("I see “Dylai eich rhowch eich cod post ond cynnwys rhifau a llythrennau yn unig”")
+    public void iSeeDylaiEichRhowchEichCodPostOndCynnwysRhifauALlythrennauYnUnig() {
+         postCodeErrorInvalidWelsh();
+    }
+
+    @And("I clear the postcode to see the Enter your postcode error")
+    public void iClearThePostcodeToSeeTheEnterYourPostcodeError() {
+        clearPostcode();
+    }
+
+    @And("I see “Rhowch eich cod post”")
+    public void iSeeRhowchEichCodPost() {
+        enterYourPostCodeErrorWelsh();
+    }
+
+    @Then("I clear the postcode and enter the less character postcode")
+    public void iClearThePostcodeAndEnterTheLessCharacterPostcode() {
+        invalidPostCode();
+    }
+
+    @And("I see “Dylai eich rhowch eich cod post fod rhwng {int} a {int} nod”")
+    public void iSeeDylaiEichRhowchEichCodPostFodRhwngANod(int arg0, int arg1) {
+        postCodeErrorWelsh();
+    }
+
+    @When("I enter the invalid date of birth for DVA")
+    public void iEnterTheInvalidDateOfBirthForDVA() {
+        invalidDobForDVAWelsh();
+    }
+
+    @Then("I clear the data and re enter the date of birth for DVA")
+    public void iClearTheDataAndReEnterTheDateOfBirthForDVA() {
+        clearinValiddateForDVAWelsh();
+    }
+
+
+    @Then("I clear the data and re enter the date of birth to enter futureDOB for DVA")
+    public void iClearTheDataAndReEnterTheDateOfBirthToEnterFutureDOBForDVA() {
+        dvaclearDOBandReEnterWelshtofuture();
+    }
+
+    @When("I enter the invalid issue date for DVA")
+    public void iEnterTheInvalidIssueDateForDVA() {
+        invalidIssueNumberForDVA();
+    }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-    /*@And("^I click the Driving Licence CRI for the (.*) environment$")
-    public void navigateToDrivingLicence(String environment) {
-        navigateToDrivingLicenceCRI(environment);
-    }
-
-    @Then("^I search for Driving Licence user number (.*) in the Experian table$")
-    public void i_search_for_DL_user_number(String number) {
-        searchForUATUser(number);
-    }
-
-    @Then("I check the page title who was your UK driving license issued by?")
-    public void i_check_the_page_title_who_was_your_uk_driving_license_issued_by() {
-        validateDLPageTitle();
-    }
-
-    @And("I assert the URL is valid")
-    public void i_assert_the_url_is_valid() {
-        drivingLicencePageURLValidation();
-    }
-
-    @Given("I check the page title {string}")
-    public void i_check_the_page_titled() {
-        validateDLPageTitle();
-    }
-
-    @Given("I can see a radio button titled “DVLA”")
-    public void i_can_see_a_radio_button_titled_dvla() {
-        titleDVLAWithRadioBtn();
-    }
-
-    @Then("I can see a radio button titled “DVA”")
-    public void i_can_see_a_radio_button_titled_dva() {
-        titleDVAWithRadioBtn();
-    }
-
-    @And("I can see a radio button titled “I do not have a UK driving licence”")
-    public void i_can_see_a_radio_button_titled_i_do_not_have_a_uk_driving_licence() {
-        noDrivingLicenceBtn();
-    }
-
-    @Then("I can see CTA {string}")
-    public void i_can_see_cta(String string) {
-        ContinueButton();
-    }
-
-    @Given("I click on DVLA radio button and Continue")
-    public void i_click_on_DVLA_radio_button_and_Continue() {
-        clickOnDVLARadioButton();
-    }
-    @Then("^I should on the page DVLA Enter your details exactly as they appear on your UK driving licence$")
-    public void i_should_be_on_the_DVLA_page() {
-        pageTitleDVLAValidation();
-    }
-
-    @Then("^I should be on the page DVA Enter your details exactly as they appear on your UK driving licence$")
-    public void i_should_be_on_the_DVA_page() {
-        pageTitleDVAValidation();
-    }
-
-    @Given("I click on DVA radio button and Continue")
-    public void i_select_dva_radio_button_and_Continue() {
-        clickOnDVARadioButton();
-    }
-
-    @Given("I click I do not have UK Driving License and continue")
-    public void i_select_i_do_not_have_uk_driving_license() {
-        noDrivingLicenceOption();
-    }
-
-    @When("I am directed to the IPV Core routing page")
-    public void i_am_directed_to_the_ipv_core_routing_page() {
-        ipvCoreRoutingPage();
-    }
-
-    @Given("I have not selected anything and Continue")
-    public void i_have_not_selected_anything() {
-        noSelectContinue();
-    }
-
-    @When("I can see an error box highlighted red")
-    public void i_can_see_an_error_box_highlighted_red() {
-        errormessage();
-    }
-
-    @And("An error heading copy “You must choose an option to continue”")
-    public void an_error_heading_copy_you_must_choose_an_option_to_continue() {
-        errorTitle();
-    }
-
-    @Then("I can select a link which directs to the problem field")
-    public void i_can_select_a_link_which_directs_to_the_problem_field() {
-        errorLink();
-    }
-
-    @And("The field error copy “You must choose an option to continue”")
-    public void the_field_error_copy_you_must_choose_an_option_to_continue() {
-        validateErrorText();
-    }
-
-    @And("I validate the URL having access denied")
-    public void iValidateTheURLHavingAccessDenied() {
-        ipvCoreRoutingPageURL();
-    }
-
-    @Then("^I navigate to the Driving Licence verifiable issuer to check for a (.*) response$")
-    public void i_navigate_to_driving_licence_verifiable_issuer_for_valid_response(String validOrInvalid) {
-        navigateToDrivingLicenceResponse(validOrInvalid);
-    }
-
-    @And("^JSON response should contain error description (.*) and status code as (.*)$")
-    public void errorInJsonResponse(String testErrorDescription, String testStatusCode) throws JsonProcessingException {
-        jsonErrorResponse(testErrorDescription, testStatusCode);
-    }
-
-    @And("I add a cookie to change the language to Welsh")
-    public void iAddACookieToChangeTheLanguageToWelsh() {
-
-        changeLanguageToWelsh();
-
-    }*/
-
-
-
-
-
-
-
-
-
