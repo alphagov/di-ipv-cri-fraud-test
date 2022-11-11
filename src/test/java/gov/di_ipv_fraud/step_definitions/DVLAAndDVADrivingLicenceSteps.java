@@ -113,11 +113,6 @@ public class DVLAAndDVADrivingLicenceSteps extends DrivingLicencePageObject  {
         back.click();
     }
 
-    @When("User clicks on continue again")
-    public void user_clicks_on_continue_again() {
-        Continue.click();
-    }
-
     @And("^JSON response should contain documentNumber (.*) same as given Driving Licence$")
     public void errorInJsonResponse(String documentNumber) throws IOException {
         new FraudPageObject().documentNumberInVC(documentNumber);
