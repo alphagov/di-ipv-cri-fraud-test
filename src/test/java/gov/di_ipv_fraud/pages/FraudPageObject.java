@@ -395,6 +395,22 @@ public class FraudPageObject extends UniversalSteps {
         assertEquals(fraudScore, score);
     }
 
+    public void documentNumberInVC(String documentNumber) throws IOException {
+        String result = JSONPayload.getText();
+        LOGGER.info("result = " + result);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(result);
+        JsonNode vcNode = jsonNode.get("vc");
+        JsonNode evidenceNode = vcNode.get("drivingPermit");
+
+        ObjectReader objectReader =
+                new ObjectMapper().readerFor(new TypeReference<List<JsonNode>>() {});
+        List<JsonNode> evidence = objectReader.readValue(evidenceNode);
+
+        String licenceNumber = evidence.get(0).get("documentNumber").asText();
+        assertEquals(documentNumber, licenceNumber);
+    }
+
     public void goToPageWithTitle(String title) {
         pagetTitle.getText();
     }

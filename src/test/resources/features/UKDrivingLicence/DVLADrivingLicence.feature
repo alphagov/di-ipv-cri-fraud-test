@@ -14,6 +14,7 @@ Feature: Driving Licence Test
     When User clicks on continue
     Then I navigate to the Driving Licence verifiable issuer to check for a Valid response
     And JSON payload should contain validity score 2 and strength score 3
+    And JSON response should contain documentNumber PARKE610112PBFGH same as given Driving Licence
     And The test is complete and I close the driver
     Examples:
       |DrivingLicenceSubject             |
@@ -27,6 +28,7 @@ Feature: Driving Licence Test
     When User clicks on continue
     Then I navigate to the Driving Licence verifiable issuer to check for a Valid response
     And JSON payload should contain ci DO2, validity score 0 and strength score 3
+    And JSON response should contain documentNumber PARKE610112PBFGI same as given Driving Licence
     And The test is complete and I close the driver
     Examples:
       |DrivingLicenceSubject      |
@@ -184,3 +186,15 @@ Feature: Driving Licence Test
     Then I navigate to the Driving Licence verifiable issuer to check for a Invalid response
     And JSON response should contain error description Authorization permission denied and status code as 302
     And The test is complete and I close the driver
+
+  @DVLADrivingLicence_test @build
+  Scenario Outline:  DVLA Driving Licence Generate VC with invalid DL number and prove in another way unhappy path
+    Given User enters data as a <DrivingLicenceSubject>
+    When User clicks on continue
+    When User click on ‘prove your identity another way' Link
+    Then I navigate to the Driving Licence verifiable issuer to check for a Valid response
+    And JSON response should contain documentNumber PARKE610112PBFGI same as given Driving Licence
+    And The test is complete and I close the driver
+    Examples:
+      |DrivingLicenceSubject             |
+      | IncorrectDrivingLicenceNumber    |
