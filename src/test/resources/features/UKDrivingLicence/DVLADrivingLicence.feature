@@ -36,9 +36,8 @@ Feature: Driving Licence Test
   Scenario Outline: DVLA Driving Licence details page unhappy path when licence number date format does not match with User's Date Of Birth
     Given User enters data as a <DrivingLicenceSubject>
     When User clicks on continue
-#    Then Proper error message for invalid Driving Licence should be displayed
     Then Proper error message for invalid Licence number should be displayed in the Error summary
-    And Proper error message for invalid Date of Birth should be displayed
+    And Proper error message for no or invalid Date of Birth should be displayed
     And The test is complete and I close the driver
     Examples:
       |DrivingLicenceSubject      |
@@ -48,9 +47,8 @@ Feature: Driving Licence Test
   Scenario Outline: DVLA Driving Licence details page unhappy path with IncorrectDateOfBirth
     Given User enters data as a <DrivingLicenceSubject>
     When User clicks on continue
-    Then Proper error message for invalid Date of Birth should be displayed
+    And Proper error message for no or invalid Date of Birth should be displayed
     Then Proper error message for invalid Licence number should be displayed in the Error summary
-#    And Proper error message for invalid Driving Licence should be displayed
     And The test is complete and I close the driver
     Examples:
       |DrivingLicenceSubject |
@@ -276,25 +274,23 @@ Feature: Driving Licence Test
       |DrivingLicenceSubject      |
       |InvalidMiddleNamesWithSpecialCharacters |
 
-#    Currently failing
   @DVLADrivingLicence_test @build
   Scenario Outline: DVLA Driving Licence Date of birth that are not real error validation
     Given User enters data as a <DrivingLicenceSubject>
     When User clicks on continue
-    Then Check you have entered your date of birth correctly error should be displayed in the Error summary
-    And Check you have entered your date of birth correctly Field error message should be displayed
+    Then Proper error message for no or invalid Date of Birth should be displayed
+    And Field error message for no or invalid Date of Birth should be displayed
     And The test is complete and I close the driver
     Examples:
       |DrivingLicenceSubject |
       |InvalidDateOfBirth |
 
-#    Currently failing
   @DVLADrivingLicence_test @build
   Scenario Outline: DVLA Driving Licence Date of birth with special characters error validation
     Given User enters data as a <DrivingLicenceSubject>
     When User clicks on continue
-    Then Check you have entered your date of birth correctly error should be displayed in the Error summary
-    And Check you have entered your date of birth correctly Field error message should be displayed
+    Then Proper error message for no or invalid Date of Birth should be displayed
+    And Field error message for no or invalid Date of Birth should be displayed
     And The test is complete and I close the driver
     Examples:
       |DrivingLicenceSubject |
@@ -315,8 +311,8 @@ Feature: Driving Licence Test
   Scenario Outline: DVLA Driving Licence - No Date in the Date of birth field error validation
     Given User enters data as a <DrivingLicenceSubject>
     When User clicks on continue
-    Then Proper error message for no Date of Birth should be displayed
-    And Field error message for no Date of Birth should be displayed
+    Then Proper error message for no or invalid Date of Birth should be displayed
+    And Field error message for no or invalid Date of Birth should be displayed
     And The test is complete and I close the driver
     Examples:
       |DrivingLicenceSubject |
@@ -421,6 +417,7 @@ Feature: Driving Licence Test
       |DrivingLicenceSubject      |
       |DrivingLicenceNumLessThan16Char |
 
+   #    Was previously working and is failing in the current build
   @DVLADrivingLicence_test @build
   Scenario Outline: DVLA Driving Licence number with special characters and spaces error validation
     Given User enters data as a <DrivingLicenceSubject>
@@ -432,7 +429,6 @@ Feature: Driving Licence Test
       |DrivingLicenceSubject |
       |DrivingLicenceNumberWithSpecialChar |
 
-#    Currently failing
   @DVLADrivingLicence_test @build
   Scenario Outline: DVLA Driving Licence number with numeric characters error validation
     Given User enters data as a <DrivingLicenceSubject>
@@ -444,7 +440,6 @@ Feature: Driving Licence Test
       |DrivingLicenceSubject |
       |DrivingLicenceNumberWithNumericChar |
 
-    #    Currently failing
   @DVLADrivingLicence_test @build
   Scenario Outline: DVLA Driving Licence number with alpha characters error validation
     Given User enters data as a <DrivingLicenceSubject>
@@ -456,7 +451,6 @@ Feature: Driving Licence Test
       |DrivingLicenceSubject |
       |DrivingLicenceNumberWithAlphaChar |
 
-    #    Currently failing
   @DVLADrivingLicence_test @build
   Scenario Outline: DVLA Driving Licence - No Licence number in the Licence number field error validation
     Given User enters data as a <DrivingLicenceSubject>
@@ -479,6 +473,7 @@ Feature: Driving Licence Test
       |DrivingLicenceSubject |
       |IssueNumberLessThan2Char |
 
+     #    Was previously working and is failing in the current build
   @DVLADrivingLicence_test @build
   Scenario Outline: DVLA Driving Licence Issue number with special characters error validation
     Given User enters data as a <DrivingLicenceSubject>
@@ -490,7 +485,6 @@ Feature: Driving Licence Test
       |DrivingLicenceSubject |
       |IssueNumberWithSpecialChar |
 
-#    currently failing
   @DVLADrivingLicence_test @build
   Scenario Outline: DVLA Driving Licence Issue number with alphanumeric characters error validation
     Given User enters data as a <DrivingLicenceSubject>
@@ -502,7 +496,6 @@ Feature: Driving Licence Test
       |DrivingLicenceSubject |
       |IssueNumberWithAlphanumericChar |
 
-    #    currently failing
   @DVLADrivingLicence_test @build
   Scenario Outline: DVLA Driving Licence Issue number with alpha characters error validation
     Given User enters data as a <DrivingLicenceSubject>
@@ -547,29 +540,34 @@ Feature: Driving Licence Test
       |DrivingLicenceSubject |
       |PostcodeWithSpecialChar |
 
+       #    Was previously working and is failing in the current build
   @DVLADrivingLicence_test @build
   Scenario Outline: DVLA Driving Licence Postcode with numeric characters error validation
     Given User enters data as a <DrivingLicenceSubject>
     When User clicks on continue
     Then Your postcode should only include numbers and letters error message should be displayed in the Error summary
+#    Then Your postcode should include numbers and letters error message should be displayed in the Error summary
     And Your postcode should only include numbers and letters Field error should be displayed
+#    And Your postcode should include numbers and letters Field error should be displayed
     And The test is complete and I close the driver
     Examples:
       |DrivingLicenceSubject |
       |PostcodeWithNumericChar |
 
+       #    Was previously working and is failing in the current build
   @DVLADrivingLicence_test @build
   Scenario Outline: DVLA Driving Licence Postcode with alpha characters error validation
     Given User enters data as a <DrivingLicenceSubject>
     When User clicks on continue
     Then Your postcode should only include numbers and letters error message should be displayed in the Error summary
+#    Then Your postcode should include numbers and letters error message should be displayed in the Error summary
     And Your postcode should only include numbers and letters Field error should be displayed
+#    And Your postcode should include numbers and letters Field error should be displayed
     And The test is complete and I close the driver
     Examples:
       |DrivingLicenceSubject |
       |PostcodeWithAlphaChar |
 
-#    currently failing
   @DVLADrivingLicence_test @build
   Scenario Outline: DVLA Driving Licence - No Postcode in the Postcode field error validation
     Given User enters data as a <DrivingLicenceSubject>
@@ -581,7 +579,6 @@ Feature: Driving Licence Test
       |DrivingLicenceSubject |
       |NoPostcode |
 
-#    currently failing
   @DVLADrivingLicence_test @build
   Scenario Outline: DVLA Driving Licence International Postcode error validation
     Given User enters data as a <DrivingLicenceSubject>

@@ -596,6 +596,15 @@ public class DrivingLicencePageObject extends UniversalSteps {
                 "Your postcode should only include numbers and letters",InvalidPostcodeFieldError.getText());
     }
 
+    public void alphaOrNumericPostcodeErrorDisplayed() {
+        Assert.assertEquals("Your postcode should include numbers and letters",InvalidPostcodeError.getText());
+    }
+
+    public void alphaOrNumericPostcodeFieldErrorDisplayed() {
+        Assert.assertEquals("Error:\n" +
+                "Your postcode should include numbers and letters",InvalidPostcodeFieldError.getText());
+    }
+
     public void invalidPostcodeErrorDisplayed() {
         Assert.assertEquals("Enter your postcode",InvalidPostcodeError.getText());
     }

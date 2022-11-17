@@ -43,12 +43,12 @@ public class DVLAAndDVADrivingLicenceSteps extends DrivingLicencePageObject  {
         invalidDateOfBirthFieldErrorDisplayed();
     }
 
-    @Then("Proper error message for no Date of Birth should be displayed")
+    @Then("Proper error message for no or invalid Date of Birth should be displayed")
     public void properErrorMessageForNoDOBIsDisplayed() {
         noDOBErrorDisplayed();
     }
 
-    @Then("Field error message for no Date of Birth should be displayed")
+    @Then("Field error message for no or invalid Date of Birth should be displayed")
     public void fieldErrorMessageForNoDOBIsDisplayed() {
         noDateOfBirthFieldErrorDisplayed();
     }
@@ -183,6 +183,16 @@ public class DVLAAndDVADrivingLicenceSteps extends DrivingLicencePageObject  {
         specialCharPostcodeFieldErrorDisplayed();
     }
 
+    @Then("Your postcode should include numbers and letters error message should be displayed in the Error summary")
+    public void errorForPostcodeWithAlphaOrNumericCharIsDisplayed() {
+        alphaOrNumericPostcodeErrorDisplayed();
+    }
+
+    @Then("Your postcode should include numbers and letters Field error should be displayed")
+    public void fieldErrorPostcodeWithAlphaOrNumericCharIsDisplayed() {
+        alphaOrNumericPostcodeFieldErrorDisplayed();
+    }
+
     @Then("Proper error message for invalid Postcode should be displayed in the Error summary")
     public void properErrorMessageForInvalidPostcodeIsDisplayed() {
         invalidPostcodeErrorDisplayed();
@@ -314,12 +324,12 @@ public class DVLAAndDVADrivingLicenceSteps extends DrivingLicencePageObject  {
         new DVAEnterYourDetailsExactlyPage().futureDVADOBFieldErrorDisplayed();
     }
 
-    @Then("Proper DVA error message for no Date of Birth should be displayed")
+    @Then("Proper DVA error message for no or invalid Date of Birth should be displayed")
     public void properErrorMessageForNoDVADOBIsDisplayed() {
         new DVAEnterYourDetailsExactlyPage().noDVADOBErrorDisplayed();
     }
 
-    @Then("Field DVA error message for no Date of Birth should be displayed")
+    @Then("Field DVA error message for no or invalid Date of Birth should be displayed")
     public void fieldErrorMessageForNoDVADOBIsDisplayed() {
         new DVAEnterYourDetailsExactlyPage().noDVADOBFieldErrorDisplayed();
     }

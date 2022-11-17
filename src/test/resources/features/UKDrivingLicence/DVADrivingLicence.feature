@@ -241,25 +241,23 @@ Feature: DVA Driving Licence Test
       |DVADrivingLicenceSubject |
       |NoDVAFirstName |
 
-    #    Currently failing
   @DVADrivingLicence_test @build
   Scenario Outline: DVA Driving Licence Date of birth that are not real error validation
     Given User enters DVA data as a <DVADrivingLicenceSubject>
     When User clicks on continue
-    Then Check you have entered your date of birth correctly DVA error should be displayed in the Error summary
-    And Check you have entered your date of birth correctly DVA Field error message should be displayed
+    Then Proper DVA error message for no or invalid Date of Birth should be displayed
+    And Field DVA error message for no or invalid Date of Birth should be displayed
     And The test is complete and I close the driver
     Examples:
       |DVADrivingLicenceSubject |
       |InvalidDVADateOfBirth |
 
-#    Currently failing
   @DVADrivingLicence_test @build
   Scenario Outline: DVA Driving Licence Date of birth with special characters error validation
     Given User enters DVA data as a <DVADrivingLicenceSubject>
     When User clicks on continue
-    Then Check you have entered your date of birth correctly DVA error should be displayed in the Error summary
-    And Check you have entered your date of birth correctly DVA Field error message should be displayed
+    Then Proper DVA error message for no or invalid Date of Birth should be displayed
+    And Field DVA error message for no or invalid Date of Birth should be displayed
     And The test is complete and I close the driver
     Examples:
       |DVADrivingLicenceSubject |
@@ -280,8 +278,8 @@ Feature: DVA Driving Licence Test
   Scenario Outline: DVA Driving Licence - No Date in the Date of birth field error validation
     Given User enters DVA data as a <DVADrivingLicenceSubject>
     When User clicks on continue
-    Then Proper DVA error message for no Date of Birth should be displayed
-    And Field DVA error message for no Date of Birth should be displayed
+    Then Proper DVA error message for no or invalid Date of Birth should be displayed
+    And Field DVA error message for no or invalid Date of Birth should be displayed
     And The test is complete and I close the driver
     Examples:
       |DVADrivingLicenceSubject |
@@ -421,7 +419,6 @@ Feature: DVA Driving Licence Test
       |DVADrivingLicenceSubject |
       |DVADrivingLicenceNumberWithAlphaChar |
 
-    #    Currently failing
   @DVADrivingLicence_test @build
   Scenario Outline: DVA Driving Licence - No Licence number in the Licence number field error validation
     Given User enters DVA data as a <DVADrivingLicenceSubject>
@@ -444,6 +441,7 @@ Feature: DVA Driving Licence Test
       |DVADrivingLicenceSubject |
       |DVAPostcodeLessThan5Char |
 
+           #    Was previously working and is failing in the current build
   @DVADrivingLicence_test @build
   Scenario Outline: DVA Driving Licence Postcode with special characters error validation
     Given User enters DVA data as a <DVADrivingLicenceSubject>
@@ -455,6 +453,7 @@ Feature: DVA Driving Licence Test
       |DVADrivingLicenceSubject |
       |DVAPostcodeWithSpecialChar |
 
+           #    Was previously working and is failing in the current build
   @DVADrivingLicence_test @build
   Scenario Outline: DVA Driving Licence Postcode with numeric characters error validation
     Given User enters DVA data as a <DVADrivingLicenceSubject>
@@ -466,6 +465,7 @@ Feature: DVA Driving Licence Test
       |DVADrivingLicenceSubject |
       |DVAPostcodeWithNumericChar |
 
+           #    Was previously working and is failing in the current build
   @DVADrivingLicence_test @build
   Scenario Outline: DVA Driving Licence Postcode with alpha characters error validation
     Given User enters DVA data as a <DVADrivingLicenceSubject>
@@ -477,7 +477,6 @@ Feature: DVA Driving Licence Test
       |DVADrivingLicenceSubject |
       |DVAPostcodeWithAlphaChar |
 
-    #    currently failing
   @DVADrivingLicence_test @build
   Scenario Outline: DVA Driving Licence - No Postcode in the Postcode field error validation
     Given User enters DVA data as a <DVADrivingLicenceSubject>
@@ -489,7 +488,6 @@ Feature: DVA Driving Licence Test
       |DVADrivingLicenceSubject |
       |NoDVAPostcode |
 
-    #    currently failing
   @DVADrivingLicence_test @build
   Scenario Outline: DVA Driving Licence International Postcode error validation
     Given User enters DVA data as a <DVADrivingLicenceSubject>
