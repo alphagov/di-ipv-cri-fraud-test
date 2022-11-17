@@ -11,7 +11,7 @@ import org.junit.Assert;
 
 import java.io.IOException;
 
-public class DVLAAndDVADrivingLicenceSteps extends DrivingLicencePageObject  {
+public class DVLAAndDVADrivingLicenceSteps extends DrivingLicencePageObject {
 
     @When("User enters data as a {}")
     public void user_enters_and(DrivingLicenceSubject drivingLicenceSubject) {
@@ -117,5 +117,4 @@ public class DVLAAndDVADrivingLicenceSteps extends DrivingLicencePageObject  {
     public void errorInJsonResponse(String documentNumber) throws IOException {
         new FraudPageObject().documentNumberInVC(documentNumber);
     }
-
 }
