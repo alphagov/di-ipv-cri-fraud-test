@@ -1,6 +1,8 @@
 package gov.di_ipv_fraud.step_definitions;
 
+import gov.di_ipv_fraud.pages.DrivingLicencePageObject;
 import gov.di_ipv_fraud.pages.WelshLangDrivingLicencePageObject;
+import gov.di_ipv_fraud.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -39,11 +41,10 @@ public class WelshlandDrivingLicenceStepDefs extends WelshLangDrivingLicencePage
         noDrivingLicenceBtnWelsh();
     }
 
-    @And("I can see “neu”")
-    public void iCanSeeNeu() {
+    @And("I can see “Or”")
+    public void iCanSeeOr() {
         orDisplayWelsh();
     }
-
 
     @Then("I can see CTA as Parhau")
     public void iCanSeeCTAAsParhau() {
@@ -51,7 +52,7 @@ public class WelshlandDrivingLicenceStepDefs extends WelshLangDrivingLicencePage
     }
 
 
-    @And("I see the sentence  I see the sentence starts with “Gallwch ddod o hyd i hwn yn adran\"")
+    @And("I see the sentence starts with “Gallwch ddod o hyd i hwn yn adran\"")
     public void iSeeTheSentenceISeeTheSentenceStartsWithGallwchDdodOHydIHwnYnAdran() throws Throwable {
         licenceSelectionSentence();
     }
@@ -63,13 +64,12 @@ public class WelshlandDrivingLicenceStepDefs extends WelshLangDrivingLicencePage
 
     @Then("I should on the page DVA and validate title")
     public void iShouldOnThePageDVAAndValidateTitle() {
-        pageTitleDVAValidationWelsh();
+        pageTitleDVLAValidationWelsh();
     }
 
     @And("I see the heading Rhowch eich manylion yn union fel maent yn ymddangos ar eich trwydded yrru")
     public void iSeeTheHeadingRhowchEichManylionYnUnionFelMaentYnYmddangosArEichTrwyddedYrru() {
         dvlaPageHeading();
-
     }
 
     @And("I see the sentence starts with \"Byddwn yn gwirio eich manylion gydar DVLA\"")
@@ -81,7 +81,6 @@ public class WelshlandDrivingLicenceStepDefs extends WelshLangDrivingLicencePage
     public void iSeeTheSentenceStartsWithByddwnYnGwirioEichManylionGydaRDVA() {
         dvaSentenceValidatioWelsh();
     }
-
 
     @Given("I can see the lastname as Enw olaf")
     public void iCanSeeTheLastnameAsEnwOlaf() {
@@ -158,7 +157,6 @@ public class WelshlandDrivingLicenceStepDefs extends WelshLangDrivingLicencePage
     @Then("Dyma r dyddiad yn adran 4b o ch trwydded, er enghraifft 27 5 2019")
     public void dymaRDyddiadYnAdranAOChTrwyddedErEnghraifftValidityDate() {
         validityDateSentence();
-
     }
 
     @Then("I can see the Valid to date field titled “Yn ddilys tan”")
@@ -176,7 +174,7 @@ public class WelshlandDrivingLicenceStepDefs extends WelshLangDrivingLicencePage
         licenceSentence();
     }
 
-    @Then("I can see the issue number field titled “Dyddiad cyhoeddi”")
+    @Then("I can see the issue number field titled “Rhif cyhoeddi”")
     public void iCanSeeTheIssueNumberFieldTitledDyddiadCyhoeddi() {
         issueNumberWelsh();
     }
@@ -191,14 +189,14 @@ public class WelshlandDrivingLicenceStepDefs extends WelshLangDrivingLicencePage
         postcodeWelsh();
     }
 
-    @And("“Rhowch y cod post yn y cyfeiriad yn adran  o ch trwydded”")
+    @And("I can see “Rhowch y cod post yn y cyfeiriad yn adran  o ch trwydded”")
     public void rhowchYCodPostYnYCyfeiriadYnAdranOChTrwydded() {
         postcodeSentence();
     }
 
     @When("User clicks on Parhau")
     public void userClicksOnParhau() {
-        Continue.click();
+        new DrivingLicencePageObject().Continue.click();
     }
 
     @Given("I click on DVLA radio button and Parhau")
@@ -259,7 +257,7 @@ public class WelshlandDrivingLicenceStepDefs extends WelshLangDrivingLicencePage
 
     @When("I click Parhau without entering any details")
     public void iClickParhauWithoutEnteringAnyDetails() {
-        Continue.click();
+        new DrivingLicencePageObject().Continue.click();
     }
 
     @And("I see “Rhowch y dyddiad fel y mae'n ymddangos ar eich trwydded yrru”")
@@ -305,16 +303,14 @@ public class WelshlandDrivingLicenceStepDefs extends WelshLangDrivingLicencePage
 
     @When("I enter the invalid Valid to date field")
     public void iEnterTheInvalidValidToDateField() {
-        enterIvValidValidUntilDate();
+        enterInValidUntilDate();
     }
 
 
     @Then("I can see the Valid to date field error “Rhowch y dyddiad fel y mae'n ymddangos ar eich trwydded yrru”")
     public void iCanSeeTheValidToDateFieldErrorRhowchYDyddiadFelYMaeNYmddangosArEichTrwyddedYrru() {
-        //validToDateErrorWelsh();
         inValidIssueDateText();
     }
-
 
     @Then("I clear the data and re enter the valid to expired year")
     public void iClearTheDataAndReEnterTheValidToExpiredYear() {
@@ -326,24 +322,39 @@ public class WelshlandDrivingLicenceStepDefs extends WelshLangDrivingLicencePage
         validToErrorWelsh();
     }
 
-    @When("I enter invalid driving licence less than 16 char")
-    public void iEnterInvalidDrivingLicence() {
-        invalidDrivingLicenceWithlessChar();
+    @When("I enter driving licence field empty")
+    public void iEnterInvalidDrivingLicenceFieldEmpty() {
+        invalidDrivingLicenceempty();
     }
 
-    @And("I see “Dylai rhif eich trwydded fod yn [X] nod o hyd”")
-    public void iSeeDylaiRhifEichTrwyddedFodYnXNodOHyd() {
-        licenceNumberErrorWelsh();
+    @Then("I clear the licence number and enter Driving Licence with Special Char for DVLA")
+    public void iClearTheLicenceNumberAndEnterDrivingLicenceWithSpecialCharForDVLA() {
+        invalidDrivingLicenceWithSplCharDVLA();
+    }
+
+    @And("I see “Dylai rhif eich trwydded fod yn [X] nod o hyd” for DVA")
+    public void iSeeDylaiRhifEichTrwyddedFodYnXNodOHydForDVA() {
+        licenceNumberErrorWelshForDVA();
     }
 
     @And("I clear the licence number enter the invalid Driving Licence")
     public void iClearTheLicenceNumberEnterTheInvalidDrivingLicence() {
-        inValidDrivingLicence();
+        inValidDrivingLicenceDVA();
+    }
+
+    @And("I clear the licence number enter the invalid Driving Licence for DVLA")
+    public void iClearTheLicenceNumberEnterTheInvalidDrivingLicenceForDVLA() {
+        invalidDrivingLicenceDVLA();
+    }
+
+    @And("I see “Ni ddylai rhif eich trwydded gynnwys unrhyw symbolau neu ofodau”")
+    public void Niddylairhifeichtrwyddedgynnwysunrhywsymbolauneuofodau() {
+        licenceErrorWelshforSplChar();
     }
 
     @And("I see “Rhowch y rhif yn union fel mae'n ymddangos ar eich trwydded yrru”")
     public void iSeeRhowchYRhifYnUnionFelMaeNYmddangosArEichTrwyddedYrru() {
-        licenceErrorWelsh();
+        licenceErrorWelshforExactonDL();
     }
 
     @When("I enter inValid issue number")
@@ -378,7 +389,7 @@ public class WelshlandDrivingLicenceStepDefs extends WelshLangDrivingLicencePage
 
     @And("I clear the postcode to see the Enter your postcode error")
     public void iClearThePostcodeToSeeTheEnterYourPostcodeError() {
-        clearPostcode();
+        new DrivingLicencePageObject().Postcode.clear();
     }
 
     @And("I see “Rhowch eich cod post”")
@@ -401,12 +412,6 @@ public class WelshlandDrivingLicenceStepDefs extends WelshLangDrivingLicencePage
         invalidDobForDVAWelsh();
     }
 
-    @Then("I clear the data and re enter the date of birth for DVA")
-    public void iClearTheDataAndReEnterTheDateOfBirthForDVA() {
-        clearinValiddateForDVAWelsh();
-    }
-
-
     @Then("I clear the data and re enter the date of birth to enter futureDOB for DVA")
     public void iClearTheDataAndReEnterTheDateOfBirthToEnterFutureDOBForDVA() {
         dvaclearDOBandReEnterWelshtofuture();
@@ -414,7 +419,85 @@ public class WelshlandDrivingLicenceStepDefs extends WelshLangDrivingLicencePage
 
     @When("I enter the invalid issue date for DVA")
     public void iEnterTheInvalidIssueDateForDVA() {
-        invalidIssueNumberForDVA();
+        invalidIssueDayForDVA();
+    }
+
+    @Then("I clear the data and re enter the invalid future year for DVA")
+    public void iClearTheDataAndReEnterTheInvalidFutureYearForDVA() {
+        enterInValidIssueDateWithFutureYearDVA();
+    }
+
+    @When("I enter invalid driving licence less than 8 char for DVA")
+    public void iEnterInvalidDrivingLicenceLessThanCharForDVA() {
+        invalidDrivingLicenceWithlessCharDVA();
+
+    }
+
+
+    @And("I see “Rhowch y rhif yn union fel mae'n ymddangos ar eich trwydded yrru”x")
+    public void iSeeRhowchYRhifYnUnionFelMaeNYmddangosArEichTrwyddedYrruX() {
+        licenceErrorWelshforExactonDL();
+    }
+
+
+    @When("I enter the invalid Valid to date field for DVA")
+    public void iEnterTheInvalidValidToDateFieldForDVA() {
+        invalidValidUntilForDVA();
+    }
+
+    @Then("I clear the data and re enter the valid to expired year for DVA")
+    public void iClearTheDataAndReEnterTheValidToExpiredYearForDVA() {
+        enterTheValidToExpiredYearForDVA();
+    }
+
+    @And("I see Rhowch eich dyddiad geni fel y mae'n ymddangos ar eich trwydded yrru")
+    public void iSeeRhowchEichDyddiadGeniFelYMaeNYmddangosArEichTrwyddedYrru() {
+        EnterDobApperOnDLErrorWelsh();
+    }
+
+    @And("I see “Dylai rhif eich trwydded fod yn [X] nod o hyd” for DVLA")
+    public void iSeeDylaiRhifEichTrwyddedFodYnXNodOHydForDVLA() {
+        licenceNumberErrorWelshForDVLA();
+    }
+
+    @And("I see the sentence “Dyma'r rhif hir yn adran  ar eich trwydded” for DVA")
+    public void iSeeTheSentenceDymaRRhifHirYnAdranArEichTrwyddedForDVA() {
+        licenceNumberErrorWelshforDVA();
+    }
+
+    @Then("I validate the page error page title")
+    public void iValidateThePageErrorPageTitle() {
+        ErrorPageTitleDVLA();
+    }
+
+    @Then("I see the error box “Gwiriwch bod eich manylion yn paru gyda beth sydd ar eich trwydded yrru y DU”")
+    public void iSeeTheErrorBoxGwiriwchBodEichManylionYnParuGydaBethSyddArEichTrwyddedYrruYDU() {
+        checkYourDetailsSentence();
+    }
+
+    @And("I see “Gwall”")
+    public void iSeeGwall() {
+        erroeWord();
+    }
+
+    @And("I see “Nid oeddem yn gallu dod o hyd i'ch manylion”")
+    public void iSeeNidOeddemYnGalluDodOHydIChManylion() {
+        weCouldNotFindDetailsSentence();
+    }
+
+    @And("I see “Ni fyddwch yn gallu newid eich manylion eto os byddwch yn gwneud camgymeriad.”")
+    public void iSeeNiFyddwchYnGalluNewidEichManylionEtoOsByddwchYnGwneudCamgymeriad() {
+        thereIsaProblemSentence();
+    }
+
+    @And("I see Roedd yna broblem wrth i ni wirio eich manylion gyda'r [DVLA]")
+    public void iSeeRoeddYnaBroblemWrthINiWirioEichManylionGydaRDVLADVA() {
+        youWillBeAbleToFindSentence();
+    }
+
+    @And("I see Roedd yna broblem wrth i ni wirio eich manylion gyda'r [DVA]")
+    public void iSeeRoeddYnaBroblemWrthINiWirioEichManylionGydaRDVA() {
+        youWillBeAbleToFindSentenceDVA();
     }
 
 }
