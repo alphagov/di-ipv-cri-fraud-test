@@ -135,15 +135,12 @@ public class DVAEnterYourDetailsExactlyPage {
     }
 
     public void invalidDVADOBErrorDisplayed() {
-//        Assert.assertEquals("Enter your date of birth as it appears on your driving licence",DVAInvalidDOBError.getText());
         Assert.assertEquals("Check you have entered your date of birth correctly",DVAInvalidDOBError.getText());
     }
 
     public void invalidDVADOBFieldErrorDisplayed() {
         Assert.assertEquals("Error:\n" +
                 "Check you have entered your date of birth correctly",DVAInvalidDOBFieldError.getText());
-//        Assert.assertEquals("Error:\n" +
-//                "Enter your date of birth as it appears on your driving licence",DVAInvalidDOBFieldError.getText());
     }
 
     public void futureDVADOBErrorDisplayed() {
@@ -202,12 +199,9 @@ public class DVAEnterYourDetailsExactlyPage {
 
     public void invalidDrivingLicenceDVAErrorDisplayed() {
         Assert.assertEquals("Enter the number exactly as it appears on your driving licence",DVAInvalidDrivingLicenceError.getText());
-//        Assert.assertEquals("Enter the number as it appears on your driving licence",DVAInvalidDrivingLicenceError.getText());
     }
 
     public void invalidDrivingLicenceFieldDVAErrorDisplayed() {
-//        Assert.assertEquals("Error:\n" +
-//                "Enter the number as it appears on your driving licence",DVADrivingLicenceFieldError.getText());
         Assert.assertEquals("Error:\n" +
                 "Enter the number exactly as it appears on your driving licence",DVADrivingLicenceFieldError.getText());
     }

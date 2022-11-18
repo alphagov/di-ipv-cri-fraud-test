@@ -2,7 +2,7 @@ Feature: DVA Driving Licence Test
 
   Background:
     Given I navigate to the IPV Core Stub
-    And I click the Driving Licence CRI for the Build environment
+    And I click the Driving Licence CRI for the Integration environment
     And I search for Driving Licence user number 5 in the Experian table
     And I should be on `Who was your UK driving licence issued by` page
     And I click on DVA radio button and Continue
