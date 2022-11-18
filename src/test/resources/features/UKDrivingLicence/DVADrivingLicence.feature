@@ -400,8 +400,10 @@ Feature: DVA Driving Licence Test
   Scenario Outline: DVA Driving Licence number with alpha numeric characters error validation
     Given User enters DVA data as a <DVADrivingLicenceSubject>
     When User clicks on continue
-    Then Proper DVA error message for invalid Licence number should be displayed in the Error summary
-    And Field DVA error message for invalid Licence number should be displayed
+#    Then Proper DVA error message for invalid Licence number should be displayed in the Error summary
+#    And Field DVA error message for invalid Licence number should be displayed
+    Then Your licence number should not include any symbols or spaces DVA error should be displayed in the Error summary
+    And Your licence number should not include any symbols or spaces DVA Field error should be displayed
     And The test is complete and I close the driver
     Examples:
       |DVADrivingLicenceSubject |
@@ -412,8 +414,10 @@ Feature: DVA Driving Licence Test
   Scenario Outline: DVA Driving Licence number with alpha characters error validation
     Given User enters DVA data as a <DVADrivingLicenceSubject>
     When User clicks on continue
-    Then Proper DVA error message for invalid Licence number should be displayed in the Error summary
-    And Field DVA error message for invalid Licence number should be displayed
+#    Then Proper DVA error message for invalid Licence number should be displayed in the Error summary
+#    And Field DVA error message for invalid Licence number should be displayed
+    Then Your licence number should not include any symbols or spaces DVA error should be displayed in the Error summary
+    And Your licence number should not include any symbols or spaces DVA Field error should be displayed
     And The test is complete and I close the driver
     Examples:
       |DVADrivingLicenceSubject |
@@ -448,12 +452,11 @@ Feature: DVA Driving Licence Test
     When User clicks on continue
     Then Your postcode should only include numbers and letters error message should be displayed in the Error summary
     And Your postcode should only include numbers and letters Field error should be displayed
-    And The test is complete and I close the driver
+#    And The test is complete and I close the driver
     Examples:
       |DVADrivingLicenceSubject |
       |DVAPostcodeWithSpecialChar |
 
-           #    Was previously working and is failing in the current build
   @DVADrivingLicence_test @build
   Scenario Outline: DVA Driving Licence Postcode with numeric characters error validation
     Given User enters DVA data as a <DVADrivingLicenceSubject>

@@ -417,7 +417,6 @@ Feature: Driving Licence Test
       |DrivingLicenceSubject      |
       |DrivingLicenceNumLessThan16Char |
 
-   #    Was previously working and is failing in the current build
   @DVLADrivingLicence_test @build
   Scenario Outline: DVLA Driving Licence number with special characters and spaces error validation
     Given User enters data as a <DrivingLicenceSubject>
@@ -473,7 +472,6 @@ Feature: Driving Licence Test
       |DrivingLicenceSubject |
       |IssueNumberLessThan2Char |
 
-     #    Was previously working and is failing in the current build
   @DVLADrivingLicence_test @build
   Scenario Outline: DVLA Driving Licence Issue number with special characters error validation
     Given User enters data as a <DrivingLicenceSubject>
@@ -540,7 +538,6 @@ Feature: Driving Licence Test
       |DrivingLicenceSubject |
       |PostcodeWithSpecialChar |
 
-       #    Was previously working and is failing in the current build
   @DVLADrivingLicence_test @build
   Scenario Outline: DVLA Driving Licence Postcode with numeric characters error validation
     Given User enters data as a <DrivingLicenceSubject>
