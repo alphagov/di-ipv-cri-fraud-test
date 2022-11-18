@@ -37,7 +37,7 @@ Feature: Driving Licence Test
     Given User enters data as a <DrivingLicenceSubject>
     When User clicks on continue
     Then Proper error message for invalid Licence number should be displayed in the Error summary
-    And Proper error message for no or invalid Date of Birth should be displayed
+    And Check you have entered your date of birth correctly error should be displayed in the Error summary
     And The test is complete and I close the driver
     Examples:
       |DrivingLicenceSubject      |
@@ -47,8 +47,8 @@ Feature: Driving Licence Test
   Scenario Outline: DVLA Driving Licence details page unhappy path with IncorrectDateOfBirth
     Given User enters data as a <DrivingLicenceSubject>
     When User clicks on continue
-    And Proper error message for no or invalid Date of Birth should be displayed
-    Then Proper error message for invalid Licence number should be displayed in the Error summary
+    Then Check you have entered your date of birth correctly error should be displayed in the Error summary
+    And Proper error message for invalid Licence number should be displayed in the Error summary
     And The test is complete and I close the driver
     Examples:
       |DrivingLicenceSubject |
@@ -542,24 +542,19 @@ Feature: Driving Licence Test
   Scenario Outline: DVLA Driving Licence Postcode with numeric characters error validation
     Given User enters data as a <DrivingLicenceSubject>
     When User clicks on continue
-    Then Your postcode should only include numbers and letters error message should be displayed in the Error summary
-#    Then Your postcode should include numbers and letters error message should be displayed in the Error summary
-    And Your postcode should only include numbers and letters Field error should be displayed
-#    And Your postcode should include numbers and letters Field error should be displayed
+    Then Your postcode should include numbers and letters error message should be displayed in the Error summary
+    And Your postcode should include numbers and letters Field error should be displayed
     And The test is complete and I close the driver
     Examples:
       |DrivingLicenceSubject |
       |PostcodeWithNumericChar |
 
-       #    Was previously working and is failing in the current build
   @DVLADrivingLicence_test @build
   Scenario Outline: DVLA Driving Licence Postcode with alpha characters error validation
     Given User enters data as a <DrivingLicenceSubject>
     When User clicks on continue
-    Then Your postcode should only include numbers and letters error message should be displayed in the Error summary
-#    Then Your postcode should include numbers and letters error message should be displayed in the Error summary
-    And Your postcode should only include numbers and letters Field error should be displayed
-#    And Your postcode should include numbers and letters Field error should be displayed
+    Then Your postcode should include numbers and letters error message should be displayed in the Error summary
+    And Your postcode should include numbers and letters Field error should be displayed
     And The test is complete and I close the driver
     Examples:
       |DrivingLicenceSubject |
