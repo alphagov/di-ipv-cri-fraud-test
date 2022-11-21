@@ -536,20 +536,12 @@ public class DrivingLicencePageObject extends UniversalSteps {
 
     public void invalidDrivingLicenceErrorDisplayed() {
         Assert.assertEquals("Enter the number exactly as it appears on your driving licence",InvalidDrivingLicenceError.getText());
-//        Assert.assertEquals("Enter the number as it appears on your driving licence",InvalidDrivingLicenceError.getText());
     }
 
     public void invalidDrivingLicenceFieldErrorDisplayed() {
-//        Assert.assertEquals("Error:\n" +
-//                "Enter the number as it appears on your driving licence",DrivingLicenceFieldError.getText());
         Assert.assertEquals("Error:\n" +
                 "Enter the number exactly as it appears on your driving licence",DrivingLicenceFieldError.getText());
     }
-
-//    public void invalidDrivingLicenceErrorDisplayed() {
-//        Assert.assertTrue(InvalidDrivingLicenceError.isDisplayed());
-//        LOGGER.info(InvalidDrivingLicenceError.getText());
-//    }
 
     public void shortIssueNumberErrorDisplayed() {
         Assert.assertEquals("Your issue number should be 2 numbers long",InvalidIssueNumberError.getText());
