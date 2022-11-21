@@ -105,7 +105,8 @@ public class DVAEnterYourDetailsExactlyPage {
         BrowserUtils.waitForPageToLoad(10);
     }
 
-    public void userReEntersDataAsDVADrivingLicenceSubject(DVADrivingLicenceSubject dvaDrivingLicenceSubject) {
+    public void userReEntersDataAsDVADrivingLicenceSubject(
+            DVADrivingLicenceSubject dvaDrivingLicenceSubject) {
         dvaLicenceNumber.clear();
         Lastname.clear();
         Firstname.clear();

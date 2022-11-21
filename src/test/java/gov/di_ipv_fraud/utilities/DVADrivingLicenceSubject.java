@@ -111,5 +111,5 @@ public enum DVADrivingLicenceSubject implements TestInput {
     public String getpostcode() {
         return postcode;
     }
-
+    
 }

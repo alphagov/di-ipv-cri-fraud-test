@@ -48,11 +48,38 @@ public enum DrivingLicenceSubject implements TestInput {
     NoPostcode("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", ""),
     InternationalPostcode("PARKE610112PBFGH", "PARKER", "PETER", "BENJAMIN", "11", "10", "1962", "09", "12", "2062", "23", "05", "1982", "12", "CA 95128");
 
+    private String licenceNumber,
+            lastName,
+            firstName,
+            middleNames,
+            birthDay,
+            birthMonth,
+            birthYear,
+            validToDay,
+            validToMonth,
+            validToYear,
+            issueDay,
+            issueMonth,
+            issueYear,
+            issueNumber,
+            postcode;
 
-    private String licenceNumber, lastName, firstName, middleNames, birthDay, birthMonth, birthYear, validToDay, validToMonth, validToYear, issueDay, issueMonth, issueYear, issueNumber, postcode;
-
-
-    DrivingLicenceSubject(String licenceNumber, String lastName, String firstName, String middleNames, String birthDay, String birthMonth, String birthYear, String validToDay, String validToMonth, String validToYear, String issueDay, String issueMonth, String issueYear, String issueNumber, String postcode ) {
+    DrivingLicenceSubject(
+            String licenceNumber,
+            String lastName,
+            String firstName,
+            String middleNames,
+            String birthDay,
+            String birthMonth,
+            String birthYear,
+            String validToDay,
+            String validToMonth,
+            String validToYear,
+            String issueDay,
+            String issueMonth,
+            String issueYear,
+            String issueNumber,
+            String postcode) {
         this.licenceNumber = licenceNumber;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -129,5 +156,5 @@ public enum DrivingLicenceSubject implements TestInput {
     public String getpostcode() {
         return postcode;
     }
-
+    
 }

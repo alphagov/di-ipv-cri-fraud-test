@@ -34,7 +34,6 @@ public class ConfigurationService {
 
         this.parameterPrefix = getParameter("STACK_NAME");
         this.contraindicationMappings = getParameter("contraindicationMappings");
-        this.fraudResultTableName = getParameter("FraudTableName");
         this.redirectUri = getParameter("redirectUri");
         this.clientId = getParameter("clientId");
         this.publicApiBaseUrl = getParameter("apiBaseUrl");
