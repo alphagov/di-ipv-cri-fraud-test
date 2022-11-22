@@ -162,6 +162,9 @@ public class ProveYourIdentityFullJourneyPageObject extends UniversalSteps {
     @FindBy(xpath = "//label[@id='Q00020-NONEOFTHEABOVEDOESNOTAPPLY-label']")
     public WebElement dobNONEOFTHEABOVEDOESNOTAPPLY;
 
+    @FindBy(id = "journey")
+    public WebElement proveYourIdRadioBtn;
+
     public ProveYourIdentityFullJourneyPageObject() {
         this.configurationService = new ConfigurationService(System.getenv("ENVIRONMENT"));
         PageFactory.initElements(Driver.get(), this);
@@ -176,6 +179,11 @@ public class ProveYourIdentityFullJourneyPageObject extends UniversalSteps {
 
     public void clickOnFullJourneyRouteButton() {
         fullJourneyRouteButton.click();
+    }
+
+    public void clickContinueToProveYourIdRadioBtn() {
+        proveYourIdRadioBtn.click();
+        continueSubmitButton.click();
     }
 
     public void selectContinueButton() {
@@ -249,13 +257,13 @@ public class ProveYourIdentityFullJourneyPageObject extends UniversalSteps {
                 break;
             case "What is the outstanding balance of your current mortgage? – Prove your identity – GOV.UK":
                 try {
-                    if (loanTSBBANKPLC.isDisplayed()) {
-                        loanTSBBANKPLC.click();
+                    if (OVER35000UPTO60000.isDisplayed()) {
+                        OVER35000UPTO60000.click();
                         continueButton.click();
                     }
                 } catch (Exception e) {
-                    if (loanNONEOFTHEABOVEDOESNOTAPPLY.isDisplayed()) {
-                        loanNONEOFTHEABOVEDOESNOTAPPLY.click();
+                    if (mortgageLeftToPayNONEOFTHEABOVEDOESNOTAPPLY.isDisplayed()) {
+                        mortgageLeftToPayNONEOFTHEABOVEDOESNOTAPPLY.click();
                         continueButton.click();
                     }
                 }
@@ -330,10 +338,6 @@ public class ProveYourIdentityFullJourneyPageObject extends UniversalSteps {
                 break;
             case "How much do you have left to pay on your mortgage? – Prove your identity – GOV.UK":
                 try {
-                    if (UPTO60000.isDisplayed()) {
-                        UPTO60000.click();
-                        continueButton.click();
-                    }
                     if (UPTO60000.isDisplayed()) {
                         UPTO60000.click();
                         continueButton.click();
@@ -437,8 +441,11 @@ public class ProveYourIdentityFullJourneyPageObject extends UniversalSteps {
                 vcMap.get("Cri Type: https://review-f.staging.account.gov.uk");
 
         List<Address> addressList = getAddresses(objectMapper, fraudVc);
-
-        assertEquals(2, addressList.size());
+        if(addressList.size() > 1) {
+            assertEquals(2, addressList.size());
+        } else {
+            assertEquals(1, addressList.size());
+        }
     }
 
     private List<Address> getAddresses(ObjectMapper objectMapper, Map<String, String> fraudVc)

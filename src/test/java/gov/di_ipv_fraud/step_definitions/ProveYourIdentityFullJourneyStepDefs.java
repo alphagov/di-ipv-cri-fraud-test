@@ -95,4 +95,10 @@ public class ProveYourIdentityFullJourneyStepDefs extends ProveYourIdentityFullJ
     public void they_should_be_on_What_is_your_previous_home_address() {
         assertPreviousAddressTitle();
     }
+
+    @And("^I click on `Continue to prove your identity this way` radio button$")
+    public void clickContinueToProveYourIdentityRadioButton() {
+        clickContinueToProveYourIdRadioBtn();
+    }
+
 }
