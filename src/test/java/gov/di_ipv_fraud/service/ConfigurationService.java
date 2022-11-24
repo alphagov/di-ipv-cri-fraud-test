@@ -13,7 +13,6 @@ public class ConfigurationService {
     // For shared secret values
     private static final String KEY_FORMAT = "/%s/credentialIssuers/fraud/%s";
 
-    private final String fraudResultTableName;
     private final String contraindicationMappings;
     private final String parameterPrefix;
     private final String redirectUri;
@@ -43,21 +42,12 @@ public class ConfigurationService {
         this.passportCriUrl = getParameter("passportCriUrl");
         this.orchestratorStubUrl = getParameter("orchestratorStubUrl");
         this.httpsEnabled = getParameter("httpsEnabled");
-        this.fraudResultTableName = getParameter("fraudResultTableName");
     }
 
     private String getParameter(String paramName) {
         String parameterValue = System.getenv(paramName);
         Objects.requireNonNull(parameterValue);
         return parameterValue;
-    }
-
-    public String getFraudResultTableName() {
-        return fraudResultTableName;
-    }
-
-    public String getContraindicationMappings() {
-        return contraindicationMappings;
     }
 
     public String getRedirectUri() {
