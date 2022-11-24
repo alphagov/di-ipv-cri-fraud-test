@@ -100,5 +100,4 @@ public class ProveYourIdentityFullJourneyStepDefs extends ProveYourIdentityFullJ
     public void clickContinueToProveYourIdentityRadioButton() {
         clickContinueToProveYourIdRadioBtn();
     }
-
 }
