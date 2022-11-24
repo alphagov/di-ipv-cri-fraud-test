@@ -1,7 +1,7 @@
 @fraud_CRI
 Feature: Fraud CRI
 
-  @happy_path @build
+  @happy_path @build-fraud
   Scenario: User Journey Happy Path (STUB)
     Given I navigate to the IPV Core Stub
     And I click the Fraud CRI for the Build environment
@@ -25,7 +25,7 @@ Feature: Fraud CRI
     And I navigate to the verifiable issuer to check for a Valid response from experian
     And The test is complete and I close the driver
 
-  @unhappy_path @build
+  @unhappy_path @build-fraud
   Scenario: User Journey Unhappy Path (STUB)
     Given I navigate to the IPV Core Stub
     And I click the Fraud CRI for the Build environment
@@ -49,7 +49,7 @@ Feature: Fraud CRI
     And I navigate to the verifiable issuer to check for a Invalid response from experian
     And The test is complete and I close the driver
 
-  @external_links @build
+  @external_links @build-fraud
   Scenario Outline: User Navigates To Experian/Privacy Policy
     Given I navigate to the IPV Core Stub
     And I click the Fraud CRI for the Build environment
@@ -88,7 +88,7 @@ Feature: Fraud CRI
       | Experian       |
       | Privacy Policy |
 
-  @userSearch_by_userName_happyPath @build
+  @userSearch_by_userName_happyPath @build-fraud
   Scenario: User Search By UserName User Journey Happy Path (STUB)
     Given I navigate to the IPV Core Stub
     And I click the Fraud CRI for the Build environment
@@ -118,7 +118,7 @@ Feature: Fraud CRI
     And JSON payload should contain user's name
     And The test is complete and I close the driver
 
-  @Spinner_icon_within_Fraud_CRI_screen @build
+  @Spinner_icon_within_Fraud_CRI_screen @build-fraud
   Scenario: User is presented with a spinner when clicking on the Continue button in the Fraud CRI screen (STUB)
     Given I navigate to the IPV Core Stub
     And I click the Fraud CRI for the Build environment
@@ -171,7 +171,7 @@ Feature: Fraud CRI
     And JSON response should contain error details and status code as 302
     And The test is complete and I close the driver
 
-  @edituser_happyPath @build
+  @edituser_happyPath @build-fraud
   Scenario: Edit User Happy Path (STUB)
     Given I navigate to the IPV Core Stub
     And I click the Fraud CRI for the Build environment
@@ -232,7 +232,7 @@ Feature: Fraud CRI
     And The test is complete and I close the driver
 
   # User with surname CI6 will return the U015 code and will return CI as P01 in the VC
-  @pep_test_all_users @build @test
+  @pep_test_all_users @build-fraud @test
   Scenario Outline: Edit User Happy Path with pep CI (STUB)
     Given I navigate to the IPV Core Stub
     And I click the Fraud CRI for the Build environment
@@ -350,7 +350,7 @@ Feature: Fraud CRI
       | name                    | dob            | ci  | score |
       | ANTHONY ROBERTS         | 25/06/1959     |     |   1   |
 
-  @test_PEP_user_with_multiple_addresses @build
+  @test_PEP_user_with_multiple_addresses @build-fraud
   Scenario Outline: Edit PEP User with multiple addresses (STUB)
     Given I navigate to the IPV Core Stub
     And I click the Fraud CRI for the Build environment
