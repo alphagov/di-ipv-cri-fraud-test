@@ -7,16 +7,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-
 import java.util.Set;
 import java.util.logging.Logger;
-
-import static gov.di_ipv_fraud.pages.Headers.IPV_CORE_STUB;
 
 public class DLUnrecoverableErrorPageObject extends UniversalSteps {
 
     private final ConfigurationService configurationService;
-    private static final Logger LOGGER = Logger.getLogger(DLUnrecoverableErrorPageObject.class.getName());
+    private static final Logger LOGGER =
+            Logger.getLogger(DLUnrecoverableErrorPageObject.class.getName());
 
     @FindBy(xpath = "//*[@id=\"main-content\"]/p/a")
     public WebElement visitCredentialIssuers;
@@ -46,20 +44,15 @@ public class DLUnrecoverableErrorPageObject extends UniversalSteps {
 
     public void deletecookie() {
 
-   Set <Cookie> cookies = Driver.get().manage().getCookies();
-   System.out.println("Size of Cookies:" +cookies.size());
+        Set<Cookie> cookies = Driver.get().manage().getCookies();
+        System.out.println("Size of Cookies:" + cookies.size());
 
-
-  for(Cookie cookie:cookies)
- {
-    System.out.println(cookie.getName()+":" +cookie.getValue());
-
-  }
-     Driver.get().manage().deleteCookieNamed("service_session");
-    // Driver.get().manage().deleteAllCookies();
-     Driver.get().navigate().refresh();
-
-
+        for (Cookie cookie : cookies) {
+            System.out.println(cookie.getName() + ":" + cookie.getValue());
+        }
+        Driver.get().manage().deleteCookieNamed("service_session");
+        // Driver.get().manage().deleteAllCookies();
+        Driver.get().navigate().refresh();
     }
 
     public void errorPageURLValidation() {
@@ -70,7 +63,7 @@ public class DLUnrecoverableErrorPageObject extends UniversalSteps {
         } else {
             LOGGER.info("Fail : Who was your UK driving licence issued by? is displayed");
         }
-       System.out.println("title:"  +actualTitle);
+        System.out.println("title:" + actualTitle);
     }
 
     public void validateErrorPageHeading() {

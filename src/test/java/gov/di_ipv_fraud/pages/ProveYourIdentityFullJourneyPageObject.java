@@ -441,7 +441,7 @@ public class ProveYourIdentityFullJourneyPageObject extends UniversalSteps {
                 vcMap.get("Cri Type: https://review-f.staging.account.gov.uk");
 
         List<Address> addressList = getAddresses(objectMapper, fraudVc);
-        if(addressList.size() > 1) {
+        if (addressList.size() > 1) {
             assertEquals(2, addressList.size());
         } else {
             assertEquals(1, addressList.size());
