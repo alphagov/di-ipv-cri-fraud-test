@@ -43,6 +43,7 @@ public class ConfigurationService {
         this.passportCriUrl = getParameter("passportCriUrl");
         this.orchestratorStubUrl = getParameter("orchestratorStubUrl");
         this.httpsEnabled = getParameter("httpsEnabled");
+        this.fraudResultTableName = getParameter("fraudResultTableName");
     }
 
     private String getParameter(String paramName) {
