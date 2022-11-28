@@ -149,6 +149,9 @@ public class WelshLangDrivingLicencePageObject extends UniversalSteps {
     @FindBy(id = "dateOfBirth-error")
     public WebElement  enterDateErrorMsg;
 
+    @FindBy(id = "issueDate-error")
+    public WebElement  issueDateErrorMsg;
+
     @FindBy(id = "dvaDateOfBirth-error")
     public WebElement  enterDateErrorDVAMsg;
 
@@ -172,6 +175,10 @@ public class WelshLangDrivingLicencePageObject extends UniversalSteps {
     @FindBy(id = "dvaLicenceNumber-error")
     public WebElement  exactLicenceErrorDVAMsg;
 
+    @FindBy(id = "dvaLicenceNumber-hint")
+    public WebElement  dvaLicenceHint;
+
+
    @FindBy(id = "issueNumber-error")
     public WebElement  IssueNumberErrorMsg;
 
@@ -183,44 +190,6 @@ public class WelshLangDrivingLicencePageObject extends UniversalSteps {
 
     @FindBy(xpath = "//*[@id=\"main-content\"]/div/div/div[1]/div[2]/p[1]")
     public WebElement  checkBannerDVAMsg;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //  @FindBy(xpath = "//*[@id=\"header\"]/text()")
-   // public WebElement checkYourDetailTextWelsh;
 
     @FindBy(xpath = "//*[@id=\"header\"]")
     public WebElement dvlaPageHeadingWelsh;
@@ -254,9 +223,6 @@ public class WelshLangDrivingLicencePageObject extends UniversalSteps {
 
     @FindBy(id = "submitButton")
     public WebElement CTButton;
-
-
-
 
     public WelshLangDrivingLicencePageObject() {
         PageFactory.initElements(Driver.get(), this);
@@ -317,8 +283,6 @@ public class WelshLangDrivingLicencePageObject extends UniversalSteps {
     }
 
     public void pageTitleDVLAValidationWelsh() {
-      // String actualTitle = Driver.get().getTitle();
-      //  System.out.print("Actual Title:" + actualTitle);
        String actualTitle = Driver.get().getTitle();
         String expTitle = "Rhowch eich manylion yn union fel maent yn ymddangos ar eich trwydded yrru – – GOV.UK";
         Assert.assertEquals(expTitle, actualTitle);
@@ -330,8 +294,6 @@ public class WelshLangDrivingLicencePageObject extends UniversalSteps {
         String expTitle = "Gwall: Rhowch eich manylion yn union fel maent yn ymddangos ar eich trwydded yrru – – GOV.UK";
         Assert.assertEquals(expTitle, actualTitle);
         LOGGER.info(actualTitle);
-      //  String actualTitle = Driver.get().getTitle();
-      //  System.out.print("Actual Title:" + actualTitle);
     }
 
     public void dvlaPageHeading() {
@@ -386,10 +348,9 @@ public class WelshLangDrivingLicencePageObject extends UniversalSteps {
     }
 
     public void thereIsaProblemSentence() {
-        String expectedText = "Ni fyddwch yn gallu newid eich manylion eto os byddwch yn gwneud camgymeriad";
-        String actualText = noretrymessage.getText();
-        Assert.assertEquals(expectedText, actualText);
-        LOGGER.info(actualText);
+        if (Driver.get().getPageSource().contains("Ni fyddwch yn gallu newid eich manylion eto os byddwch yn gwneud camgymeriad")) {
+            LOGGER.info("Ni fyddwch yn gallu newid eich manylion eto os byddwch yn gwneud camgymeriad");
+        }
     }
 
     public void lastNameWelsh() {
@@ -652,22 +613,28 @@ public class WelshLangDrivingLicencePageObject extends UniversalSteps {
 
     }
 
-    public void clearDOBandReEnterWelshtofutureForDVA() {
+    public void clearDOBandReEnterWelshForDVA() {
         new DrivingLicencePageObject().birthDay.clear();
         new DrivingLicencePageObject().birthDay.click();
-        new DrivingLicencePageObject().birthDay.sendKeys("15");
+        new DrivingLicencePageObject().birthDay.sendKeys("");
         new DrivingLicencePageObject().birthMonth.clear();
         new DrivingLicencePageObject().birthMonth.click();
-        new DrivingLicencePageObject().birthMonth.sendKeys("04");
+        new DrivingLicencePageObject().birthMonth.sendKeys("");
         new DrivingLicencePageObject().birthYear.clear();
         new DrivingLicencePageObject().birthYear.click();
-        new DrivingLicencePageObject().birthYear.sendKeys("2028");
+        new DrivingLicencePageObject().birthYear.sendKeys("");
 
     }
     public void thereIsaProblemText() {
         thereIsaProblemText.isDisplayed();
         if (Driver.get().getPageSource().contains("Mae problem")) {
             LOGGER.info("Mae problem");
+        }
+    }
+
+    public void weWillCheckYourDetails() {
+        if (Driver.get().getPageSource().contains("Byddwn yn gwirio eich manylion gyda'r DVLA i sicrhau nad yw eich trwydded yrru wedi cael ei chanslo na'i hadrodd fel un sydd ar goll neu wedi ei dwyn.")) {
+            LOGGER.info("Byddwn yn gwirio eich manylion gyda'r DVLA i sicrhau nad yw eich trwydded yrru wedi cael ei chanslo na'i hadrodd fel un sydd ar goll neu wedi ei dwyn.");
         }
     }
 
@@ -695,7 +662,7 @@ public class WelshLangDrivingLicencePageObject extends UniversalSteps {
     public void enterDOBErrorTextWelsh() {
         String expectedText = "Gwall:\n" +
                 "Rhowch y dyddiad fel y mae'n ymddangos ar eich trwydded yrru";
-        String actualText = enterDateErrorMsg.getText();
+        String actualText = issueDateErrorMsg.getText();
         Assert.assertEquals(expectedText, actualText);
         LOGGER.info(actualText);
     }
@@ -730,21 +697,13 @@ public class WelshLangDrivingLicencePageObject extends UniversalSteps {
         LOGGER.info(actualText);
     }
 
-   /* public void errorMessageFutureDOBWelshDVA() {
-        String expectedText = "Gwall:\n" +
-                "Rhowch y dyddiad fel y mae'n ymddangos ar eich trwydded yrru";
-        String actualText = enterDateErrorDVAMsg.getText();
-        Assert.assertEquals(expectedText, actualText);
-        LOGGER.info(actualText);
-    }*/
-
     public void enterInValidIssueDate() {
         new DrivingLicencePageObject().LicenceIssueDay.click();
-        new DrivingLicencePageObject().LicenceIssueDay.sendKeys("23");
+        new DrivingLicencePageObject().LicenceIssueDay.sendKeys("");
         new DrivingLicencePageObject().LicenceIssueMonth.click();
-        new DrivingLicencePageObject().LicenceIssueMonth.sendKeys("03");
+        new DrivingLicencePageObject().LicenceIssueMonth.sendKeys("");
         new DrivingLicencePageObject().LicenceIssueYear.click();
-        new DrivingLicencePageObject().LicenceIssueYear.sendKeys("1962");
+        new DrivingLicencePageObject().LicenceIssueYear.sendKeys("");
     }
 
     public void enterInValidIssueDateWithFutureYear() {
@@ -792,10 +751,6 @@ public class WelshLangDrivingLicencePageObject extends UniversalSteps {
         CTButton.click();
     }
 
-    //public void InvalidDOBErrorText() {
-    //    invlidDOBErrorText.isDisplayed();
-    //}
-
     public void inValidDLText() {
         invlidDLErrorText.isDisplayed();
     }
@@ -806,9 +761,6 @@ public class WelshLangDrivingLicencePageObject extends UniversalSteps {
         String actualText = pastIssueDateErrorMsg.getText();
         Assert.assertEquals(expectedText, actualText);
         LOGGER.info(actualText);
-       // if (Driver.get().getPageSource().contains("Rhowch y dyddiad fel y mae'n ymddangos ar eich trwydded yrru")) {
-         //   LOGGER.info("Rhowch y dyddiad fel y mae'n ymddangos ar eich trwydded yrru");
-        //}
     }
     public void inValidIssueDateTextDVA() {
         String expectedText = "Gwall:\n" +
@@ -821,11 +773,11 @@ public class WelshLangDrivingLicencePageObject extends UniversalSteps {
 
     public void enterInValidUntilDate() {
         new DrivingLicencePageObject().LicenceValidToDay.click();
-        new DrivingLicencePageObject().LicenceValidToDay.sendKeys("12");
+        new DrivingLicencePageObject().LicenceValidToDay.sendKeys("");
         new DrivingLicencePageObject().LicenceValidToMonth.click();
-        new DrivingLicencePageObject().LicenceValidToMonth.sendKeys("12");
+        new DrivingLicencePageObject().LicenceValidToMonth.sendKeys("");
         new DrivingLicencePageObject().LicenceValidToYear.click();
-        new DrivingLicencePageObject().LicenceValidToYear.sendKeys("2030");
+        new DrivingLicencePageObject().LicenceValidToYear.sendKeys("");
     }
 
     public void enterTheValidToExpiredYear() {
@@ -851,20 +803,17 @@ public class WelshLangDrivingLicencePageObject extends UniversalSteps {
     public void invalidDrivingLicenceempty() {
         new DrivingLicencePageObject().LicenceNumber.click();
         new DrivingLicencePageObject().LicenceNumber.sendKeys("");
-
     }
 
     public void invalidDrivingLicenceDVLA() {
         new DrivingLicencePageObject().LicenceNumber.click();
         new DrivingLicencePageObject().LicenceNumber.sendKeys("PARKE610@$112");
-
     }
 
     public void invalidDrivingLicenceWithSplCharDVLA() {
         new DrivingLicencePageObject().LicenceNumber.clear();
         new DrivingLicencePageObject().LicenceNumber.click();
         new DrivingLicencePageObject().LicenceNumber.sendKeys("@@@@@@@@@@@@@@@@");
-
     }
 
     public void inValidDrivingLicenceDVA() {
@@ -885,20 +834,14 @@ public class WelshLangDrivingLicencePageObject extends UniversalSteps {
        String actualText = exactLicenceErrorMsg.getText();
        Assert.assertEquals(expectedText, actualText);
        LOGGER.info(actualText);
-      //  if (Driver.get().getPageSource().contains("Rhowch y rhif yn union fel mae’n ymddangos ar eich trwydded yrru")) {
-        //    LOGGER.info("Rhowch y rhif yn union fel mae’n ymddangos ar eich trwydded yrru");
-        //}
     }
 
-        public void licenceErrorWelshforSplChar() {
-            String expectedText = "Gwall:\n" +
-                    "Ni ddylai rhif eich trwydded gynnwys unrhyw symbolau neu ofodau";
-            String actualText = exactLicenceErrorMsg.getText();
-            Assert.assertEquals(expectedText, actualText);
-            LOGGER.info(actualText);
-          //  if (Driver.get().getPageSource().contains("Ni ddylai rhif eich trwydded gynnwys unrhyw symbolau neu ofodau")) {
-           //     LOGGER.info("Ni ddylai rhif eich trwydded gynnwys unrhyw symbolau neu ofodau");
-           // }
+    public void licenceErrorWelshforSplChar() {
+        String expectedText = "Gwall:\n" +
+                "Ni ddylai rhif eich trwydded gynnwys unrhyw symbolau neu ofodau";
+        String actualText = exactLicenceErrorMsg.getText();
+        Assert.assertEquals(expectedText, actualText);
+        LOGGER.info(actualText);
         }
 
     public void licenceErrorWelshforSplCharForDVA() {
@@ -907,134 +850,122 @@ public class WelshLangDrivingLicencePageObject extends UniversalSteps {
         String actualText = exactLicenceErrorDVAMsg.getText();
         Assert.assertEquals(expectedText, actualText);
         LOGGER.info(actualText);
-        //  if (Driver.get().getPageSource().contains("Ni ddylai rhif eich trwydded gynnwys unrhyw symbolau neu ofodau")) {
-        //     LOGGER.info("Ni ddylai rhif eich trwydded gynnwys unrhyw symbolau neu ofodau");
-        // }
     }
 
+    public void invalidIssueNumber() {
+        new DrivingLicencePageObject().IssueNumber.click();
+        new DrivingLicencePageObject().IssueNumber.sendKeys("7");
+    }
 
-        public void invalidIssueNumber() {
-            new DrivingLicencePageObject().IssueNumber.click();
-            new DrivingLicencePageObject().IssueNumber.sendKeys("7");
-        }
+    public void IssueNumberErrorWelsh() {
+        String expectedText = "Gwall:\n" +
+                "Dylai eich rhif cyhoeddi fod yn 2 rif o hyd";
+        String actualText = IssueNumberErrorMsg.getText();
+        Assert.assertEquals(expectedText, actualText);
+        LOGGER.info(actualText);
+    }
 
-        public void IssueNumberErrorWelsh() {
-            String expectedText = "Gwall:\n" +
-                    "Dylai eich rhif cyhoeddi fod yn 2 rif o hyd";
-            String actualText = IssueNumberErrorMsg.getText();
-            Assert.assertEquals(expectedText, actualText);
-            LOGGER.info(actualText);
-        }
+    public void clearIssueNumber() {
+        new DrivingLicencePageObject().IssueNumber.clear();
+    }
 
-        public void clearIssueNumber() {
-            new DrivingLicencePageObject().IssueNumber.clear();
-        }
+    public void enterIssueNumberErrorWelsh() {
+        String expectedText = "Gwall:\n" +
+                "Rhowch y rhif cyhoeddi fel y mae'n ymddangos ar eich trwydded yrru";
+        String actualText = IssueNumberErrorMsg.getText();
+        Assert.assertEquals(expectedText, actualText);
+        LOGGER.info(actualText);
+    }
 
-        public void enterIssueNumberErrorWelsh() {
-            String expectedText = "Gwall:\n" +
-                    "Rhowch y rhif cyhoeddi fel y mae'n ymddangos ar eich trwydded yrru";
-            String actualText = IssueNumberErrorMsg.getText();
-            Assert.assertEquals(expectedText, actualText);
-            LOGGER.info(actualText);
-            //if (Driver.get().getPageSource().contains("Rhowch y rhif cyhoeddi fel y mae'n ymddangos ar eich trwydded yrru")) {
-              //  LOGGER.info("Rhowch y rhif cyhoeddi fel y mae'n ymddangos ar eich trwydded yrru");
-            //}
-        }
+    public void enterInValidPostCode() {
+        new DrivingLicencePageObject().Postcode.clear();
+        new DrivingLicencePageObject().Postcode.click();
+        new DrivingLicencePageObject().Postcode.sendKeys("@@@$$$**");
+    }
 
-        public void enterInValidPostCode() {
-            new DrivingLicencePageObject().Postcode.clear();
-            new DrivingLicencePageObject().Postcode.click();
-            new DrivingLicencePageObject().Postcode.sendKeys("@@@$$$**");
-        }
+    public void invalidPostCode() {
+        new DrivingLicencePageObject().Postcode.clear();
+        new DrivingLicencePageObject().Postcode.click();
+        new DrivingLicencePageObject().Postcode.sendKeys("BS98");
+    }
+    public void postCodeErrorWelsh() {
+        String expectedText = "Gwall:\n" +
+                "Dylai eich rhowch eich cod post fod rhwng 5 a 7 nod";
+        String actualText = postcodeErrorMgs.getText();
+        Assert.assertEquals(expectedText, actualText);
+        LOGGER.info(actualText);
+    }
 
-        public void invalidPostCode() {
-            new DrivingLicencePageObject().Postcode.clear();
-            new DrivingLicencePageObject().Postcode.click();
-            new DrivingLicencePageObject().Postcode.sendKeys("BS98");
-        }
-        public void postCodeErrorWelsh() {
-            String expectedText = "Gwall:\n" +
-                    "Dylai eich rhowch eich cod post fod rhwng 5 a 7 nod";
-            String actualText = postcodeErrorMgs.getText();
-            Assert.assertEquals(expectedText, actualText);
-            LOGGER.info(actualText);
-        }
+    public void postCodeErrorInvalidWelsh() {
+        String expectedText = "Gwall:\n" +
+                "Dylai eich rhowch eich cod post ond cynnwys rhifau a llythrennau yn unig";
+        String actualText = postcodeErrorMgs.getText();
+        Assert.assertEquals(expectedText, actualText);
+        LOGGER.info(actualText);
+    }
 
-        public void postCodeErrorInvalidWelsh() {
-            String expectedText = "Gwall:\n" +
-                    "Dylai eich rhowch eich cod post ond cynnwys rhifau a llythrennau yn unig";
-            String actualText = postcodeErrorMgs.getText();
-            Assert.assertEquals(expectedText, actualText);
-            LOGGER.info(actualText);
-        }
+    public void enterYourPostCodeErrorWelsh() {
+        String expectedText = "Gwall:\n" +
+                "Rhowch eich cod post";
+        String actualText = postcodeErrorMgs.getText();
+        Assert.assertEquals(expectedText, actualText);
+        LOGGER.info(actualText);
 
-        public void enterYourPostCodeErrorWelsh() {
-            String expectedText = "Gwall:\n" +
-                    "Rhowch eich cod post";
-            String actualText = postcodeErrorMgs.getText();
-            Assert.assertEquals(expectedText, actualText);
-            LOGGER.info(actualText);
+    }
 
-            //if (Driver.get().getPageSource().contains("Rhowch eich cod post")) {
-              //  LOGGER.info("Rhowch eich cod post");
-            //}
-        }
+    public void invalidDobForDVAWelsh() {
+        new DVAEnterYourDetailsExactlyPage().DayOfBirth.click();
+        new DVAEnterYourDetailsExactlyPage().DayOfBirth.sendKeys("ss");
+        new DVAEnterYourDetailsExactlyPage().MonthOfBirth.click();
+        new DVAEnterYourDetailsExactlyPage().MonthOfBirth.sendKeys("aa");
+        new DVAEnterYourDetailsExactlyPage().YearOfBirth.click();
+        new DVAEnterYourDetailsExactlyPage().YearOfBirth.sendKeys("aaaa");
+    }
 
-        public void invalidDobForDVAWelsh() {
-            new DVAEnterYourDetailsExactlyPage().DayOfBirth.click();
-            new DVAEnterYourDetailsExactlyPage().DayOfBirth.sendKeys("ss");
-            new DVAEnterYourDetailsExactlyPage().MonthOfBirth.click();
-            new DVAEnterYourDetailsExactlyPage().MonthOfBirth.sendKeys("aa");
-            new DVAEnterYourDetailsExactlyPage().YearOfBirth.click();
-            new DVAEnterYourDetailsExactlyPage().YearOfBirth.sendKeys("aaaa");
-        }
-
-        public void dvaclearDOBandReEnterWelshtofuture () {
-            new DVAEnterYourDetailsExactlyPage().DayOfBirth.clear();
-            new DVAEnterYourDetailsExactlyPage().DayOfBirth.click();
-            new DVAEnterYourDetailsExactlyPage().DayOfBirth.sendKeys("15");
-            new DVAEnterYourDetailsExactlyPage().MonthOfBirth.clear();
-            new DVAEnterYourDetailsExactlyPage().MonthOfBirth.click();
-            new DVAEnterYourDetailsExactlyPage().MonthOfBirth.sendKeys("04");
-            new DVAEnterYourDetailsExactlyPage().YearOfBirth.clear();
-            new DVAEnterYourDetailsExactlyPage().YearOfBirth.click();
-            new DVAEnterYourDetailsExactlyPage().YearOfBirth.sendKeys("2028");
-
-        }
-
-    public void dvaPastErrorrWelsh() {
+    public void dvaclearDOBandReEnterWelshtofuture () {
         new DVAEnterYourDetailsExactlyPage().DayOfBirth.clear();
         new DVAEnterYourDetailsExactlyPage().DayOfBirth.click();
         new DVAEnterYourDetailsExactlyPage().DayOfBirth.sendKeys("15");
         new DVAEnterYourDetailsExactlyPage().MonthOfBirth.clear();
         new DVAEnterYourDetailsExactlyPage().MonthOfBirth.click();
-        new DVAEnterYourDetailsExactlyPage().MonthOfBirth.sendKeys("03");
+        new DVAEnterYourDetailsExactlyPage().MonthOfBirth.sendKeys("04");
         new DVAEnterYourDetailsExactlyPage().YearOfBirth.clear();
         new DVAEnterYourDetailsExactlyPage().YearOfBirth.click();
-        new DVAEnterYourDetailsExactlyPage().YearOfBirth.sendKeys("2030");
-
+        new DVAEnterYourDetailsExactlyPage().YearOfBirth.sendKeys("1968");
     }
 
-        public void invalidIssueDayForDVA () {
-            new DVAEnterYourDetailsExactlyPage().LicenceIssueDay.click();
-            new DVAEnterYourDetailsExactlyPage().LicenceIssueDay.sendKeys("");
-            new DVAEnterYourDetailsExactlyPage().LicenceIssueMonth.click();
-            new DVAEnterYourDetailsExactlyPage().LicenceIssueMonth.sendKeys("");
-            new DVAEnterYourDetailsExactlyPage().LicenceIssueYear.click();
-            new DVAEnterYourDetailsExactlyPage().LicenceIssueYear.sendKeys("");
-        }
+    public void dvaPastErrorrWelsh() {
+        new DVAEnterYourDetailsExactlyPage().DayOfBirth.clear();
+        new DVAEnterYourDetailsExactlyPage().DayOfBirth.click();
+        new DVAEnterYourDetailsExactlyPage().DayOfBirth.sendKeys("11");
+        new DVAEnterYourDetailsExactlyPage().MonthOfBirth.clear();
+        new DVAEnterYourDetailsExactlyPage().MonthOfBirth.click();
+        new DVAEnterYourDetailsExactlyPage().MonthOfBirth.sendKeys("10");
+        new DVAEnterYourDetailsExactlyPage().YearOfBirth.clear();
+        new DVAEnterYourDetailsExactlyPage().YearOfBirth.click();
+        new DVAEnterYourDetailsExactlyPage().YearOfBirth.sendKeys("2062");
+    }
 
-        public void enterInValidIssueDateWithFutureYearDVA () {
-            new DVAEnterYourDetailsExactlyPage().LicenceIssueDay.clear();
-            new DVAEnterYourDetailsExactlyPage().LicenceIssueDay.click();
-            new DVAEnterYourDetailsExactlyPage().LicenceIssueDay.sendKeys("23");
-            new DVAEnterYourDetailsExactlyPage().LicenceIssueMonth.clear();
-            new DVAEnterYourDetailsExactlyPage().LicenceIssueMonth.click();
-            new DVAEnterYourDetailsExactlyPage().LicenceIssueMonth.sendKeys("03");
-            new DVAEnterYourDetailsExactlyPage().LicenceIssueYear.clear();
-            new DVAEnterYourDetailsExactlyPage().LicenceIssueYear.click();
-            new DVAEnterYourDetailsExactlyPage().LicenceIssueYear.sendKeys("2062");
-        }
+    public void invalidIssueDayForDVA () {
+        new DVAEnterYourDetailsExactlyPage().LicenceIssueDay.click();
+        new DVAEnterYourDetailsExactlyPage().LicenceIssueDay.sendKeys("");
+        new DVAEnterYourDetailsExactlyPage().LicenceIssueMonth.click();
+        new DVAEnterYourDetailsExactlyPage().LicenceIssueMonth.sendKeys("");
+        new DVAEnterYourDetailsExactlyPage().LicenceIssueYear.click();
+        new DVAEnterYourDetailsExactlyPage().LicenceIssueYear.sendKeys("");
+    }
+
+    public void enterInValidIssueDateWithFutureYearDVA () {
+        new DVAEnterYourDetailsExactlyPage().LicenceIssueDay.clear();
+        new DVAEnterYourDetailsExactlyPage().LicenceIssueDay.click();
+        new DVAEnterYourDetailsExactlyPage().LicenceIssueDay.sendKeys("23");
+        new DVAEnterYourDetailsExactlyPage().LicenceIssueMonth.clear();
+        new DVAEnterYourDetailsExactlyPage().LicenceIssueMonth.click();
+        new DVAEnterYourDetailsExactlyPage().LicenceIssueMonth.sendKeys("03");
+        new DVAEnterYourDetailsExactlyPage().LicenceIssueYear.clear();
+        new DVAEnterYourDetailsExactlyPage().LicenceIssueYear.click();
+        new DVAEnterYourDetailsExactlyPage().LicenceIssueYear.sendKeys("2062");
+    }
 
       public void invalidValidUntilForDVA() {
         new DVAEnterYourDetailsExactlyPage().LicenceValidToDay.click();
@@ -1062,9 +993,6 @@ public class WelshLangDrivingLicencePageObject extends UniversalSteps {
         String actualText = exactLicenceErrorMsg.getText();
         Assert.assertEquals(expectedText, actualText);
         LOGGER.info(actualText);
-      //  if (Driver.get().getPageSource().contains("Dylai rhif eich trwydded fod yn 16 nod o hyd")) {
-       //    LOGGER.info("Dylai rhif eich trwydded fod yn 16 nod o hyd");
-       // }
     }
 
     public void licenceNumberErrorWelshForDVA() {
@@ -1073,14 +1001,12 @@ public class WelshLangDrivingLicencePageObject extends UniversalSteps {
         String actualText = exactLicenceErrorDVAMsg.getText();
         Assert.assertEquals(expectedText, actualText);
         LOGGER.info(actualText);
-        // if (Driver.get().getPageSource().contains("Dylai rhif eich trwydded fod yn 8 nod o hyd")) {
-        //   LOGGER.info("Dylai rhif eich trwydded fod yn 8 nod o hyd");
-        //}
     }
 
     public void licenceNumberErrorWelshforDVA() {
-        if (Driver.get().getPageSource().contains("Dyma'r rhif hir yn adran 5 ar eich trwydded\n")) {
-            LOGGER.info("Dyma'r rhif hir yn adran 5 ar eich trwydded\n");
-        }
+        String expectedText =  "Dyma'r rhif hir yn adran 5 ar eich trwydded";
+        String actualText = dvaLicenceHint.getText();
+        Assert.assertEquals(expectedText, actualText);
+        LOGGER.info(actualText);
     }
 }
