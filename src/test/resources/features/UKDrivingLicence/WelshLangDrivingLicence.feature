@@ -14,7 +14,6 @@ Feature: Driving License Test
     When the text reads “BETA Mae hwn yn wasanaeth newydd – bydd eich adborth (agor mewn tab newydd) yn ein helpu i'w wella.”
     Then The test is complete and I close the driver
 
-
   @DrivingLicenceTest
   Scenario:3 options and Radio button available in Driving Licence page
      Given I check the page title Pwy wnaeth gyhoeddi eich trwydded yrru y DU?
@@ -27,12 +26,12 @@ Feature: Driving License Test
      And I see the sentence starts with “Gallwch ddod o hyd i hwn yn adran"
      And The test is complete and I close the driver
 
-
   @DVLADrivingLicenceTest
   Scenario:User Selects DVLA and landed in DVLA page and Validate the title and sentences
     Given I click on DVLA radio button and Parhau
     Then I should on the page DVLA and validate title
     And I see the heading Rhowch eich manylion yn union fel maent yn ymddangos ar eich trwydded yrru
+    And I see the sentence Byddwn yn gwirio eich manylion gydar DVLA i sicrhau nad yw eich trwydded yrru wedi cael ei chanslo na'i hadrodd fel un sydd ar goll neu wedi ei dwyn.
     And I see the sentence below Os nad oes gennych drwydded yrru y DU neu os na allwch gofio'ch manylion, gallwch brofi pwy ydych chi mewn ffordd arall yn lle.
     And The test is complete and I close the driver
 
@@ -45,12 +44,12 @@ Feature: Driving License Test
     Then I see “Gwall”
     And I see “Nid oeddem yn gallu dod o hyd i'ch manylion”
     And I see Roedd yna broblem wrth i ni wirio eich manylion gyda'r [DVLA]
-    #Then I see “Ni fyddwch yn gallu newid eich manylion eto os byddwch yn gwneud camgymeriad.”
+    Then I see “Ni fyddwch yn gallu newid eich manylion eto os byddwch yn gwneud camgymeriad.”
+    And The test is complete and I close the driver
 
     Examples:
       |DrivingLicenceSubject |
       |IncorrectIssueNumber|
-
 
   @DVLADrivingLicenceTest
   Scenario: DVLA Name fields
@@ -62,7 +61,6 @@ Feature: Driving License Test
     And I can see the sentence “Mae hwn yn adran 2 och trwydded. Nid oes angen i chi gynnwys eich teitl.”
     And I can see the sentence “Gadewch hyn yn wag os nad oes gennych unrhyw enwau canol”
     And The test is complete and I close the driver
-
 
   @DVLADrivingLicenceTest
   Scenario: DVLA DoB Fields
@@ -147,7 +145,6 @@ Feature: Driving License Test
      And I see “Rhowch unrhyw enwau canol fel y maent yn ymddangos ar eich trwydded yrru"
      And The test is complete and I close the driver
 
-
   @DVLADrivingLicence_test @build
   Scenario: DVLA Driving Licence details IncorrectDateOfBirth error message in Welsh
     Given I click on DVLA radio button and Parhau
@@ -178,8 +175,7 @@ Feature: Driving License Test
     Given I click on DVLA radio button and Parhau
     When I enter the invalid Valid to date field
     And  User clicks on Parhau
-    #And I see “Rhowch y dyddiad fel y mae'n ymddangos ar eich trwydded yrru”
-    #Then I can see the Valid to date field error “Rhowch y dyddiad fel y mae'n ymddangos ar eich trwydded yrru”
+    And I see “Rhowch y dyddiad fel y mae'n ymddangos ar eich trwydded yrru”
     Then I clear the data and re enter the valid to expired year
     And  User clicks on Parhau
     And I see Ni allwch ddefnyddio trwydded yrru sydd wedi dod i ben
@@ -241,7 +237,7 @@ Feature: Driving License Test
     And I see “Gwall”
     Then I see “Nid oeddem yn gallu dod o hyd i'ch manylion”
     And I see Roedd yna broblem wrth i ni wirio eich manylion gyda'r [DVA]
-   # Then I see “Ni fyddwch yn gallu newid eich manylion eto os byddwch yn gwneud camgymeriad.”
+    Then I see “Ni fyddwch yn gallu newid eich manylion eto os byddwch yn gwneud camgymeriad.”
     And The test is complete and I close the driver
 
     Examples:
@@ -302,6 +298,7 @@ Feature: Driving License Test
     Then I can see the postcode field titled “Cod post”
     And I can see “Rhowch y cod post yn y cyfeiriad yn adran  o ch trwydded”
 
+
   @DVADrivingLicence_test @build
   Scenario Outline:  DVA Driving Licence details page happy path
     Given I click on DVA radio button and Parhau
@@ -323,6 +320,7 @@ Feature: Driving License Test
     And I clear the licence number enter the invalid Driving Licence
     Then User clicks on Parhau
     And I see “Ni ddylai rhif eich trwydded gynnwys unrhyw symbolau neu ofodau” for DVA
+    And The test is complete and I close the driver
 
   @DVADrivingLicence_test @build
   Scenario: DVA Driving Licence details Name field error message in Welsh
@@ -336,38 +334,26 @@ Feature: Driving License Test
     And The test is complete and I close the driver
 
   @DVADrivingLicence_test @build
-  Scenario Outline: DVA Driving Licence details IncorrectDateOfBirth error message in Welsh
+  Scenario: DVA Driving Licence details IncorrectDateOfBirth error message in Welsh
     Given I click on DVA radio button and Parhau
-    When User enters DVA data as a <DVADrivingLicenceSubject>
-    Then  User clicks on Parhau
-    And I see “Rhaid i'ch dyddiad geni fod yn y gorffennol” For DVA
     When I click Parhau without entering any details
     Then the validation text reads “Mae problem”
     And I see “Rhowch y dyddiad fel y mae'n ymddangos ar eich trwydded yrru” for DVA
-    Then I clear the data and re enter the date of birth to enter futureDOB for DVA
+    And I clear the data and re enter the date of birth to enter pastDOB for DVA
     And  User clicks on Parhau
-    Then I see “Rhowch y dyddiad fel y mae'n ymddangos ar eich trwydded yrru” for DVA
-    #Then I clear the data and re enter the date of birth to enter pastDOB for DVA
-    #And  User clicks on Parhau
-   # Then I see “Rhaid i'ch dyddiad geni fod yn y gorffennol” For DVA
-    #And The test is complete and I close the driver
-    Examples:
-      |DVADrivingLicenceSubject      |
-      |IncorrectDVADateOfBirth |
+    Then I see “Rhaid i'ch dyddiad geni fod yn y gorffennol” For DVA
+    And The test is complete and I close the driver
 
-#passed
   @DVADrivingLicence_test @build
   Scenario: DVA Driving Licence Valid to date field error message in Welsh
     Given I click on DVA radio button and Parhau
     When I enter the invalid Valid to date field for DVA
     And  User clicks on Parhau
-   # Then Proper error message for invalid IssueDate “Rhowch y dyddiad fel y mae'n ymddangos ar eich trwydded yrru” for DVA
     Then I can see the Valid to date field error “Rhowch y dyddiad fel y mae'n ymddangos ar eich trwydded yrru” for DVA
     And I clear the data and re enter the valid to expired year for DVA
     Then  User clicks on Parhau
     And I see Ni allwch ddefnyddio trwydded yrru sydd wedi dod i ben
-   # And The test is complete and I close the driver
-
+    And The test is complete and I close the driver
 
   @DVADrivingLicence_test @build
   Scenario: DVA Postcode field error message in Welsh
@@ -382,7 +368,7 @@ Feature: Driving License Test
     And User clicks on Parhau
     And I see “Dylai eich rhowch eich cod post fod rhwng 5 a 7 nod”
     And The test is complete and I close the driver
-#passed
+
   @DVADrivingLicence_test @build
   Scenario: DVA Driving Licence Issue date field error message in Welsh
     Given I click on DVA radio button and Parhau
@@ -393,23 +379,22 @@ Feature: Driving License Test
     And  User clicks on Parhau
     And  I see “Rhaid i ddyddiad cyhoeddi fod yn y gorffennol” for DVA
     Then I validate the page error page title
-   # And The test is complete and I close the driver
+    And The test is complete and I close the driver
 
-    #passed
-    @DVLADrivingLicence_test@build
-    Scenario Outline: DVLA Error tab title validation
-      Given I click on DVLA radio button and Parhau
-      When I should on the page DVLA and validate title
-      Then User enters data as a <DrivingLicenceSubject>
-      And User clicks on Parhau
-      Then I validate the page error page title
-      And The test is complete and I close the driver
-      Examples:
-       |DrivingLicenceSubject |
-       |IncorrectDateOfBirth |
-#passed
+  @DVLADrivingLicence_test@build
+  Scenario Outline: DVLA Error tab title validation
+    Given I click on DVLA radio button and Parhau
+    When I should on the page DVLA and validate title
+    Then User enters data as a <DrivingLicenceSubject>
+    And User clicks on Parhau
+    Then I validate the page error page title
+    And The test is complete and I close the driver
+    Examples:
+      |DrivingLicenceSubject |
+      |IncorrectDateOfBirth |
+
   @DVADrivingLicence_test@build
-  Scenario : DVAError tab title validation
+  Scenario: DVAError tab title validation
     Given I click on DVA radio button and Parhau
     When I should on the page DVA and validate title
     When I enter the invalid Postcode

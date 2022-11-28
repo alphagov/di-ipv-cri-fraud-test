@@ -228,15 +228,11 @@ public class WelshlandDrivingLicenceStepDefs extends WelshLangDrivingLicencePage
         inValidIssueDateText();
     }
 
-   @Then("Proper error message for invalid IssueDate “Rhowch y dyddiad fel y mae'n ymddangos ar eich trwydded yrru” for DVA")
-    public void properErrorMessageForInvalidIssueDateRhowchYDyddiadFelYMaeNYmddangosArEichTrwyddedYrruForDVA() {
-        inValidIssueDateTextDVA();
-    }
-
     @Then("I can see the Valid to date field error “Rhowch y dyddiad fel y mae'n ymddangos ar eich trwydded yrru” for DVA")
     public void ICanSeeTheValidtoDateFieldErrorRhowchYDyddiadFelYMaenymddangosareichtrwyddedyrruforDVA() {
         inValidIssueDateTextDVA();
     }
+
     @When("I enter the invalid last name and first name")
     public void iEnterTheInvalidLastNameAndFirstName() {
         invalidlastAndFirstNameWelsh();
@@ -265,8 +261,8 @@ public class WelshlandDrivingLicenceStepDefs extends WelshLangDrivingLicencePage
 
     @When("I click Parhau without entering any details")
     public void iClickParhauWithoutEnteringAnyDetails() {
-        new DrivingLicencePageObject().Continue.clear();
-        new DrivingLicencePageObject().Continue.click();
+      //  clearDOBandReEnterWelshForDVA();
+          new DrivingLicencePageObject().Continue.click();
     }
 
     @And("I see “Rhowch y dyddiad fel y mae'n ymddangos ar eich trwydded yrru”")
@@ -554,5 +550,9 @@ public class WelshlandDrivingLicenceStepDefs extends WelshLangDrivingLicencePage
         licenceErrorWelshforSplCharForDVA();
     }
 
+    @And("I see the sentence Byddwn yn gwirio eich manylion gydar DVLA i sicrhau nad yw eich trwydded yrru wedi cael ei chanslo na'i hadrodd fel un sydd ar goll neu wedi ei dwyn.")
+    public void iSeeTheSentenceByddwnYnGwirioEichManylionGydarDVLAISicrhauNadYwEichTrwyddedYrruWediCaelEiChansloNaIHadroddFelUnSyddArGollNeuWediEiDwyn() {
+        weWillCheckYourDetails();
+    }
 
 }
