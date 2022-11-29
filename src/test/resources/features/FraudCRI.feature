@@ -93,15 +93,6 @@ Feature: Fraud CRI
     And JSON payload should contain ci A01 and score 2
     And The test is complete and I close the driver
 
-  @happy_path_with_ci_fraud @integration
-  Scenario: User Journey Happy Path with A01 CI (STUB)
-    Given I navigate to the IPV Core Stub
-    And I click the Fraud CRI for the Integration environment
-    Then I search for user number 34 in the Experian table
-    And I navigate to the verifiable issuer to check for a Valid response from experian
-    And JSON payload should contain ci A01 and score 2
-    And The test is complete and I close the driver
-
   # User with surname CI6 will return the U015 code and will return CI as P01 in the VC
   @pep_test_all_users @build-fraud
   Scenario Outline: Edit User Happy Path with pep CI (STUB)
