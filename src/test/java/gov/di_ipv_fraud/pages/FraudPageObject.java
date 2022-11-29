@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 import gov.di_ipv_fraud.service.ConfigurationService;
+import gov.di_ipv_fraud.utilities.BrowserUtils;
 import gov.di_ipv_fraud.utilities.Driver;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
@@ -167,6 +168,21 @@ public class FraudPageObject extends UniversalSteps {
             Driver.get().get("http://" + coreStubUrl);
         }
         waitForTextToAppear(IPV_CORE_STUB);
+    }
+
+    public void navigateToFraudCRIOnTestEnv() {
+        visitCredentialIssuers.click();
+        String fraudCRITestEnvironment = configurationService.getFraudCRITestEnvironment();
+        LOGGER.info("fraudCRITestEnvironment = " + fraudCRITestEnvironment);
+        if (fraudCRITestEnvironment.equalsIgnoreCase("Build")) {
+            fraudCRIBuild.click();
+        } else if (fraudCRITestEnvironment.equalsIgnoreCase("Staging")) {
+            fraudCRIStaging.click();
+        } else if (fraudCRITestEnvironment.equalsIgnoreCase("Integration")) {
+            fraudCRIIntegration.click();
+        } else {
+            LOGGER.info("No test environment is set");
+        }
     }
 
     public void navigateToFraudCRI(String environment) {
