@@ -3,6 +3,8 @@ package gov.di_ipv_fraud.pages;
 import gov.di_ipv_fraud.utilities.BrowserUtils;
 import gov.di_ipv_fraud.utilities.DVADrivingLicenceSubject;
 import gov.di_ipv_fraud.utilities.Driver;
+import io.cucumber.java.en.Then;
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -50,6 +52,24 @@ public class DVAEnterYourDetailsExactlyPage {
 
     @FindBy(id = "dvaLicenceNumber")
     public WebElement dvaLicenceNumber;
+
+    @FindBy(xpath = "//*[@class='govuk-error-summary error-summary']//*[@class='govuk-error-summary__body']//*[@class='govuk-list govuk-error-summary__list']//*[contains(@href,'#dvaDateOfBirth-day')]")
+    public WebElement DVAInvalidDOBError;
+
+    @FindBy(id = "dvaDateOfBirth-error")
+    public WebElement DVAInvalidDOBFieldError;
+
+    @FindBy(xpath = "//*[@class='govuk-error-summary error-summary']//*[@class='govuk-error-summary__body']//*[@class='govuk-list govuk-error-summary__list']//*[contains(@href,'#dateOfIssue-day')]")
+    public WebElement DVAInvalidIssueDateError;
+
+    @FindBy(id = "dateOfIssue-error")
+    public WebElement DVAInvalidIssueDateFieldError;
+
+    @FindBy(xpath = "//*[@class='govuk-error-summary error-summary']//*[@class='govuk-error-summary__body']//*[@class='govuk-list govuk-error-summary__list']//*[contains(@href,'#dvaLicenceNumber')]")
+    public WebElement DVAInvalidDrivingLicenceError;
+
+    @FindBy(id = "dvaLicenceNumber-error")
+    public WebElement DVADrivingLicenceFieldError;
 
     public void userEntersDVAData(DVADrivingLicenceSubject dvaDrivingLicenceSubject) {
         dvaLicenceNumber.sendKeys(dvaDrivingLicenceSubject.getDVAlicenceNumber());
@@ -114,4 +134,77 @@ public class DVAEnterYourDetailsExactlyPage {
         LicenceIssueYear.sendKeys(dvaDrivingLicenceSubject.getlicenceIssueYear());
         Postcode.sendKeys(dvaDrivingLicenceSubject.getpostcode());
     }
+
+    public void invalidDVADOBErrorDisplayed() {
+        Assert.assertEquals("Check you have entered your date of birth correctly",DVAInvalidDOBError.getText());
+    }
+
+    public void invalidDVADOBFieldErrorDisplayed() {
+        Assert.assertEquals("Error:\n" +
+                "Check you have entered your date of birth correctly",DVAInvalidDOBFieldError.getText());
+    }
+
+    public void futureDVADOBErrorDisplayed() {
+        Assert.assertEquals("Your date of birth must be in the past",DVAInvalidDOBError.getText());
+    }
+
+    public void futureDVADOBFieldErrorDisplayed() {
+        Assert.assertEquals("Error:\n" +
+                "Your date of birth must be in the past",DVAInvalidDOBFieldError.getText());
+    }
+
+    public void noDVADOBErrorDisplayed() {
+        Assert.assertEquals("Enter your date of birth as it appears on your driving licence",DVAInvalidDOBError.getText());
+    }
+
+    public void noDVADOBFieldErrorDisplayed() {
+        Assert.assertEquals("Error:\n" +
+                "Enter your date of birth as it appears on your driving licence",DVAInvalidDOBFieldError.getText());
+    }
+
+    public void invalidDVAIssueDateErrorDisplayed() {
+        Assert.assertEquals("Enter the date as it appears on your driving licence",DVAInvalidIssueDateError.getText());
+    }
+
+    public void invalidDVAIssueDateFieldErrorDisplayed() {
+        Assert.assertEquals("Error:\n" +
+                "Enter the date as it appears on your driving licence",DVAInvalidIssueDateFieldError.getText());
+    }
+
+    public void futureIssueDateDVAErrorDisplayed() {
+        Assert.assertEquals("The issue date must be in the past",DVAInvalidIssueDateError.getText());
+    }
+
+    public void futureIssueDateDVAFieldErrorDisplayed() {
+        Assert.assertEquals("Error:\n" +
+                "The issue date must be in the past",DVAInvalidIssueDateFieldError.getText());
+    }
+
+    public void shortDVADrivingLicenceNumErrorDisplayed() {
+        Assert.assertEquals("Your licence number should be 8 characters long",DVAInvalidDrivingLicenceError.getText());
+    }
+
+    public void shortDVADrivingLicenceNumFieldErrorDisplayed() {
+        Assert.assertEquals("Error:\n" +
+                "Your licence number should be 8 characters long",DVADrivingLicenceFieldError.getText());
+    }
+
+    public void specialCharDrivingLicenceDVAErrorDisplayed() {
+        Assert.assertEquals("Your licence number should not include any symbols or spaces",DVAInvalidDrivingLicenceError.getText());
+    }
+
+    public void specialCharDrivingLicenceDVAFieldErrorDisplayed() {
+        Assert.assertEquals("Error:\n" +
+                "Your licence number should not include any symbols or spaces",DVADrivingLicenceFieldError.getText());
+    }
+
+    public void invalidDrivingLicenceDVAErrorDisplayed() {
+        Assert.assertEquals("Enter the number exactly as it appears on your driving licence",DVAInvalidDrivingLicenceError.getText());
+    }
+
+    public void invalidDrivingLicenceFieldDVAErrorDisplayed() {
+        Assert.assertEquals("Error:\n" +
+                "Enter the number exactly as it appears on your driving licence",DVADrivingLicenceFieldError.getText());
+    }
+
 }
