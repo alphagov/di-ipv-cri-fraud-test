@@ -323,33 +323,6 @@ Feature: Fraud CRI
       | Staging     |
       | Integration |
 
-  @test_PEP_user_with_multiple_addresses @staging
-  Scenario Outline: Edit PEP User with multiple addresses (STUB)
-    Given I navigate to the IPV Core Stub
-    And I click the Fraud CRI for the Staging environment
-    And I search for user name LINDA DUFF in the Experian table
-    When I click on Edit User link
-    Then I am on Edit User page
-    And I clear existing Date of Birth
-    And I enter Date of birth as <dob>
-    And I clear existing first name
-    And I clear existing surname
-    And I enter name <name>
-    When I click on Second address
-    And I enter Second address details
-      | housenumber | streetname | townorcity | postcode |
-      | 285         | HIGH STREET| WESTBURY   | BA13 3BN  |
-    And I enter valid to date as 01/01/2021
-    And I submit user updates
-    Then I navigate to the verifiable issuer to check for a Valid response from experian
-    And JSON payload should contain ci <ci> and score <score>
-    And The test is complete and I close the driver
-
-    #Pep is skipped due to zero decision score
-    Examples:
-      | name                    | dob            | ci  | score |
-      | ANTHONY ROBERTS         | 25/06/1959     |     |   1   |
-
   @test_PEP_user_with_multiple_addresses @build-fraud
   Scenario Outline: Edit PEP User with multiple addresses (STUB)
     Given I navigate to the IPV Core Stub
@@ -371,7 +344,7 @@ Feature: Fraud CRI
     Then I navigate to the verifiable issuer to check for a Valid response from experian
     And JSON payload should contain ci <ci> and score <score>
     And The test is complete and I close the driver
-
+  # If this test fails, confirm that the request had extra address removed
     Examples:
       | name                    | dob            | ci  | score |
-      | ANTHONY ROBERTS         | 25/06/1959     |     |   1   |
+      | ANTHONY ROBERTS         | 25/06/1959     |     |   2   |
