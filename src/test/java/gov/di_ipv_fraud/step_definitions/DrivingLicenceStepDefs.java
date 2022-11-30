@@ -126,4 +126,15 @@ public class DrivingLicenceStepDefs extends DrivingLicencePageObject {
             throws JsonProcessingException {
         jsonErrorResponse(testErrorDescription, testStatusCode);
     }
+
+    @And("I validate the page title")
+    public void iValidateThePageTitle() {
+        pageTabTitle();
+    }
+
+    @Then("I validate the page error page title")
+    public void iValidateThePageErrorPageTitle() {
+        errorPageTitle();
+    }
+
 }

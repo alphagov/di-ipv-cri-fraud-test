@@ -649,5 +649,18 @@ public class DrivingLicencePageObject extends UniversalSteps {
         Assert.assertEquals("Error:\n" +
                 "Enter any middle names as they appear on your driving licence",InvalidMiddleNamesFieldError.getText());
     }
-    
+
+    public void pageTabTitle() {
+        String actualTitle = Driver.get().getTitle();
+        String expTitle = "Enter your details exactly as they appear on your UK driving licence – – GOV.UK";
+        Assert.assertEquals(expTitle, actualTitle);
+        LOGGER.info(actualTitle);
+    }
+
+    public void errorPageTitle() {
+        String actualTitle = Driver.get().getTitle();
+        String expTitle = "Error: Enter your details exactly as they appear on your UK driving licence – – GOV.UK";
+        Assert.assertEquals(expTitle, actualTitle);
+        LOGGER.info(actualTitle);
+    }
 }
