@@ -44,3 +44,65 @@ Feature: Driving License Test
     Then I can select a link which directs to the problem field
     And The field error copy “You must choose an option to continue”
     And The test is complete and I close the driver
+
+  @DVLADrivingLicence_test@build
+  Scenario Outline: DVLA Error tab title validation
+    Given I click on DVLA radio button and Continue
+    When I should on the page DVLA Enter your details exactly as they appear on your UK driving licence
+    And I validate the page title
+    Then User enters data as a <DrivingLicenceSubject>
+    And User clicks on continue
+    Then I validate the page error page title
+    And The test is complete and I close the driver
+    Examples:
+      |DrivingLicenceSubject             |
+       |NoLastName   |
+       |NoFirstName |
+       |NoDateOfBirth   |
+       |NoIssueDate   |
+       |NoValidToDate  |
+       |NoDrivingLicenceNumber |
+       |NoIssueNumber  |
+       |NoPostcode|
+       |InvalidFirstNameWithNumbers|
+       |InvalidFirstNameWithSpecialCharacters|
+       |DateOfBirthWithSpecialCharacters     |
+       |InvalidDateOfBirth|
+       |IssueDateWithSpecialCharacters|
+       |ValidToDateWithSpecialCharacters|
+       |ValidToDateInPast |
+       |DrivingLicenceNumberWithSpecialChar|
+       |IssueNumberWithSpecialChar         |
+       |PostcodeWithSpecialChar            |
+       |InternationalPostcode              |
+
+  @DVADrivingLicence_test@build
+  Scenario Outline: DVAError tab title validation
+    Given I click on DVA radio button and Continue
+    When I should be on the page DVA Enter your details exactly as they appear on your UK driving licence
+    And I validate the page title
+    Then User enters DVA data as a <DVADrivingLicenceSubject>
+    And User clicks on continue
+    Then I validate the page error page title
+    And The test is complete and I close the driver
+    Examples:
+      |DVADrivingLicenceSubject             |
+       |NoDVALastName   |
+       |NoDVAFirstName |
+       |NoDVADateOfBirth   |
+       |NoDVAIssueDate   |
+       |NoDVAValidToDate   |
+       |NoDVADrivingLicenceNumber   |
+       |NoDVAPostcode   |
+       |InvalidDVAFirstNameWithSpecialChar|
+       |DVADOBWithSpecialCharacters       |
+       |DVADateOfBirthInFuture            |
+       |DVAIssueDateWithSpecialChar       |
+       |DVAValidToDateWithSpecialChar     |
+       |DVAValidToDateInPast              |
+       |DVADrivingLicenceNumWithSpecialChar|
+       |DVADrivingLicenceNumWithAlphanumericChar|
+       |DVADrivingLicenceNumberWithAlphaChar    |
+       |DVAPostcodeWithSpecialChar |
+       |DVAPostcodeWithAlphaChar      |
+       |DVAInternationalPostcode      |
