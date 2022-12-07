@@ -14,9 +14,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
 import java.util.logging.Logger;
 
 import static gov.di_ipv_fraud.pages.Headers.CHECKING_YOUR_DETAILS;
@@ -451,4 +454,29 @@ public class FraudPageObject extends UniversalSteps {
         secondAddresssvalidToMonthField.sendKeys(month);
         secondAddresssvalidToYearField.sendKeys(year);
     }
+
+    public void nbfAndExpiryInVC(long durationInMonths) throws JsonProcessingException {
+        String result = JSONPayload.getText();
+        LOGGER.info("result = " + result);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(result);
+        JsonNode nbfNode = jsonNode.get("nbf");
+        JsonNode expNode = jsonNode.get("exp");
+        String nbf = jsonNode.get("nbf").asText();
+        String exp = jsonNode.get("exp").asText();
+        LOGGER.info("nbf = " + nbfNode);
+        LOGGER.info("exp = " + expNode);;
+        LocalDateTime nbfDateTime = LocalDateTime.ofEpochSecond(Long.parseLong(nbf), 0, ZoneOffset.UTC);
+        LocalDateTime expDateTime = LocalDateTime.ofEpochSecond(Long.parseLong(exp), 0, ZoneOffset.UTC);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
+        String nbfFormattedDate = nbfDateTime.format(formatter);
+        String expFormattedDate = expDateTime.format(formatter);
+        LOGGER.info("nbf Formatted Date = " + nbfFormattedDate );
+        LOGGER.info("exp Formatted Date = " + expFormattedDate);
+        long monthsBetween = ChronoUnit.MONTHS.between(LocalDate.parse(nbfFormattedDate),
+                LocalDate.parse(expFormattedDate));
+        LOGGER.info("Duration in months: " + monthsBetween);
+        assertEquals(monthsBetween, durationInMonths);
+    }
+
 }
